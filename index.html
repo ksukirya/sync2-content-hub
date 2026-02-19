@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sync2 Content Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #1a1a24;
+      --border: #2a2a3a;
+      --text-primary: #ffffff;
+      --text-secondary: #888899;
+      --accent: #8b5cf6;
+      --accent-hover: #7c3aed;
+      --green: #22c55e;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --orange: #f59e0b;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+    
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 220px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      padding: 20px 12px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 32px;
+      padding: 0 12px;
+      background: linear-gradient(135deg, var(--accent) 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 2px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .nav-item:hover, .nav-item.active {
+      background: rgba(139, 92, 246, 0.1);
+      color: var(--text-primary);
+    }
+    
+    .nav-item.active {
+      background: rgba(139, 92, 246, 0.15);
+      color: var(--accent);
+    }
+    
+    .nav-item svg { width: 18px; height: 18px; }
+    
+    .main {
+      margin-left: 220px;
+      padding: 24px 32px;
+      min-height: 100vh;
+    }
+    
+    .page-header {
+      margin-bottom: 24px;
+    }
+    
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .page-subtitle {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+    
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+    }
+    
+    .stat-change {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    
+    .stat-change.positive { color: var(--green); }
+    .stat-change.negative { color: var(--red); }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+    
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    
+    .btn-sm {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+    
+    /* Carousel Grid */
+    .carousel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    
+    .carousel-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .carousel-preview {
+      aspect-ratio: 4/5;
+      background: var(--bg-secondary);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .carousel-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .carousel-slides-nav {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+    }
+    
+    .carousel-slides-nav span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+    }
+    
+    .carousel-slides-nav span.active {
+      background: white;
+    }
+    
+    .carousel-info {
+      padding: 14px;
+    }
+    
+    .carousel-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    
+    .carousel-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    
+    /* Scripts */
+    .scripts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .script-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .script-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .script-header:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    
+    .script-num {
+      background: var(--accent);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    
+    .script-info {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .script-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+    
+    .script-hook {
+      font-size: 12px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .script-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    
+    .script-type {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .script-type.value { background: rgba(34, 197, 94, 0.15); color: var(--green); }
+    .script-type.pitch { background: rgba(59, 130, 246, 0.15); color: var(--blue); }
+    .script-type.interactive { background: rgba(139, 92, 246, 0.15); color: var(--accent); }
+    
+    .script-length {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+    
+    .script-expand {
+      color: var(--text-secondary);
+      transition: transform 0.2s;
+    }
+    
+    .script-card.expanded .script-expand {
+      transform: rotate(180deg);
+    }
+    
+    .script-body {
+      display: none;
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .script-card.expanded .script-body {
+      display: block;
+    }
+    
+    .script-content {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      white-space: pre-wrap;
+      padding: 16px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      margin-top: 12px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    
+    .script-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    
+    /* Calendar */
+    .calendar-week {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+    }
+    
+    .calendar-day {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      min-height: 180px;
+    }
+    
+    .calendar-day-header {
+      padding: 10px 12px;
+      font-weight: 600;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .calendar-day-header .date {
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+    
+    .calendar-day-content {
+      padding: 8px;
+    }
+    
+    .calendar-item {
+      font-size: 11px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+      border-left: 3px solid;
+    }
+    
+    .calendar-item.reel { background: rgba(239, 68, 68, 0.1); border-color: var(--red); }
+    .calendar-item.carousel { background: rgba(139, 92, 246, 0.1); border-color: var(--accent); }
+    .calendar-item.story { background: rgba(59, 130, 246, 0.1); border-color: var(--blue); }
+    .calendar-item.cta { background: rgba(34, 197, 94, 0.1); border-color: var(--green); }
+    .calendar-item.dm { background: rgba(245, 158, 11, 0.1); border-color: var(--orange); }
+    
+    .calendar-item:hover {
+      filter: brightness(1.2);
+      transform: translateX(2px);
+    }
+    
+    .calendar-day.today {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent), 0 0 20px rgba(139, 92, 246, 0.15);
+    }
+    
+    .calendar-day.today .calendar-day-header {
+      background: rgba(139, 92, 246, 0.1);
+      color: var(--accent);
+    }
+    
+    /* Video table */
+    .video-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .video-table th {
+      text-align: left;
+      padding: 10px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .video-table td {
+      padding: 12px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .video-table tr:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    
+    .platform-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    .platform-badge.youtube { background: rgba(255, 0, 0, 0.15); color: #ff4444; }
+    .platform-badge.tiktok { background: rgba(255, 255, 255, 0.1); color: #fff; }
+    .platform-badge.instagram { background: rgba(225, 48, 108, 0.15); color: #e1306c; }
+    
+    .trend-up { color: var(--green); }
+    .trend-down { color: var(--red); }
+    
+    /* Page visibility */
+    .page { display: none; }
+    .page.active { display: block; }
+    
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: none;
+      z-index: 1000;
+    }
+    
+    .toast.show { display: block; }
+    .toast.success { border-color: var(--green); }
+    
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    
+    .modal-overlay.show {
+      display: flex;
+    }
+    
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow: auto;
+    }
+    
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-header h3 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 20px;
+    }
+    
+    .modal-body {
+      padding: 20px;
+    }
+    
+    /* Slide viewer */
+    .slide-viewer {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .slide-main {
+      flex: 1;
+    }
+    
+    .slide-main img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    
+    .slide-thumbs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 60px;
+    }
+    
+    .slide-thumb {
+      width: 60px;
+      height: 75px;
+      border-radius: 4px;
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+    
+    .slide-thumb:hover, .slide-thumb.active {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <nav class="sidebar">
+    <div class="logo">Sync2 Hub</div>
+    
+    <a class="nav-item active" data-page="analytics">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+      Analytics
+    </a>
+    
+    <a class="nav-item" data-page="carousels">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+      Carousels
+    </a>
+    
+    <a class="nav-item" data-page="scripts">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+      Scripts
+    </a>
+    
+    <a class="nav-item" data-page="calendar">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+      Calendar
+    </a>
+  </nav>
+
+  <main class="main">
+    
+    <!-- ANALYTICS PAGE -->
+    <div id="analytics" class="page active">
+      <div class="page-header">
+        <h1 class="page-title">Analytics</h1>
+        <p class="page-subtitle">Track your content performance</p>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Views (7d)</div>
+          <div class="stat-value">4,847</div>
+          <div class="stat-change positive">↑ 23% vs last week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">YouTube Shorts</div>
+          <div class="stat-value">3,521</div>
+          <div class="stat-change positive">↑ 18%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">TikTok</div>
+          <div class="stat-value">1,326</div>
+          <div class="stat-change positive">↑ 31%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Instagram</div>
+          <div class="stat-value">—</div>
+          <div class="stat-change">Pending API setup</div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-title">Top Performing Content</div>
+        <table class="video-table">
+          <thead>
+            <tr>
+              <th>Content</th>
+              <th>Platform</th>
+              <th>Views</th>
+              <th>Eng. Rate</th>
+              <th>Posted</th>
+              <th>Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>How to Achieve Sub-100ms AI Voice</td>
+              <td><span class="platform-badge youtube">YouTube</span></td>
+              <td>1,168</td>
+              <td>4.2%</td>
+              <td>Feb 11</td>
+              <td class="trend-up">↑ 12%</td>
+            </tr>
+            <tr>
+              <td>AI Receptionist That Books 24/7</td>
+              <td><span class="platform-badge youtube">YouTube</span></td>
+              <td>965</td>
+              <td>3.8%</td>
+              <td>Feb 15</td>
+              <td class="trend-up">↑ 8%</td>
+            </tr>
+            <tr>
+              <td>Spanish Mid-Call Switch (AI DEMO)</td>
+              <td><span class="platform-badge youtube">YouTube</span></td>
+              <td>885</td>
+              <td>5.1%</td>
+              <td>Feb 17</td>
+              <td class="trend-up">↑ 142%</td>
+            </tr>
+            <tr>
+              <td>$5K AI vs Angry Caller</td>
+              <td><span class="platform-badge youtube">YouTube</span></td>
+              <td>615</td>
+              <td>3.2%</td>
+              <td>Feb 16</td>
+              <td class="trend-up">↑ 5%</td>
+            </tr>
+            <tr>
+              <td>Stop Running AI Agents Solo</td>
+              <td><span class="platform-badge tiktok">TikTok</span></td>
+              <td>453</td>
+              <td>6.0%</td>
+              <td>Feb 11</td>
+              <td class="trend-up">↑ 3%</td>
+            </tr>
+            <tr>
+              <td>$5k AI Medspa Receptionist</td>
+              <td><span class="platform-badge tiktok">TikTok</span></td>
+              <td>322</td>
+              <td>4.0%</td>
+              <td>Feb 15</td>
+              <td class="trend-up">↑ 5%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- CAROUSELS PAGE -->
+    <div id="carousels" class="page">
+      <div class="page-header">
+        <h1 class="page-title">Carousels</h1>
+        <p class="page-subtitle">Ready-to-post Instagram carousel images</p>
+      </div>
+      
+      <div class="carousel-grid" id="carousel-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+    
+    <!-- SCRIPTS PAGE -->
+    <div id="scripts" class="page">
+      <div class="page-header">
+        <h1 class="page-title">Video Scripts</h1>
+        <p class="page-subtitle">10 ready-to-film scripts — click to expand</p>
+      </div>
+      
+      <div class="scripts-list" id="scripts-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+    
+    <!-- CALENDAR PAGE -->
+    <div id="calendar" class="page">
+      <div class="page-header">
+        <h1 class="page-title">Content Calendar</h1>
+        <p class="page-subtitle">Week of Feb 18 – Feb 24</p>
+      </div>
+      
+      <div class="calendar-week" id="calendar-week">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+    
+    <!-- Task Modal -->
+    <div class="modal-overlay" id="task-modal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 id="task-modal-title">Task</h3>
+          <button class="modal-close" onclick="closeTaskModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="task-modal-body"></div>
+      </div>
+    </div>
+    
+  </main>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+  
+  <!-- Modal for carousel viewer -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Carousel</h3>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    // ============ DATA ============
+    
+    const carousels = [
+      {
+        id: 1,
+        title: "5 Signs Your Front Desk Is Losing Patients",
+        slides: 7,
+        status: "ready",
+        images: [
+          "/carousels/carousel-1-slide-1.png",
+          "/carousels/carousel-1-slide-2.png",
+          "/carousels/carousel-1-slide-3.png",
+          "/carousels/carousel-1-slide-4.png",
+          "/carousels/carousel-1-slide-5.png",
+          "/carousels/carousel-1-slide-6.png",
+          "/carousels/carousel-1-slide-7.png"
+        ],
+        downloadUrl: "/carousels/carousel-1-all-slides.tar.gz",
+        caption: "Your front desk might be costing you $4K/month. Here are the signs 👆\n\nWhich ones apply to your practice? Comment below.\n\n#dentalmarketing #dentalpractice #practicemanagement #healthcareai #dentist"
+      },
+      {
+        id: 2,
+        title: "The $200 Patient Myth",
+        slides: 7,
+        status: "pending"
+      },
+      {
+        id: 3,
+        title: "What 50+ Practice Audits Taught Me",
+        slides: 7,
+        status: "pending"
+      },
+      {
+        id: 4,
+        title: "AI vs Human Receptionist",
+        slides: 7,
+        status: "pending"
+      },
+      {
+        id: 5,
+        title: "3 Things I'd Do Starting a Practice",
+        slides: 6,
+        status: "pending"
+      }
+    ];
+    
+    const scripts = [
+      {
+        num: 1,
+        type: "value",
+        title: "The Phone Psychology Lesson",
+        hook: "Why patients hang up after 3 rings — and what it costs you.",
+        length: "70s",
+        content: `Here's something most practice owners don't know.
+
+A patient calling your office has already decided they want to book. They're not "shopping around." They picked YOU.
+
+But here's the psychology:
+
+Ring 1-2: They're patient.
+Ring 3-4: They're annoyed.
+Ring 5+: They assume you're closed, disorganized, or don't care.
+
+Studies show 85% of people who hang up don't call back. They call the next name on Google.
+
+That's not a missed call. That's a patient choosing your competitor because you were 10 seconds too slow.
+
+The practice that answers fastest wins. Not the best dentist. Not the cheapest. The fastest.
+
+Something to think about next time your front desk is "busy."
+
+VISUALS:
+• Phone ringing with ring count overlay
+• Patient facial expression shifting (patient → annoyed → gone)
+• Google search: "dentist near me" with competitor clicking`
+      },
+      {
+        num: 2,
+        type: "value",
+        title: "The Real Reason Patients Ghost",
+        hook: "Your patients aren't ghosting you. You're ghosting them.",
+        length: "65s",
+        content: `Practice owners always ask me: "Why do patients book and not show up?"
+
+Here's the truth nobody talks about.
+
+The average time between booking and appointment: 8 days.
+
+Number of times most practices contact them in that window: Zero.
+
+Then you're surprised when they forget? Or book somewhere else that had an earlier slot?
+
+The practices with 95%+ show rates do three things:
+1. Confirmation text within 1 hour of booking
+2. Reminder 48 hours before
+3. "We're excited to see you" message morning-of
+
+That's it. Three texts. Takes 30 seconds to automate.
+
+Your patients want to come. They just need you to make it easy to remember.
+
+VISUALS:
+• Calendar showing 8-day gap
+• Phone with zero notifications
+• Three text message examples
+• Show rate comparison stat`
+      },
+      {
+        num: 3,
+        type: "value",
+        title: "The $200 Patient Myth",
+        hook: "As someone who's analyzed revenue for 50+ dental practices, this math mistake costs you $40K/year.",
+        length: "70s",
+        content: `Most practice owners calculate patient value wrong.
+
+They say "average visit is $200" or whatever your cleaning costs.
+
+That's the wrong number. Here's what I see in the data:
+
+A patient who stays 5 years:
+• 2 cleanings/year = 10 visits
+• Add X-rays, fillings, crowns
+• Add referrals — each happy patient sends 2-3 friends
+
+Real lifetime value: $3,000 to $7,000.
+
+So when your front desk misses a call and that patient books with your competitor instead?
+
+You didn't lose $200. You lost $5,000. And gave it to someone else.
+
+I've watched practices obsess over Google Ads that cost $50 per lead... while ignoring the 40 missed calls per week that cost them nothing to answer.
+
+The most profitable practices I work with don't have bigger marketing budgets. They just answer the phone.
+
+VISUALS:
+• Calculator: $200 crossed out → $5,000
+• Timeline of 5-year patient
+• "40 missed calls × $5K = $200K/year"`
+      },
+      {
+        num: 4,
+        type: "value",
+        title: "The Hiring Math Nobody Does",
+        hook: "Before you hire another receptionist, do this math.",
+        length: "75s",
+        content: `Your front desk is overwhelmed. Calls are getting missed. The obvious solution: hire another person.
+
+Let's run the real numbers.
+
+New receptionist:
+• Salary: $35,000-$45,000/year
+• Benefits: $8,000-$12,000/year
+• Training: 2-3 months before they're useful
+• Sick days, vacation, turnover
+
+Total cost: $50K+ per year. And they still can't answer calls at 2am or handle 5 lines at once.
+
+Alternative math:
+• What if you could cover 100% of overflow calls for $500/month?
+• That's $6,000/year
+• Works 24/7, never calls in sick, handles unlimited simultaneous calls
+
+I'm not saying don't hire. I'm saying know what problem you're actually solving.
+
+Sometimes you need more humans for patient care. Sometimes you need technology for phone coverage.
+
+Most practices hire for the wrong problem.
+
+VISUALS:
+• Job listing with salary
+• Calculator adding up true costs
+• Side-by-side comparison chart`
+      },
+      {
+        num: 5,
+        type: "value",
+        title: "The Authority List",
+        hook: "As someone who's listened to 10,000+ medical office calls, these are the 3 biggest mistakes I hear.",
+        length: "65s",
+        content: `I've spent the last two years building AI phone systems for clinics. I've heard thousands of real patient calls.
+
+Here are the 3 mistakes I hear over and over:
+
+MISTAKE 1: The hold spiral.
+"Please hold." Patient holds for 90 seconds. Gets transferred. Holds again. By minute 3, they've hung up and called your competitor.
+
+MISTAKE 2: The voicemail black hole.
+"Leave a message and we'll call you back." 70% of patients don't leave one. They just call the next name on Google.
+
+MISTAKE 3: The information dump.
+Patient asks one question. Receptionist gives a 2-minute speech about insurance, hours, parking, and paperwork. Patient just wanted to know if you're taking new patients.
+
+Every one of these costs you $200+ per call.
+
+The fix isn't hiring more people. It's designing a system where patients get answers in under 10 seconds.
+
+Follow for more — I post stuff like this every week.
+
+VISUALS:
+• You talking direct to camera
+• Text overlays for each mistake
+• Timer showing hold time climbing
+• Quick cuts between each point`
+      },
+      {
+        num: 6,
+        type: "value",
+        title: "The Lunch Hour Problem",
+        hook: "11:30am to 1:30pm. That's when you lose the most patients.",
+        length: "60s",
+        content: `Ran the data across 50+ medical and dental practices.
+
+The highest call volume? 11:30am - 1:30pm.
+
+Know what else happens then? Lunch breaks. Reduced staff. Voicemail.
+
+This isn't a coincidence. Patients call during THEIR lunch break — the one time they're free.
+
+And that's exactly when most practices are least available.
+
+The math:
+• Average lunch window: 25-30 calls
+• Staff coverage: 50% or less
+• Missed call rate: 40-60%
+
+That's 12-18 missed patients. Every single day.
+
+Solving lunch coverage alone could be worth $50K/year to your practice.
+
+VISUALS:
+• Clock showing 11:30am
+• Call volume graph spiking
+• Empty front desk
+• Split screen: calls coming in, nobody answering`
+      },
+      {
+        num: 7,
+        type: "pitch",
+        title: "The Side-by-Side Test",
+        hook: "A practice owner told me 'we don't miss calls.' I asked if I could prove her wrong.",
+        length: "70s",
+        content: `She said yes. So we tracked one week.
+
+312 calls came in.
+67 went to voicemail.
+23 people hung up before the beep.
+
+90 patients. Gone. In 7 days.
+
+She had no idea.
+
+Week two, we turned on AI backup. Same call volume.
+
+Zero voicemails.
+Zero hang-ups.
+94% booked.
+
+Her staff didn't work harder. They just had backup that caught what they couldn't.
+
+Revenue difference: $11,400. One week.
+
+She doesn't say "we don't miss calls" anymore.
+
+Comment 'AUDIT' if you want to run this test on your practice.
+
+VISUALS:
+• Skeptical practice owner face
+• Week 1 stats in red, appearing one by one
+• Week 2 stats in green
+• Revenue comparison side by side`
+      },
+      {
+        num: 8,
+        type: "pitch",
+        title: "The 2AM Proof",
+        hook: "Tuesday, 2:17am. A patient with a toothache found us on Google.",
+        length: "65s",
+        content: `She almost didn't call. It's 2am, right? Who's gonna answer?
+
+But she tried anyway.
+
+AI picked up in 2 seconds. Asked what was wrong. Found an 8am emergency slot. Booked it. Sent her a confirmation text.
+
+She showed up. $380 emergency visit. Left a 5-star review.
+
+"I can't believe someone actually answered at 2am."
+
+She didn't know it was AI. She just knew her problem got solved.
+
+That same week: Thursday 11pm, Sunday 6am. Three more after-hours bookings. $740 total.
+
+Your competitors' phones go to voicemail at 5pm. That's when you take their patients.
+
+Link in bio.
+
+VISUALS:
+• Phone screen showing 2:17 AM
+• AI conversation transcript scrolling
+• Confirmation text appearing
+• 5-star review screenshot`
+      },
+      {
+        num: 9,
+        type: "interactive",
+        title: "The Real Call",
+        hook: "One of these calls was answered by AI. Guess which one.",
+        length: "75s",
+        content: `I'm going to play two real calls. Same practice, same type of appointment request.
+
+[Play Call A — 20 seconds of natural booking conversation]
+
+[Play Call B — 20 seconds of natural booking conversation]
+
+Comment A or B before I tell you.
+
+...
+
+It was Call B.
+
+The patient had no idea. Appointment booked. Showed up. Left a 5-star review.
+
+"But AI sounds robotic." Not anymore.
+
+"But patients want humans." They want their problem solved. Call B solved it in 45 seconds.
+
+Comment 'DEMO' to test it with your own practice name and info.
+
+VISUALS:
+• Call A playing, waveform visualization
+• Call B playing, waveform visualization
+• "A or B?" overlay, pause for engagement
+• Reveal + 5-star review screenshot`
+      },
+      {
+        num: 10,
+        type: "interactive",
+        title: "The Money Question",
+        hook: "I'll give you 10 seconds to guess how much this practice was losing.",
+        length: "70s",
+        content: `Here's what I know:
+• 4-provider dental practice
+• 340 calls per week
+• 18% going to voicemail
+• Open 45 hours/week
+
+How much were they losing per month?
+
+[10-second countdown timer]
+
+...
+
+$26,400.
+
+Here's the math:
+• 340 calls × 18% missed = 61 missed calls/week
+• 61 × 70% would've booked = 43 lost patients/week
+• 43 × $150 average value = $6,450/week
+• × 4 weeks = $25,800/month
+
+They had no idea until we ran the audit.
+
+Comment your guess. If you were within $3K, I'll send you our free calculator to run your own numbers.
+
+VISUALS:
+• Practice stats appearing on screen
+• Countdown timer
+• Math breakdown animating in
+• Calculator graphic + CTA`
+      }
+    ];
+    
+    const calendarData = [
+      {
+        day: "Tue",
+        date: "18",
+        isToday: true,
+        items: [
+          { type: "reel", text: "7am: Video #1 (3 Rings)", link: "script", id: 1 },
+          { type: "reel", text: "5pm: Video #5 (Authority)", link: "script", id: 5 },
+          { type: "carousel", text: "Carousel: 5 Signs", link: "carousel", id: 1 },
+          { type: "story", text: "4 Stories", link: "task", details: "1. Poll: How many calls missed?\n2. BTS filming\n3. Repost Reel #1\n4. Question box: Front desk frustrations?" },
+          { type: "dm", text: "30 DMs", link: "task", details: "Comment on 30 dental practice posts:\n• Search #dentalmarketing\n• Engage with practice owners\n• Reply to all comments from yesterday" }
+        ]
+      },
+      {
+        day: "Wed",
+        date: "19",
+        items: [
+          { type: "reel", text: "7am: Video #2 (Ghost)", link: "script", id: 2 },
+          { type: "reel", text: "5pm: Video #3 ($200 Myth)", link: "script", id: 3 },
+          { type: "carousel", text: "Carousel: $200 Myth", link: "carousel", id: 2 },
+          { type: "story", text: "4 Stories", link: "task", details: "1. Countdown to 5pm video\n2. Share testimonial screenshot\n3. Repost carousel\n4. This or That poll" },
+          { type: "dm", text: "30 DMs", link: "task", details: "• Reply to all comments from Tuesday\n• DM people who engaged with polls\n• Cold DM 10 dental practices" }
+        ]
+      },
+      {
+        day: "Thu",
+        date: "20",
+        items: [
+          { type: "reel", text: "7am: Video #7 (Test)", link: "script", id: 7 },
+          { type: "reel", text: "5pm: Video #4 (Hiring)", link: "script", id: 4 },
+          { type: "carousel", text: "Carousel: Audits", link: "carousel", id: 3 },
+          { type: "story", text: "4 Stories", link: "task", details: "1. Dashboard screenshot\n2. Quick tip\n3. Repost Reel\n4. Poll: Do you track missed calls?" },
+          { type: "dm", text: "30 DMs", link: "task", details: "• Cold DM 10 dental practices\n• Engage with 20 commenters\n• Follow up warm leads" }
+        ]
+      },
+      {
+        day: "Fri",
+        date: "21",
+        items: [
+          { type: "reel", text: "7am: Video #8 (2AM)", link: "script", id: 8 },
+          { type: "reel", text: "5pm: Repurpose best", link: "task", details: "Take best performing video from week\n• Create new hook version\n• Post as fresh content" },
+          { type: "carousel", text: "AI vs Human", link: "carousel", id: 4 },
+          { type: "story", text: "4 Stories", link: "task", details: "1. Real AI call snippet\n2. Day in my life\n3. Repost carousel\n4. Question box" },
+          { type: "dm", text: "30 DMs", link: "task", details: "• Reply to story mentions\n• Engage with new followers\n• Warm lead follow-ups" }
+        ]
+      },
+      {
+        day: "Sat",
+        date: "22",
+        items: [
+          { type: "reel", text: "7am: Video #9 (Guess)", link: "script", id: 9 },
+          { type: "reel", text: "5pm: Video #10 (Math)", link: "script", id: 10 },
+          { type: "cta", text: "CTA: Free Audit", link: "task", details: "Post CTA image/video:\n\n\"I'll audit your phone system for free.\n→ Missed call report (30 days)\n→ Revenue loss calculation\n→ 3 fixes for your practice\n\nComment 'AUDIT' or DM me.\nFirst 10 this week get it free.\"" },
+          { type: "story", text: "4 Stories", link: "task", details: "1. Last chance free audit\n2. Previous audit results\n3. Repost CTA\n4. Countdown to next week" },
+          { type: "dm", text: "40 DMs", link: "task", details: "HEAVY PUSH DAY!\n• DM everyone who commented AUDIT\n• Follow up on week's engagements\n• Cold DM 15 practices" }
+        ]
+      },
+      {
+        day: "Sun",
+        date: "23",
+        items: [
+          { type: "reel", text: "12pm: Best of week", link: "task", details: "Repurpose best performer:\n• New hook + slight edit\n• Post at noon" },
+          { type: "carousel", text: "3 Things", link: "carousel", id: 5 },
+          { type: "story", text: "2 Stories", link: "task", details: "1. Weekend vibes + soft CTA\n2. Week recap" },
+          { type: "dm", text: "20 DMs", link: "task", details: "Lighter day\n• Focus on warm leads only\n• Prep for Monday push" }
+        ]
+      },
+      {
+        day: "Mon",
+        date: "24",
+        items: [
+          { type: "reel", text: "7am: Video #6 (Lunch)", link: "script", id: 6 },
+          { type: "reel", text: "5pm: New content", link: "task", details: "Film new content based on:\n• What performed best last week\n• Comments/questions received\n• Trending topics" },
+          { type: "story", text: "4 Stories", link: "task", details: "1. Monday motivation\n2. Preview new content\n3. Repost Reel\n4. Engagement poll" },
+          { type: "dm", text: "30 DMs", link: "task", details: "New week push\n• Engage with weekend comments\n• Cold DM 10 practices" }
+        ]
+      }
+    ];
+    
+    // ============ RENDER FUNCTIONS ============
+    
+    function renderCarousels() {
+      const grid = document.getElementById('carousel-grid');
+      grid.innerHTML = carousels.map(c => {
+        if (c.status === 'ready') {
+          return `
+            <div class="carousel-card">
+              <div class="carousel-preview" onclick="viewCarousel(${c.id})">
+                <img src="${c.images[0]}" alt="${c.title}">
+                <div class="carousel-slides-nav">
+                  ${c.images.map((_, i) => `<span ${i === 0 ? 'class="active"' : ''}></span>`).join('')}
+                </div>
+              </div>
+              <div class="carousel-info">
+                <div class="carousel-title">${c.title}</div>
+                <div class="carousel-meta">${c.slides} slides • 1080×1350</div>
+                <div style="display: flex; gap: 8px;">
+                  <a href="${c.downloadUrl}" download class="btn btn-primary btn-sm">Download All</a>
+                  <button class="btn btn-secondary btn-sm" onclick="copyCaption(${c.id})">Copy Caption</button>
+                </div>
+              </div>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="carousel-card" style="opacity: 0.5;">
+              <div class="carousel-preview" style="display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">
+                Coming Soon
+              </div>
+              <div class="carousel-info">
+                <div class="carousel-title">${c.title}</div>
+                <div class="carousel-meta">${c.slides} slides • Pending</div>
+                <button class="btn btn-secondary btn-sm" disabled>Not Ready</button>
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
+    }
+    
+    function renderScripts() {
+      const list = document.getElementById('scripts-list');
+      list.innerHTML = scripts.map(s => `
+        <div class="script-card" id="script-${s.num}">
+          <div class="script-header" onclick="toggleScript(${s.num})">
+            <span class="script-num">${s.num}</span>
+            <div class="script-info">
+              <div class="script-title">${s.title}</div>
+              <div class="script-hook">"${s.hook}"</div>
+            </div>
+            <div class="script-meta">
+              <span class="script-type ${s.type}">${s.type}</span>
+              <span class="script-length">${s.length}</span>
+              <svg class="script-expand" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="script-body">
+            <div class="script-content">${s.content}</div>
+            <div class="script-actions">
+              <button class="btn btn-primary btn-sm" onclick="copyScript(${s.num})">Copy Script</button>
+              <button class="btn btn-secondary btn-sm" onclick="copyHook(${s.num})">Copy Hook</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function renderCalendar() {
+      const week = document.getElementById('calendar-week');
+      week.innerHTML = calendarData.map((d, dayIdx) => `
+        <div class="calendar-day ${d.isToday ? 'today' : ''}">
+          <div class="calendar-day-header">
+            <span>${d.day} ${d.isToday ? '(Today)' : ''}</span>
+            <span class="date">${d.date}</span>
+          </div>
+          <div class="calendar-day-content">
+            ${d.items.map((i, itemIdx) => `
+              <div class="calendar-item ${i.type}" 
+                   onclick="handleCalendarClick(${dayIdx}, ${itemIdx})"
+                   style="cursor: pointer;">
+                ${i.text}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function handleCalendarClick(dayIdx, itemIdx) {
+      const item = calendarData[dayIdx].items[itemIdx];
+      
+      if (item.link === 'script') {
+        // Navigate to scripts page and expand the script
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelector('[data-page="scripts"]').classList.add('active');
+        document.getElementById('scripts').classList.add('active');
+        
+        // Expand the script
+        setTimeout(() => {
+          const scriptCard = document.getElementById(`script-${item.id}`);
+          scriptCard.classList.add('expanded');
+          scriptCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
+      } else if (item.link === 'carousel') {
+        // Navigate to carousels page and open viewer
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelector('[data-page="carousels"]').classList.add('active');
+        document.getElementById('carousels').classList.add('active');
+        
+        // Open carousel viewer if it exists
+        if (carousels[item.id - 1]?.status === 'ready') {
+          setTimeout(() => viewCarousel(item.id), 100);
+        } else {
+          showToast('This carousel is not ready yet');
+        }
+        
+      } else if (item.link === 'task') {
+        // Show task modal
+        document.getElementById('task-modal-title').textContent = item.text;
+        document.getElementById('task-modal-body').innerHTML = `
+          <div style="white-space: pre-wrap; line-height: 1.8; color: var(--text-secondary);">${item.details}</div>
+          <button class="btn btn-primary" style="margin-top: 20px;" onclick="markTaskDone('${item.text}')">Mark Complete</button>
+        `;
+        document.getElementById('task-modal').classList.add('show');
+      }
+    }
+    
+    function closeTaskModal() {
+      document.getElementById('task-modal').classList.remove('show');
+    }
+    
+    function markTaskDone(taskName) {
+      closeTaskModal();
+      showToast(`✓ ${taskName} marked complete`);
+    }
+    
+    // Close task modal on outside click
+    document.getElementById('task-modal')?.addEventListener('click', (e) => {
+      if (e.target.id === 'task-modal') closeTaskModal();
+    });
+    
+    // ============ ACTIONS ============
+    
+    function toggleScript(num) {
+      const card = document.getElementById(`script-${num}`);
+      card.classList.toggle('expanded');
+    }
+    
+    function copyScript(num) {
+      const script = scripts.find(s => s.num === num);
+      navigator.clipboard.writeText(script.content);
+      showToast('Script copied!');
+    }
+    
+    function copyHook(num) {
+      const script = scripts.find(s => s.num === num);
+      navigator.clipboard.writeText(script.hook);
+      showToast('Hook copied!');
+    }
+    
+    function copyCaption(id) {
+      const carousel = carousels.find(c => c.id === id);
+      navigator.clipboard.writeText(carousel.caption);
+      showToast('Caption copied!');
+    }
+    
+    function viewCarousel(id) {
+      const carousel = carousels.find(c => c.id === id);
+      document.getElementById('modal-title').textContent = carousel.title;
+      document.getElementById('modal-body').innerHTML = `
+        <div class="slide-viewer">
+          <div class="slide-thumbs">
+            ${carousel.images.map((img, i) => `
+              <img src="${img}" class="slide-thumb ${i === 0 ? 'active' : ''}" onclick="changeSlide(${id}, ${i})">
+            `).join('')}
+          </div>
+          <div class="slide-main">
+            <img src="${carousel.images[0]}" id="main-slide">
+          </div>
+        </div>
+        <div style="margin-top: 16px; display: flex; gap: 8px;">
+          <a href="${carousel.downloadUrl}" download class="btn btn-primary">Download All Slides</a>
+          <button class="btn btn-secondary" onclick="copyCaption(${id})">Copy Caption</button>
+        </div>
+      `;
+      document.getElementById('modal').classList.add('show');
+    }
+    
+    function changeSlide(carouselId, slideIndex) {
+      const carousel = carousels.find(c => c.id === carouselId);
+      document.getElementById('main-slide').src = carousel.images[slideIndex];
+      document.querySelectorAll('.slide-thumb').forEach((t, i) => {
+        t.classList.toggle('active', i === slideIndex);
+      });
+    }
+    
+    function closeModal() {
+      document.getElementById('modal').classList.remove('show');
+    }
+    
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show', 'success');
+      setTimeout(() => toast.classList.remove('show', 'success'), 2000);
+    }
+    
+    // ============ NAVIGATION ============
+    
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        item.classList.add('active');
+        document.getElementById(item.dataset.page).classList.add('active');
+      });
+    });
+    
+    // Close modal on outside click
+    document.getElementById('modal').addEventListener('click', (e) => {
+      if (e.target.id === 'modal') closeModal();
+    });
+    
+    // ============ INIT ============
+    
+    renderCarousels();
+    renderScripts();
+    renderCalendar();
+  </script>
+</body>
+</html>
