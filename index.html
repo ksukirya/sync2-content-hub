@@ -10,19 +10,22 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     :root {
-      --bg-primary: #0a0a0f;
-      --bg-secondary: #12121a;
-      --bg-card: #1a1a24;
-      --border: #2a2a3a;
-      --text-primary: #ffffff;
-      --text-secondary: #888899;
-      --accent: #8b5cf6;
-      --accent-hover: #7c3aed;
-      --green: #22c55e;
-      --red: #ef4444;
-      --blue: #3b82f6;
-      --orange: #f59e0b;
-      --pink: #ec4899;
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #111114;
+      --bg-card: #151518;
+      --border: #1e1e24;
+      --border-subtle: #1a1a1f;
+      --text-primary: #f5f5f5;
+      --text-secondary: #8a8a94;
+      --text-muted: #5a5a64;
+      --gold: #c9a962;
+      --gold-hover: #dab872;
+      --gold-subtle: rgba(201, 169, 98, 0.08);
+      --gold-glow: rgba(201, 169, 98, 0.15);
+      --green: #4ade80;
+      --green-subtle: rgba(74, 222, 128, 0.1);
+      --red: #f87171;
+      --blue: #60a5fa;
     }
     
     body {
@@ -30,6 +33,8 @@
       background: var(--bg-primary);
       color: var(--text-primary);
       min-height: 100vh;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
     }
     
     .sidebar {
@@ -37,120 +42,129 @@
       left: 0;
       top: 0;
       bottom: 0;
-      width: 220px;
+      width: 240px;
       background: var(--bg-secondary);
       border-right: 1px solid var(--border);
-      padding: 20px 12px;
+      padding: 32px 16px;
       display: flex;
       flex-direction: column;
     }
     
     .logo {
       font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 32px;
-      padding: 0 12px;
-      background: linear-gradient(135deg, var(--accent) 0%, #06b6d4 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      margin-bottom: 48px;
+      padding: 0 16px;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+    }
+    
+    .logo span {
+      color: var(--gold);
     }
     
     .nav-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 8px;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
       color: var(--text-secondary);
       text-decoration: none;
       font-weight: 500;
       font-size: 14px;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
       cursor: pointer;
       transition: all 0.2s;
     }
     
-    .nav-item:hover, .nav-item.active {
-      background: rgba(139, 92, 246, 0.1);
+    .nav-item:hover {
+      background: rgba(201, 169, 98, 0.06);
       color: var(--text-primary);
     }
     
     .nav-item.active {
-      background: rgba(139, 92, 246, 0.15);
-      color: var(--accent);
+      background: var(--gold-glow);
+      color: var(--gold);
     }
     
-    .nav-item svg { width: 18px; height: 18px; }
+    .nav-item svg { width: 18px; height: 18px; opacity: 0.8; }
     
     .main {
-      margin-left: 220px;
-      padding: 24px 32px;
+      margin-left: 240px;
+      padding: 40px 48px;
       min-height: 100vh;
+      max-width: 1400px;
     }
     
     .page-header {
-      margin-bottom: 24px;
+      margin-bottom: 40px;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
     }
     
     .page-title {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 700;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
     }
     
     .page-subtitle {
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: 15px;
     }
     
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
     }
     
     .card-title {
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 600;
-      margin-bottom: 16px;
-      color: var(--text-secondary);
+      margin-bottom: 24px;
+      color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.1em;
     }
     
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 24px;
+      gap: 20px;
+      margin-bottom: 32px;
     }
     
     .stat-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px 20px;
+      border-radius: 14px;
+      padding: 24px;
     }
     
     .stat-label {
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin-bottom: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
     
     .stat-value {
-      font-size: 28px;
-      font-weight: 700;
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
     }
     
     .stat-change {
-      font-size: 12px;
-      margin-top: 4px;
+      font-size: 13px;
+      margin-top: 8px;
+      font-weight: 500;
     }
     
     .stat-change.positive { color: var(--green); }
@@ -159,102 +173,106 @@
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      border-radius: 6px;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 8px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 500;
       border: none;
       cursor: pointer;
       transition: all 0.2s;
       text-decoration: none;
+      letter-spacing: -0.01em;
     }
     
     .btn-primary {
-      background: var(--accent);
-      color: white;
+      background: var(--gold);
+      color: #0a0a0c;
     }
     
     .btn-primary:hover {
-      background: var(--accent-hover);
+      background: var(--gold-hover);
     }
     
     .btn-secondary {
-      background: rgba(255,255,255,0.05);
+      background: transparent;
       border: 1px solid var(--border);
-      color: var(--text-primary);
+      color: var(--text-secondary);
     }
     
     .btn-secondary:hover {
-      background: rgba(255,255,255,0.1);
+      border-color: var(--gold);
+      color: var(--gold);
     }
     
     /* Platform cards */
     .platform-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-bottom: 24px;
+      gap: 24px;
+      margin-bottom: 32px;
     }
     
     .platform-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
+      border-radius: 16px;
+      padding: 28px;
       position: relative;
       overflow: hidden;
     }
     
-    .platform-card.youtube { border-top: 3px solid #ff0000; }
-    .platform-card.tiktok { border-top: 3px solid #ffffff; }
-    .platform-card.instagram { border-top: 3px solid var(--pink); }
+    .platform-card.youtube { border-top: 2px solid #ff0000; }
+    .platform-card.tiktok { border-top: 2px solid #fff; }
+    .platform-card.instagram { border-top: 2px solid #c13584; }
     
     .platform-header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 14px;
+      margin-bottom: 20px;
     }
     
     .platform-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
     }
     
-    .platform-icon.youtube { background: rgba(255, 0, 0, 0.15); }
-    .platform-icon.tiktok { background: rgba(255, 255, 255, 0.1); }
-    .platform-icon.instagram { background: rgba(236, 72, 153, 0.15); }
+    .platform-icon.youtube { background: rgba(255, 0, 0, 0.12); color: #ff4444; }
+    .platform-icon.tiktok { background: rgba(255, 255, 255, 0.08); color: #fff; }
+    .platform-icon.instagram { background: rgba(193, 53, 132, 0.12); color: #c13584; }
     
     .platform-name {
       font-weight: 700;
-      font-size: 16px;
+      font-size: 17px;
     }
     
     .platform-handle {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
     }
     
     .platform-stats {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 14px;
     }
     
     .platform-stat {
-      background: rgba(0,0,0,0.2);
-      padding: 12px;
-      border-radius: 8px;
+      background: rgba(0,0,0,0.25);
+      padding: 14px;
+      border-radius: 10px;
     }
     
     .platform-stat-value {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
     }
     
@@ -262,41 +280,43 @@
       font-size: 11px;
       color: var(--text-secondary);
       text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
     
     /* Insights section */
     .insights-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 24px;
+      gap: 20px;
+      margin-bottom: 32px;
     }
     
     .insight-card {
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
-      border: 1px solid var(--accent);
-      border-radius: 12px;
-      padding: 20px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
     }
     
     .insight-number {
-      font-size: 32px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent) 0%, #06b6d4 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 14px;
+      letter-spacing: 0.03em;
     }
     
     .insight-title {
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      font-size: 15px;
+      line-height: 1.5;
     }
     
     .insight-action {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.5;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
     }
     
     /* Tables */
@@ -307,18 +327,18 @@
     
     .video-table th {
       text-align: left;
-      padding: 10px 12px;
+      padding: 14px 16px;
       font-size: 11px;
       font-weight: 600;
       color: var(--text-secondary);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.08em;
       border-bottom: 1px solid var(--border);
     }
     
     .video-table td {
-      padding: 12px;
-      font-size: 13px;
+      padding: 16px;
+      font-size: 14px;
       border-bottom: 1px solid var(--border);
     }
     
@@ -330,8 +350,8 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      padding: 3px 8px;
-      border-radius: 4px;
+      padding: 4px 10px;
+      border-radius: 6px;
       font-size: 11px;
       font-weight: 600;
     }
@@ -347,40 +367,40 @@
     .hook-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px 0;
+      gap: 16px;
+      padding: 14px 0;
       border-bottom: 1px solid var(--border);
     }
     
     .hook-item:last-child { border-bottom: none; }
     
     .hook-name {
-      width: 120px;
+      width: 140px;
       font-weight: 500;
-      font-size: 13px;
+      font-size: 14px;
       flex-shrink: 0;
     }
     
     .hook-bar-container {
       flex: 1;
-      height: 24px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 4px;
+      height: 28px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px;
       overflow: hidden;
       position: relative;
     }
     
     .hook-bar {
       height: 100%;
-      background: linear-gradient(90deg, var(--accent) 0%, #06b6d4 100%);
-      border-radius: 4px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-hover) 100%);
+      border-radius: 6px;
       transition: width 0.5s ease;
     }
     
     .hook-stats {
-      width: 100px;
+      width: 110px;
       text-align: right;
-      font-size: 13px;
+      font-size: 14px;
       flex-shrink: 0;
     }
     
@@ -389,7 +409,7 @@
     }
     
     .hook-count {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-secondary);
     }
     
@@ -399,7 +419,7 @@
     }
     
     .comparison-table th {
-      padding: 12px;
+      padding: 14px 16px;
       text-align: center;
       font-weight: 600;
       border-bottom: 1px solid var(--border);
@@ -410,7 +430,7 @@
     }
     
     .comparison-table td {
-      padding: 12px;
+      padding: 14px 16px;
       text-align: center;
       border-bottom: 1px solid var(--border);
     }
@@ -432,14 +452,14 @@
     /* Carousel Grid */
     .carousel-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
     }
     
     .carousel-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
     }
     
@@ -468,7 +488,7 @@
     
     .carousel-dots {
       position: absolute;
-      bottom: 12px;
+      bottom: 14px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -479,14 +499,14 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.35);
       cursor: pointer;
       transition: all 0.2s;
     }
     
     .carousel-dot.active {
       background: #fff;
-      width: 18px;
+      width: 20px;
       border-radius: 3px;
     }
     
@@ -494,9 +514,9 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 32px;
-      height: 32px;
-      background: rgba(0,0,0,0.5);
+      width: 36px;
+      height: 36px;
+      background: rgba(0,0,0,0.6);
       border: none;
       border-radius: 50%;
       color: white;
@@ -506,50 +526,51 @@
       justify-content: center;
       opacity: 0;
       transition: opacity 0.2s;
+      font-size: 16px;
     }
     
     .carousel-preview:hover .carousel-nav {
       opacity: 1;
     }
     
-    .carousel-nav.prev { left: 8px; }
-    .carousel-nav.next { right: 8px; }
+    .carousel-nav.prev { left: 10px; }
+    .carousel-nav.next { right: 10px; }
     
     .carousel-info {
-      padding: 14px;
+      padding: 18px;
     }
     
     .carousel-title {
       font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 4px;
+      font-size: 15px;
+      margin-bottom: 6px;
     }
     
     .carousel-meta {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
     
     /* Scripts */
     .scripts-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
     }
     
     .script-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
     }
     
     .script-header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 14px 16px;
+      gap: 16px;
+      padding: 18px 20px;
       cursor: pointer;
       transition: background 0.2s;
     }
@@ -559,16 +580,16 @@
     }
     
     .script-num {
-      background: var(--accent);
-      color: white;
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
+      background: var(--gold);
+      color: #0a0a0c;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 13px;
       flex-shrink: 0;
     }
     
@@ -579,12 +600,12 @@
     
     .script-title {
       font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 2px;
+      font-size: 15px;
+      margin-bottom: 4px;
     }
     
     .script-hook {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
       white-space: nowrap;
       overflow: hidden;
@@ -594,25 +615,28 @@
     .script-meta {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       flex-shrink: 0;
     }
     
     .script-type {
       font-size: 10px;
-      padding: 3px 8px;
-      border-radius: 4px;
+      padding: 4px 10px;
+      border-radius: 6px;
       font-weight: 600;
       text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
     
-    .script-type.value { background: rgba(34, 197, 94, 0.15); color: var(--green); }
-    .script-type.pitch { background: rgba(59, 130, 246, 0.15); color: var(--blue); }
-    .script-type.interactive { background: rgba(139, 92, 246, 0.15); color: var(--accent); }
+    .script-type.value { background: rgba(74, 222, 128, 0.12); color: var(--green); }
+    .script-type.pitch { background: rgba(201, 169, 98, 0.15); color: var(--gold); }
+    .script-type.demo { background: rgba(96, 165, 250, 0.15); color: var(--blue); }
+    .script-type.educational { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+    .script-type.case-study { background: rgba(248, 113, 113, 0.15); color: var(--red); }
     
     .script-body {
       display: none;
-      padding: 0 16px 16px;
+      padding: 0 20px 20px;
       border-top: 1px solid var(--border);
     }
     
@@ -622,33 +646,40 @@
     
     .script-content {
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.8;
       color: var(--text-secondary);
       white-space: pre-wrap;
-      padding: 16px;
-      background: rgba(0,0,0,0.2);
-      border-radius: 8px;
-      margin-top: 12px;
-      max-height: 400px;
+      padding: 20px;
+      background: rgba(0,0,0,0.25);
+      border-radius: 10px;
+      margin-top: 16px;
+      max-height: 450px;
       overflow-y: auto;
+    }
+    
+    .script-framework {
+      font-size: 12px;
+      color: var(--gold);
+      margin-top: 12px;
+      padding-top: 12px;
     }
     
     /* Calendar */
     .calendar-week {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 8px;
+      gap: 12px;
     }
     
     .calendar-day {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      min-height: 180px;
+      border-radius: 12px;
+      min-height: 200px;
     }
     
     .calendar-day-header {
-      padding: 10px 12px;
+      padding: 12px 14px;
       font-weight: 600;
       font-size: 13px;
       border-bottom: 1px solid var(--border);
@@ -663,29 +694,29 @@
     }
     
     .calendar-day-content {
-      padding: 8px;
+      padding: 10px;
     }
     
     .calendar-item {
-      font-size: 11px;
-      padding: 6px 8px;
-      border-radius: 4px;
-      margin-bottom: 4px;
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      margin-bottom: 6px;
       border-left: 3px solid;
     }
     
-    .calendar-item.reel { background: rgba(239, 68, 68, 0.1); border-color: var(--red); }
-    .calendar-item.carousel { background: rgba(139, 92, 246, 0.1); border-color: var(--accent); }
+    .calendar-item.reel { background: rgba(248, 113, 113, 0.08); border-color: var(--red); }
+    .calendar-item.carousel { background: rgba(201, 169, 98, 0.08); border-color: var(--gold); }
     
     /* Toast */
     .toast {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
+      bottom: 28px;
+      right: 28px;
       background: var(--bg-card);
       border: 1px solid var(--border);
-      padding: 12px 20px;
-      border-radius: 8px;
+      padding: 14px 24px;
+      border-radius: 10px;
       font-size: 14px;
       display: none;
       z-index: 1000;
@@ -694,84 +725,11 @@
     .toast.show { display: block; }
     .toast.success { border-color: var(--green); }
     
-    /* Modal */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.8);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-    
-    .modal-overlay.show {
-      display: flex;
-    }
-    
-    .modal {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      max-width: 600px;
-      width: 90%;
-      max-height: 80vh;
-      overflow: auto;
-    }
-    
-    .modal-header {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .modal-header h3 {
-      font-size: 16px;
-      font-weight: 600;
-    }
-    
-    .modal-close {
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      cursor: pointer;
-      font-size: 20px;
-    }
-    
-    .modal-body {
-      padding: 20px;
-    }
-    
-    /* Loading state */
-    .loading {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    
-    .spinner {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border: 2px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    
     /* Recommendations page styles */
     .hook-category {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       margin-bottom: 16px;
       overflow: hidden;
     }
@@ -780,7 +738,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 20px;
+      padding: 20px 24px;
       cursor: pointer;
       transition: background 0.2s;
     }
@@ -790,16 +748,16 @@
     }
     
     .hook-template {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', monospace;
       font-size: 16px;
       font-weight: 600;
-      color: var(--accent);
+      color: var(--gold);
     }
     
     .hook-avg-views {
-      background: rgba(139, 92, 246, 0.2);
-      color: var(--accent);
-      padding: 4px 12px;
+      background: var(--gold-subtle);
+      color: var(--gold);
+      padding: 6px 14px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 600;
@@ -807,7 +765,7 @@
     
     .hook-category-body {
       display: none;
-      padding: 0 20px 20px;
+      padding: 0 24px 24px;
       border-top: 1px solid var(--border);
     }
     
@@ -819,18 +777,18 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 16px;
-      background: rgba(0,0,0,0.3);
-      border-radius: 8px;
-      margin-bottom: 8px;
+      padding: 14px 18px;
+      background: rgba(0,0,0,0.25);
+      border-radius: 10px;
+      margin-bottom: 10px;
       cursor: pointer;
       transition: all 0.2s;
       border: 1px solid transparent;
     }
     
     .copy-hook:hover {
-      background: rgba(139, 92, 246, 0.1);
-      border-color: var(--accent);
+      background: var(--gold-subtle);
+      border-color: var(--gold);
     }
     
     .copy-hook-text {
@@ -839,7 +797,7 @@
     }
     
     .copy-hook-btn {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-secondary);
       opacity: 0;
       transition: opacity 0.2s;
@@ -850,7 +808,7 @@
     }
     
     .copy-hook.copied {
-      background: rgba(34, 197, 94, 0.1);
+      background: rgba(74, 222, 128, 0.08);
       border-color: var(--green);
     }
     
@@ -860,8 +818,8 @@
     }
     
     .hook-source {
-      margin-top: 16px;
-      padding-top: 16px;
+      margin-top: 20px;
+      padding-top: 20px;
       border-top: 1px solid var(--border);
     }
     
@@ -869,19 +827,20 @@
       font-size: 11px;
       color: var(--text-secondary);
       text-transform: uppercase;
-      margin-bottom: 8px;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
     }
     
     .hook-source-video {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 8px 0;
-      font-size: 13px;
+      gap: 14px;
+      padding: 10px 0;
+      font-size: 14px;
     }
     
     .hook-source-video a {
-      color: var(--accent);
+      color: var(--gold);
       text-decoration: none;
     }
     
@@ -895,53 +854,54 @@
     }
     
     .hook-why {
-      background: rgba(245, 158, 11, 0.1);
-      border-left: 3px solid var(--orange);
-      padding: 12px 16px;
-      margin-top: 12px;
-      border-radius: 0 8px 8px 0;
-      font-size: 13px;
+      background: rgba(201, 169, 98, 0.06);
+      border-left: 3px solid var(--gold);
+      padding: 14px 18px;
+      margin-top: 16px;
+      border-radius: 0 10px 10px 0;
+      font-size: 14px;
       color: var(--text-secondary);
+      line-height: 1.6;
     }
     
     /* Format cards */
     .format-card {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
+      border-radius: 14px;
+      padding: 24px;
     }
     
     .format-type {
       font-size: 18px;
       font-weight: 700;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     
     .format-views {
-      font-size: 24px;
-      font-weight: 800;
+      font-size: 28px;
+      font-weight: 700;
       color: var(--green);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     
     .format-views span {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
       font-weight: 400;
     }
     
     .format-desc {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-secondary);
-      line-height: 1.5;
+      line-height: 1.6;
     }
     
     /* Competitor patterns */
     .pattern-item {
       display: flex;
-      gap: 16px;
-      padding: 16px 0;
+      gap: 20px;
+      padding: 18px 0;
       border-bottom: 1px solid var(--border);
     }
     
@@ -951,18 +911,19 @@
     
     .pattern-name {
       font-weight: 600;
-      width: 180px;
+      width: 200px;
       flex-shrink: 0;
     }
     
     .pattern-examples {
       flex: 1;
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-secondary);
+      line-height: 1.6;
     }
     
     .pattern-engagement {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--green);
       font-weight: 600;
     }
@@ -971,40 +932,41 @@
     .weekly-day {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px;
+      border-radius: 10px;
+      padding: 16px;
       text-align: center;
     }
     
     .weekly-day-name {
       font-weight: 600;
-      font-size: 12px;
-      margin-bottom: 8px;
+      font-size: 13px;
+      margin-bottom: 10px;
     }
     
     .weekly-day-content {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-secondary);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      line-height: 1.5;
     }
     
     .weekly-day-hook {
-      font-size: 10px;
-      background: rgba(139, 92, 246, 0.15);
-      color: var(--accent);
-      padding: 4px 8px;
-      border-radius: 4px;
+      font-size: 11px;
+      background: var(--gold-subtle);
+      color: var(--gold);
+      padding: 5px 10px;
+      border-radius: 6px;
       display: inline-block;
     }
     
-    /* ============ MOBILE RESPONSIVE ============ */
+    /* Mobile Responsive */
     @media (max-width: 768px) {
       .sidebar {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         z-index: 1001;
-        width: 260px;
-        padding-top: 70px;
+        width: 280px;
+        padding-top: 80px;
       }
       
       .sidebar.open {
@@ -1013,12 +975,12 @@
       
       .main {
         margin-left: 0;
-        padding: 72px 16px 24px;
+        padding: 80px 20px 32px;
       }
       
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 14px;
       }
       
       .platform-grid {
@@ -1031,14 +993,14 @@
       
       .page-header {
         flex-direction: column;
-        gap: 16px;
+        gap: 20px;
       }
     }
   </style>
 </head>
 <body>
   <nav class="sidebar" id="sidebar">
-    <div class="logo">Sync2 Hub</div>
+    <div class="logo">Sync2 <span>Hub</span></div>
     
     <a class="nav-item active" data-page="analytics">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
@@ -1072,7 +1034,7 @@
     <div id="analytics" class="page active">
       <div class="page-header">
         <div>
-          <h1 class="page-title">📊 Analytics Dashboard</h1>
+          <h1 class="page-title">Analytics Dashboard</h1>
           <p class="page-subtitle" id="analytics-updated">Cross-platform content performance</p>
         </div>
         <button class="btn btn-primary" onclick="refreshAnalytics()">
@@ -1088,7 +1050,7 @@
         <!-- YouTube -->
         <div class="platform-card youtube">
           <div class="platform-header">
-            <div class="platform-icon youtube">📺</div>
+            <div class="platform-icon youtube">YT</div>
             <div>
               <div class="platform-name">YouTube Shorts</div>
               <div class="platform-handle">@dailykeshav</div>
@@ -1117,7 +1079,7 @@
         <!-- TikTok -->
         <div class="platform-card tiktok">
           <div class="platform-header">
-            <div class="platform-icon tiktok">🎵</div>
+            <div class="platform-icon tiktok">TT</div>
             <div>
               <div class="platform-name">TikTok</div>
               <div class="platform-handle">@keshavsuki</div>
@@ -1146,7 +1108,7 @@
         <!-- Instagram -->
         <div class="platform-card instagram">
           <div class="platform-header">
-            <div class="platform-icon instagram">📸</div>
+            <div class="platform-icon instagram">IG</div>
             <div>
               <div class="platform-name">Instagram</div>
               <div class="platform-handle">@keshavsuki</div>
@@ -1175,15 +1137,15 @@
       
       <!-- What's Working Section -->
       <div class="card">
-        <div class="card-title">🔥 What's Working — Top 3 Recommendations</div>
-        <div class="insights-grid" id="recommendations">
+        <div class="card-title">Key Insights</div>
+        <div class="insights-grid" id="recommendations-grid">
           <!-- Populated by JS -->
         </div>
       </div>
       
       <!-- Cross-Platform Comparison -->
       <div class="card">
-        <div class="card-title">⚔️ Platform Comparison (Same Content)</div>
+        <div class="card-title">Platform Comparison</div>
         <table class="comparison-table">
           <thead>
             <tr>
@@ -1201,9 +1163,9 @@
       
       <!-- Hook Analysis -->
       <div class="card">
-        <div class="card-title">🎣 Hook Performance Analysis</div>
-        <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 16px;">
-          Which hook styles get the most views on average?
+        <div class="card-title">Hook Performance Analysis</div>
+        <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">
+          Which hook styles get the most views on average
         </p>
         <div id="hook-analysis">
           <!-- Populated by JS -->
@@ -1212,7 +1174,7 @@
       
       <!-- Content Type Analysis -->
       <div class="card">
-        <div class="card-title">🎬 Content Type Performance</div>
+        <div class="card-title">Content Type Performance</div>
         <div id="content-analysis">
           <!-- Populated by JS -->
         </div>
@@ -1220,7 +1182,7 @@
       
       <!-- Top Performers by Views -->
       <div class="card">
-        <div class="card-title">👑 Top 10 by Views</div>
+        <div class="card-title">Top 10 by Views</div>
         <table class="video-table" id="top-views-table">
           <thead>
             <tr>
@@ -1238,7 +1200,7 @@
       
       <!-- Top Performers by Engagement -->
       <div class="card">
-        <div class="card-title">💪 Top 10 by Engagement Rate (TikTok)</div>
+        <div class="card-title">Top 10 by Engagement Rate</div>
         <table class="video-table">
           <thead>
             <tr>
@@ -1256,7 +1218,7 @@
       
       <!-- Instagram Details -->
       <div class="card" id="instagram-details">
-        <div class="card-title">📸 Instagram Performance Details</div>
+        <div class="card-title">Instagram Performance</div>
         <table class="video-table" id="ig-table">
           <thead>
             <tr>
@@ -1313,18 +1275,18 @@
     </div>
     
     <!-- RECOMMENDATIONS PAGE -->
-    <div id="recommendations" class="page">
+    <div id="recommendations-page" class="page">
       <div class="page-header">
         <div>
-          <h1 class="page-title">🎯 Copy-Ready Recommendations</h1>
-          <p class="page-subtitle">Proven hooks & scripts backed by real performance data</p>
+          <h1 class="page-title">Recommendations</h1>
+          <p class="page-subtitle">Proven hooks and scripts backed by real performance data</p>
         </div>
       </div>
       
       <!-- Proven Hooks Section -->
       <div class="card">
-        <div class="card-title">🎣 Proven Hooks — Copy Word for Word</div>
-        <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 20px;">
+        <div class="card-title">Proven Hooks</div>
+        <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">
           Ranked by average views. Click any hook to copy.
         </p>
         <div id="proven-hooks-list">
@@ -1334,8 +1296,8 @@
       
       <!-- Ready to Film Scripts -->
       <div class="card">
-        <div class="card-title">🎬 Ready-to-Film Scripts</div>
-        <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 20px;">
+        <div class="card-title">Ready-to-Film Scripts</div>
+        <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">
           Complete scripts based on top performers. Just film.
         </p>
         <div class="scripts-list" id="ready-scripts-list">
@@ -1345,15 +1307,15 @@
       
       <!-- Content Formats -->
       <div class="card">
-        <div class="card-title">📊 Top Performing Formats</div>
-        <div id="formats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+        <div class="card-title">Top Performing Formats</div>
+        <div id="formats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
           <!-- Populated by JS -->
         </div>
       </div>
       
       <!-- Competitor Patterns -->
       <div class="card">
-        <div class="card-title">🔍 What's Working (Competitor Insights)</div>
+        <div class="card-title">Competitor Insights</div>
         <div id="competitor-patterns">
           <!-- Populated by JS -->
         </div>
@@ -1361,8 +1323,8 @@
       
       <!-- Weekly Plan -->
       <div class="card">
-        <div class="card-title">📅 Recommended Weekly Posting Plan</div>
-        <div id="weekly-plan" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px;">
+        <div class="card-title">Weekly Posting Plan</div>
+        <div id="weekly-plan" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px;">
           <!-- Populated by JS -->
         </div>
       </div>
@@ -1379,6 +1341,7 @@
     let tiktokData = null;
     let youtubeData = null;
     let instagramData = null;
+    let scriptsData = null;
     
     async function loadAnalyticsData() {
       try {
@@ -1398,6 +1361,15 @@
       } catch (error) {
         console.error('Error loading analytics:', error);
         showToast('Error loading analytics data', 'error');
+      }
+    }
+    
+    async function loadScripts() {
+      try {
+        scriptsData = await fetch('/api/scripts.json').then(r => r.json());
+        renderScripts();
+      } catch (error) {
+        console.error('Error loading scripts:', error);
       }
     }
     
@@ -1430,7 +1402,7 @@
       }
       
       // Recommendations
-      renderRecommendations();
+      renderRecommendationsGrid();
       
       // Comparison
       renderComparison();
@@ -1448,8 +1420,8 @@
       renderInstagramTable();
     }
     
-    function renderRecommendations() {
-      const container = document.getElementById('recommendations');
+    function renderRecommendationsGrid() {
+      const container = document.getElementById('recommendations-grid');
       container.innerHTML = analyticsData.recommendations.map((rec, i) => `
         <div class="insight-card">
           <div class="insight-number">#${rec.priority}</div>
@@ -1544,7 +1516,7 @@
           <td>${truncate(v.title, 50)}</td>
           <td>${formatNumber(v.views)}</td>
           <td class="trend-up">${v.engagementRate}</td>
-          <td><a href="${v.url}" target="_blank" class="btn btn-secondary btn-sm">Watch</a></td>
+          <td><a href="${v.url}" target="_blank" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Watch</a></td>
         </tr>
       `).join('');
     }
@@ -1598,7 +1570,10 @@
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         
         item.classList.add('active');
-        document.getElementById(page).classList.add('active');
+        
+        // Handle recommendations page id mismatch
+        const pageId = page === 'recommendations' ? 'recommendations-page' : page;
+        document.getElementById(pageId).classList.add('active');
       });
     });
     
@@ -1652,8 +1627,8 @@
                 </div>
               `).join('')}
             </div>
-            <button class="carousel-nav prev" onclick="navigateCarousel(${c.id}, -1)">‹</button>
-            <button class="carousel-nav next" onclick="navigateCarousel(${c.id}, 1)">›</button>
+            <button class="carousel-nav prev" onclick="navigateCarousel(${c.id}, -1)">&#8249;</button>
+            <button class="carousel-nav next" onclick="navigateCarousel(${c.id}, 1)">&#8250;</button>
             <div class="carousel-dots">
               ${slideImages.map((_, i) => `
                 <div class="carousel-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${c.id}, ${i})"></div>
@@ -1667,6 +1642,29 @@
           </div>
         </div>
       `}).join('');
+      
+      // Add touch/swipe support for carousels
+      document.querySelectorAll('.carousel-preview').forEach(preview => {
+        let startX = 0;
+        let isDragging = false;
+        
+        preview.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+          isDragging = true;
+        });
+        
+        preview.addEventListener('touchend', (e) => {
+          if (!isDragging) return;
+          const endX = e.changedTouches[0].clientX;
+          const diff = startX - endX;
+          const id = parseInt(preview.dataset.carousel);
+          
+          if (Math.abs(diff) > 50) {
+            navigateCarousel(id, diff > 0 ? 1 : -1);
+          }
+          isDragging = false;
+        });
+      });
     }
     
     function navigateCarousel(id, direction) {
@@ -1702,37 +1700,39 @@
       });
     }
     
-    // ============ SCRIPTS DATA ============
-    const scripts = [
-      {
-        num: 1,
-        type: "value",
-        title: "The Phone Psychology Lesson",
-        hook: "Why patients hang up after 3 rings — and what it costs you.",
-        length: "70s",
-        content: `Here's something most practice owners don't know.\n\nA patient calling your office has already decided they want to book.\n\nRing 1-2: They're patient.\nRing 3-4: They're annoyed.\nRing 5+: They assume you're closed.\n\n85% of people who hang up don't call back.`
-      }
-    ];
-    
+    // ============ SCRIPTS ============
     function renderScripts() {
-      document.getElementById('scripts-list').innerHTML = scripts.map(s => `
+      if (!scriptsData) return;
+      
+      document.getElementById('scripts-list').innerHTML = scriptsData.map(s => `
         <div class="script-card" onclick="this.classList.toggle('expanded')">
           <div class="script-header">
-            <div class="script-num">${s.num}</div>
+            <div class="script-num">${s.id}</div>
             <div class="script-info">
               <div class="script-title">${s.title}</div>
               <div class="script-hook">${s.hook}</div>
             </div>
             <div class="script-meta">
               <span class="script-type ${s.type}">${s.type}</span>
-              <span style="color: var(--text-secondary); font-size: 11px;">${s.length}</span>
             </div>
           </div>
           <div class="script-body">
+            <div class="script-framework">Framework: ${s.framework}</div>
             <div class="script-content">${s.content}</div>
+            <div style="margin-top: 16px;">
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); copyToClipboard(\`${s.content.replace(/`/g, '\\`')}\`)">
+                Copy Script
+              </button>
+            </div>
           </div>
         </div>
       `).join('');
+    }
+    
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Copied to clipboard!', 'success');
+      });
     }
     
     // ============ CALENDAR DATA ============
@@ -1747,14 +1747,14 @@
             <span class="date">Feb ${dates[i]}</span>
           </div>
           <div class="calendar-day-content">
-            ${i % 2 === 0 ? '<div class="calendar-item reel">📹 Short Video</div>' : ''}
-            ${i % 3 === 0 ? '<div class="calendar-item carousel">📊 Carousel</div>' : ''}
+            ${i % 2 === 0 ? '<div class="calendar-item reel">Short Video</div>' : ''}
+            ${i % 3 === 0 ? '<div class="calendar-item carousel">Carousel</div>' : ''}
           </div>
         </div>
       `).join('');
     }
     
-    // ============ RECOMMENDATIONS ============
+    // ============ RECOMMENDATIONS PAGE ============
     let recommendationsData = null;
     
     async function loadRecommendations() {
@@ -1785,8 +1785,8 @@
             <span class="hook-avg-views">${hook.avgViews} avg views</span>
           </div>
           <div class="hook-category-body">
-            <div style="margin-bottom: 16px;">
-              <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">COPY THESE:</div>
+            <div style="margin-bottom: 20px; padding-top: 16px;">
+              <div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">Copy These:</div>
               ${hook.copyThese.map(h => `
                 <div class="copy-hook" onclick="event.stopPropagation(); copyHook(this, '${h.replace(/'/g, "\\'")}')">
                   <span class="copy-hook-text">${h}</span>
@@ -1825,18 +1825,18 @@
             </div>
             <div class="script-meta">
               <span class="script-type ${s.type}">${s.type}</span>
-              <span style="color: var(--text-secondary); font-size: 11px;">${s.duration}</span>
+              <span style="color: var(--text-secondary); font-size: 12px;">${s.duration}</span>
             </div>
           </div>
           <div class="script-body">
-            <div style="display: flex; gap: 12px; margin-bottom: 12px; padding-top: 12px;">
-              <span style="font-size: 11px; color: var(--text-secondary);">Based on:</span>
-              <a href="${s.basedOn.url || '#'}" target="_blank" style="font-size: 12px; color: var(--accent);">${s.basedOn.title} (${formatNumber(s.basedOn.views)} views)</a>
+            <div style="display: flex; gap: 14px; margin-bottom: 14px; padding-top: 14px;">
+              <span style="font-size: 12px; color: var(--text-secondary);">Based on:</span>
+              <a href="${s.basedOn.url || '#'}" target="_blank" style="font-size: 13px; color: var(--gold);">${s.basedOn.title} (${formatNumber(s.basedOn.views)} views)</a>
             </div>
             <div class="script-content">${s.script}</div>
-            <div style="margin-top: 12px;">
+            <div style="margin-top: 16px;">
               <button class="btn btn-secondary" onclick="event.stopPropagation(); copyScript('${s.script.replace(/'/g, "\\'").replace(/\n/g, "\\n")}')">
-                📋 Copy Full Script
+                Copy Full Script
               </button>
             </div>
           </div>
@@ -1862,7 +1862,7 @@
           <div class="pattern-name">${p.pattern}</div>
           <div class="pattern-examples">
             ${p.examples.join(' • ')}<br>
-            <span style="color: var(--text-primary); margin-top: 4px; display: block;">${p.whyItWorks}</span>
+            <span style="color: var(--text-primary); margin-top: 6px; display: block;">${p.whyItWorks}</span>
           </div>
           <div class="pattern-engagement">${p.avgEngagement}</div>
         </div>
@@ -1883,7 +1883,7 @@
     function copyHook(element, text) {
       navigator.clipboard.writeText(text).then(() => {
         element.classList.add('copied');
-        element.querySelector('.copy-hook-btn').textContent = '✓ Copied!';
+        element.querySelector('.copy-hook-btn').textContent = 'Copied!';
         setTimeout(() => {
           element.classList.remove('copied');
           element.querySelector('.copy-hook-btn').textContent = 'Click to copy';
@@ -1900,8 +1900,8 @@
     // ============ INIT ============
     loadAnalyticsData();
     loadRecommendations();
+    loadScripts();
     renderCarousels();
-    renderScripts();
     renderCalendar();
   </script>
 </body>
