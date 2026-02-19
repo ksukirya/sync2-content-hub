@@ -711,10 +711,19 @@
       border-radius: 6px;
       margin-bottom: 6px;
       border-left: 3px solid;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .calendar-item:hover {
+      transform: translateX(4px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     
     .calendar-item.reel { background: rgba(248, 113, 113, 0.08); border-color: var(--red); }
+    .calendar-item.reel:hover { background: rgba(248, 113, 113, 0.15); }
     .calendar-item.carousel { background: rgba(201, 169, 98, 0.08); border-color: var(--gold); }
+    .calendar-item.carousel:hover { background: rgba(201, 169, 98, 0.15); }
     
     /* Toast */
     .toast {
