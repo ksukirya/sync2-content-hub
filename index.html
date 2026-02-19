@@ -454,7 +454,66 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: opacity 0.3s ease;
     }
+    
+    .carousel-slides {
+      display: flex;
+      transition: transform 0.3s ease;
+    }
+    
+    .carousel-slide {
+      min-width: 100%;
+    }
+    
+    .carousel-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+    }
+    
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .carousel-dot.active {
+      background: #fff;
+      width: 18px;
+      border-radius: 3px;
+    }
+    
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      background: rgba(0,0,0,0.5);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    
+    .carousel-preview:hover .carousel-nav {
+      opacity: 1;
+    }
+    
+    .carousel-nav.prev { left: 8px; }
+    .carousel-nav.next { right: 8px; }
     
     .carousel-info {
       padding: 14px;
@@ -1549,31 +1608,98 @@
         id: 1,
         title: "5 Signs Your Front Desk Is Losing Patients",
         slides: 7,
-        images: ["/carousels/carousel-1-slide-1.png"],
         downloadUrl: "/carousels/carousel-1-all-slides.tar.gz"
       },
       {
         id: 2,
         title: "The $200 Patient Myth",
         slides: 7,
-        images: ["/carousels/carousel-2-slide-1.png"],
         downloadUrl: "/carousels/carousel-2-all-slides.tar.gz"
+      },
+      {
+        id: 3,
+        title: "What 50+ Practice Audits Taught Me",
+        slides: 7,
+        downloadUrl: "/carousels/carousel-3-all-slides.tar.gz"
+      },
+      {
+        id: 4,
+        title: "AI vs Human Receptionist",
+        slides: 7,
+        downloadUrl: "/carousels/carousel-4-all-slides.tar.gz"
+      },
+      {
+        id: 5,
+        title: "3 Things I'd Do Starting a Practice",
+        slides: 6,
+        downloadUrl: "/carousels/carousel-5-all-slides.tar.gz"
       }
     ];
     
     function renderCarousels() {
-      document.getElementById('carousel-grid').innerHTML = carousels.map(c => `
+      document.getElementById('carousel-grid').innerHTML = carousels.map(c => {
+        const slideImages = Array.from({length: c.slides}, (_, i) => 
+          `/carousels/carousel-${c.id}-slide-${i + 1}.png`
+        );
+        
+        return `
         <div class="carousel-card">
-          <div class="carousel-preview">
-            <img src="${c.images[0]}" alt="${c.title}" onerror="this.style.display='none'">
+          <div class="carousel-preview" data-carousel="${c.id}" data-current="0">
+            <div class="carousel-slides" style="display: flex;">
+              ${slideImages.map((img, i) => `
+                <div class="carousel-slide">
+                  <img src="${img}" alt="${c.title} - Slide ${i + 1}" onerror="this.style.opacity='0.3'">
+                </div>
+              `).join('')}
+            </div>
+            <button class="carousel-nav prev" onclick="navigateCarousel(${c.id}, -1)">‹</button>
+            <button class="carousel-nav next" onclick="navigateCarousel(${c.id}, 1)">›</button>
+            <div class="carousel-dots">
+              ${slideImages.map((_, i) => `
+                <div class="carousel-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${c.id}, ${i})"></div>
+              `).join('')}
+            </div>
           </div>
           <div class="carousel-info">
             <div class="carousel-title">${c.title}</div>
             <div class="carousel-meta">${c.slides} slides</div>
-            <a href="${c.downloadUrl}" class="btn btn-secondary btn-sm">Download All</a>
+            <a href="${c.downloadUrl}" class="btn btn-secondary">Download All</a>
           </div>
         </div>
-      `).join('');
+      `}).join('');
+    }
+    
+    function navigateCarousel(id, direction) {
+      const preview = document.querySelector(`[data-carousel="${id}"]`);
+      const slides = preview.querySelector('.carousel-slides');
+      const dots = preview.querySelectorAll('.carousel-dot');
+      const carousel = carousels.find(c => c.id === id);
+      
+      let current = parseInt(preview.dataset.current);
+      current += direction;
+      
+      if (current < 0) current = carousel.slides - 1;
+      if (current >= carousel.slides) current = 0;
+      
+      preview.dataset.current = current;
+      slides.style.transform = `translateX(-${current * 100}%)`;
+      
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === current);
+      });
+    }
+    
+    function goToSlide(id, index) {
+      const preview = document.querySelector(`[data-carousel="${id}"]`);
+      const slides = preview.querySelector('.carousel-slides');
+      const dots = preview.querySelectorAll('.carousel-dot');
+      
+      preview.dataset.current = index;
+      slides.style.transform = `translateX(-${index * 100}%)`;
+      
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
     }
     
     // ============ SCRIPTS DATA ============
