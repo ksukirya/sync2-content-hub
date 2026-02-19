@@ -697,6 +697,15 @@
       padding: 10px;
     }
     
+    .calendar-day.today {
+      border: 2px solid var(--gold);
+      background: var(--gold-subtle);
+    }
+    
+    .calendar-day.today .calendar-day-header {
+      color: var(--gold);
+    }
+    
     .calendar-item {
       font-size: 12px;
       padding: 8px 10px;
@@ -1704,29 +1713,56 @@
     function renderScripts() {
       if (!scriptsData) return;
       
-      document.getElementById('scripts-list').innerHTML = scriptsData.map(s => `
-        <div class="script-card" onclick="this.classList.toggle('expanded')">
-          <div class="script-header">
-            <div class="script-num">${s.id}</div>
-            <div class="script-info">
-              <div class="script-title">${s.title}</div>
-              <div class="script-hook">${s.hook}</div>
+      // Group by status/phase
+      const phases = [
+        { name: 'Phase 1: Value (No Selling)', ids: [1, 2, 5, 6] },
+        { name: 'Phase 2: Value + Implied Pitch', ids: [3, 4] },
+        { name: 'Phase 3: Direct Pitch', ids: [7, 8] },
+        { name: 'Phase 4: Interactive (Need Recordings)', ids: [9, 10] }
+      ];
+      
+      let html = '';
+      phases.forEach(phase => {
+        const phaseScripts = scriptsData.filter(s => phase.ids.includes(s.id));
+        if (phaseScripts.length === 0) return;
+        
+        html += `<div style="margin-bottom: 32px;">
+          <h3 style="font-size: 14px; color: var(--gold); margin-bottom: 16px; font-weight: 600;">${phase.name}</h3>
+          ${phaseScripts.map(s => `
+            <div class="script-card" onclick="this.classList.toggle('expanded')">
+              <div class="script-header">
+                <div class="script-num">${s.id}</div>
+                <div class="script-info">
+                  <div class="script-title">${s.title}</div>
+                  <div class="script-hook">${s.hook}</div>
+                </div>
+                <div class="script-meta">
+                  <span class="script-type ${s.type}">${s.type}</span>
+                  <span style="font-size: 11px; color: var(--text-muted); margin-left: 8px;">${s.length || ''}</span>
+                  ${s.scheduled ? `<span style="font-size: 11px; color: var(--green); margin-left: 8px;">📅 ${formatDate(s.scheduled)}</span>` : ''}
+                  ${s.status === 'needs-recordings' ? `<span style="font-size: 10px; background: rgba(248,113,113,0.15); color: var(--red); padding: 2px 8px; border-radius: 4px; margin-left: 8px;">Needs Recordings</span>` : ''}
+                </div>
+              </div>
+              <div class="script-body">
+                <div class="script-framework">Framework: ${s.framework}</div>
+                <div class="script-content">${s.content}</div>
+                <div style="margin-top: 16px;">
+                  <button class="btn btn-secondary" onclick="event.stopPropagation(); copyToClipboard(\`${s.content.replace(/`/g, '\\`')}\`)">
+                    Copy Script
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="script-meta">
-              <span class="script-type ${s.type}">${s.type}</span>
-            </div>
-          </div>
-          <div class="script-body">
-            <div class="script-framework">Framework: ${s.framework}</div>
-            <div class="script-content">${s.content}</div>
-            <div style="margin-top: 16px;">
-              <button class="btn btn-secondary" onclick="event.stopPropagation(); copyToClipboard(\`${s.content.replace(/`/g, '\\`')}\`)">
-                Copy Script
-              </button>
-            </div>
-          </div>
-        </div>
-      `).join('');
+          `).join('')}
+        </div>`;
+      });
+      
+      document.getElementById('scripts-list').innerHTML = html;
+    }
+    
+    function formatDate(dateStr) {
+      const d = new Date(dateStr + 'T00:00:00');
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
     
     function copyToClipboard(text) {
@@ -1737,21 +1773,109 @@
     
     // ============ CALENDAR DATA ============
     function renderCalendar() {
-      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-      const dates = [18, 19, 20, 21, 22, 23, 24];
+      if (!scriptsData) {
+        setTimeout(renderCalendar, 100);
+        return;
+      }
       
-      document.getElementById('calendar-week').innerHTML = days.map((day, i) => `
-        <div class="calendar-day ${i === 1 ? 'today' : ''}">
+      // Dynamic week starting from today
+      const today = new Date();
+      const dayOfWeek = today.getDay();
+      const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+      const monday = new Date(today);
+      monday.setDate(today.getDate() + mondayOffset);
+      
+      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      const calendarDays = [];
+      
+      for (let i = 0; i < 7; i++) {
+        const date = new Date(monday);
+        date.setDate(monday.getDate() + i);
+        calendarDays.push({
+          day: days[i],
+          date: date,
+          dateNum: date.getDate(),
+          month: date.toLocaleString('en-US', { month: 'short' }),
+          isToday: date.toDateString() === today.toDateString(),
+          dateStr: date.toISOString().split('T')[0]
+        });
+      }
+      
+      // Update page subtitle
+      const startDate = calendarDays[0];
+      const endDate = calendarDays[6];
+      document.querySelector('#calendar .page-subtitle').textContent = 
+        `Week of ${startDate.month} ${startDate.dateNum} – ${endDate.month} ${endDate.dateNum}`;
+      
+      // Create schedule lookup from scripts
+      const scheduleByDate = {};
+      scriptsData.forEach(s => {
+        if (s.scheduled) {
+          if (!scheduleByDate[s.scheduled]) scheduleByDate[s.scheduled] = [];
+          scheduleByDate[s.scheduled].push(s);
+        }
+      });
+      
+      // Carousel schedule (1 per day on weekdays)
+      const carouselTitles = [
+        '5 Signs Your Front Desk Is Losing Patients',
+        'The $200 Patient Myth',
+        'What 50+ Practice Audits Taught Me',
+        'AI vs Human Receptionist',
+        '3 Things I\'d Do Starting a Practice'
+      ];
+      
+      document.getElementById('calendar-week').innerHTML = calendarDays.map((d, i) => {
+        const scheduled = scheduleByDate[d.dateStr] || [];
+        const hasCarousel = i < 5; // Mon-Fri get carousels
+        
+        return `
+        <div class="calendar-day ${d.isToday ? 'today' : ''}">
           <div class="calendar-day-header">
-            <span>${day}</span>
-            <span class="date">Feb ${dates[i]}</span>
+            <span>${d.day}</span>
+            <span class="date">${d.month} ${d.dateNum}</span>
           </div>
           <div class="calendar-day-content">
-            ${i % 2 === 0 ? '<div class="calendar-item reel">Short Video</div>' : ''}
-            ${i % 3 === 0 ? '<div class="calendar-item carousel">Carousel</div>' : ''}
+            ${scheduled.map(s => `
+              <div class="calendar-item reel" title="${s.hook}" onclick="showScript(${s.id})">
+                <strong>#${s.id}</strong> ${truncate(s.title, 20)}
+                <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">${s.length} • ${s.type}</div>
+              </div>
+            `).join('')}
+            ${hasCarousel && carouselTitles[i] ? `
+              <div class="calendar-item carousel" title="${carouselTitles[i]}" onclick="goToCarousels()">
+                Carousel: ${truncate(carouselTitles[i], 18)}
+              </div>
+            ` : ''}
           </div>
         </div>
-      `).join('');
+      `}).join('');
+    }
+    
+    function showScript(id) {
+      // Navigate to scripts page and expand the script
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelector('[data-page="scripts"]').classList.add('active');
+      document.getElementById('scripts').classList.add('active');
+      
+      setTimeout(() => {
+        const cards = document.querySelectorAll('.script-card');
+        cards.forEach(card => {
+          const num = card.querySelector('.script-num');
+          if (num && parseInt(num.textContent) === id) {
+            card.classList.add('expanded');
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      }, 100);
+    }
+    
+    function goToCarousels() {
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelector('[data-page="carousels"]').classList.add('active');
+      document.getElementById('carousels').classList.add('active');
     }
     
     // ============ RECOMMENDATIONS PAGE ============

@@ -1,34 +1,112 @@
 [
   {
     "id": 1,
-    "title": "A Startup Just Built an AI That Does What Receptionists Do — In 2 Seconds",
-    "hook": "A startup just built an AI that does what dental receptionists do, and it takes 2 seconds.",
-    "type": "pitch",
-    "framework": "Color Health Format",
-    "content": "A startup just built an AI that does what dental receptionists do, and it takes 2 seconds.\n\nSync2 built an AI receptionist on GPT-4 that answers every call, reads your patient history, and books appointments directly into your calendar.\n\nWe tested it with real practices — 94% booking rate, and patients couldn't tell it wasn't human.\n\nThey're catching 4x more calls than practices without it.\n\nThat matters because every single call you miss, you lose $200 in revenue.\n\nThis company handles thousands of calls, works 24/7, and just helped one practice recover $4,200 in month one."
+    "title": "The Phone Psychology Lesson",
+    "hook": "Why patients hang up after 3 rings — and what it costs you.",
+    "type": "value",
+    "length": "70s",
+    "framework": "Psychology/Education",
+    "status": "ready",
+    "scheduled": "2026-02-20",
+    "content": "Here's something most practice owners don't know.\n\nA patient calling your office has already decided they want to book. They're not \"shopping around.\" They picked YOU.\n\nBut here's the psychology:\n\nRing 1-2: They're patient.\nRing 3-4: They're annoyed.\nRing 5+: They assume you're closed, disorganized, or don't care.\n\nStudies show 85% of people who hang up don't call back. They call the next name on Google.\n\nThat's not a missed call. That's a patient choosing your competitor because you were 10 seconds too slow.\n\nThe practice that answers fastest wins. Not the best dentist. Not the cheapest. The fastest.\n\nSomething to think about next time your front desk is \"busy.\"\n\nVisuals:\n• Phone ringing with ring count overlay\n• Patient facial expression shifting (patient → annoyed → gone)\n• Google search: \"dentist near me\" with competitor clicking\n• No CTA — just value"
   },
   {
     "id": 2,
-    "title": "There's This New AI Blowing Up in Dental Practices",
-    "hook": "There's this new AI blowing up in dental practices where it's never been easier for small offices to operate like big DSOs.",
+    "title": "The Real Reason Patients Ghost",
+    "hook": "Your patients aren't ghosting you. You're ghosting them.",
     "type": "value",
-    "framework": "Zoink & Twist",
-    "content": "There's this new AI blowing up in dental practices where it's never been easier for small offices to operate like big DSOs.\n\nLike, I just helped this 3-person practice go from 60% booked to 95% booked in 30 days, and I just changed two things.\n\nThe first one is something called an AI receptionist. Instead of missing 40% of calls, they now answer every single one in 2 seconds — even at 3am, even in Spanish.\n\nTwo is predictive no-show filling. The AI flags patients likely to no-show and fills the slot before it goes empty. That alone recovered $3K in month one.\n\nSame staff. Same hours. 35% more revenue.\n\nComment 'DEMO' and I'll show you how it works."
+    "length": "65s",
+    "framework": "Reframe/Insight",
+    "status": "ready",
+    "scheduled": "2026-02-21",
+    "content": "Practice owners always ask me: \"Why do patients book and not show up?\"\n\nHere's the truth nobody talks about.\n\nThe average time between booking and appointment: 8 days.\n\nNumber of times most practices contact them in that window: Zero.\n\nThen you're surprised when they forget? Or book somewhere else that had an earlier slot?\n\nThe practices with 95%+ show rates do three things:\n1. Confirmation text within 1 hour of booking\n2. Reminder 48 hours before\n3. \"We're excited to see you\" message morning-of\n\nThat's it. Three texts. Takes 30 seconds to automate.\n\nYour patients want to come. They just need you to make it easy to remember.\n\nVisuals:\n• Calendar showing 8-day gap\n• Phone with zero notifications\n• Three text message examples\n• Show rate comparison stat"
   },
   {
     "id": 3,
-    "title": "The Math Behind $4,200/Month",
-    "hook": "67% of dental calls go unanswered. Here's how that's costing you $4,200 a month.",
+    "title": "The $200 Patient Myth",
+    "hook": "Stop calculating patient value wrong. Here's the real math.",
     "type": "value",
-    "framework": "Mino Method (Math Hook)",
-    "content": "67% of dental calls go unanswered. Here's how that's costing you $4,200 a month.\n\nMost practices think their receptionist catches everything. She doesn't. She answers one call at a time. The rest go to voicemail. 70% of those never call back.\n\nThat's 40 missed calls a week. At $200 per appointment, that's $8,000 in lost revenue every single month.\n\nSo we plugged in an AI that answers every call in 2 seconds. 24/7. Even in Spanish.\n\n30 days later: 847 calls answered. $4,200 recovered. Same staff.\n\nLink in bio to see the full breakdown."
+    "length": "70s",
+    "framework": "Math Hook",
+    "status": "ready",
+    "scheduled": "2026-02-24",
+    "content": "Everyone says \"average patient value is $200\" or whatever your first visit brings in.\n\nThat's the wrong number.\n\nA patient who stays with your practice 5 years is worth:\n\n• 2 cleanings/year × 5 years = 10 visits\n• Plus X-rays, fillings, crowns, referrals\n\nReal lifetime value: $3,000-$7,000 depending on your practice.\n\nSo when you miss a call and lose that patient to a competitor, you didn't lose $200.\n\nYou lost $5,000 and gave it to someone else.\n\nThis is why the most profitable practices obsess over first impressions. Not because one visit matters — because the relationship matters.\n\nEvery missed call is a $5,000 decision.\n\nVisuals:\n• Calculator showing wrong math, then right math\n• Timeline of patient visits over 5 years\n• Dollar counter going up\n• Competitor \"thank you\" card (humorous)"
   },
   {
     "id": 4,
-    "title": "$45,000 Receptionist vs $500 AI — 30 Day Test",
-    "hook": "$45,000 receptionist vs $500 AI. I tested both for 30 days.",
+    "title": "The Hiring Math Nobody Does",
+    "hook": "Before you hire another receptionist, do this math.",
     "type": "value",
-    "framework": "Mino Method (3 Killers)",
-    "content": "$45,000 receptionist vs $500 AI. I tested both for 30 days.\n\nHere's what most practice owners don't realize — your front desk has 3 silent revenue killers.\n\nOne: missed calls. She can only answer one at a time. The others go to voicemail and never come back.\n\nTwo: no-shows. You find out when the chair's already empty. Too late to fill it.\n\nThree: no follow-up. Overdue patients slip through the cracks. They don't book until something hurts.\n\nThe AI fixed all three. It answers every call, predicts no-shows before they happen, and follows up automatically.\n\n847 calls. $4,200 recovered. Same staff.\n\nComment 'DEMO' if you want to see how it works."
+    "length": "75s",
+    "framework": "Math Hook",
+    "status": "ready",
+    "scheduled": "2026-02-25",
+    "content": "Your front desk is overwhelmed. Calls are getting missed. The obvious solution: hire another person.\n\nLet's run the real numbers.\n\nNew receptionist:\n• Salary: $35,000-$45,000/year\n• Benefits: $8,000-$12,000/year\n• Training: 2-3 months before they're useful\n• Sick days, vacation, turnover\n\nTotal cost: $50K+ per year. And they still can't answer calls at 2am or handle 5 lines at once.\n\nAlternative math:\n• What if you could cover 100% of overflow calls for $500/month?\n• That's $6,000/year\n• Works 24/7, never calls in sick, handles unlimited simultaneous calls\n\nI'm not saying don't hire. I'm saying know what problem you're actually solving.\n\nSometimes you need more humans for patient care. Sometimes you need technology for phone coverage.\n\nMost practices hire for the wrong problem.\n\nVisuals:\n• Job listing with salary\n• Calculator adding up true costs\n• Side-by-side comparison chart\n• Office with happy staff (not overwhelmed)"
+  },
+  {
+    "id": 5,
+    "title": "The Authority List",
+    "hook": "As someone who's listened to 10,000+ medical office calls, these are the 3 biggest mistakes I hear.",
+    "type": "value",
+    "length": "65s",
+    "framework": "Authority/List",
+    "status": "ready",
+    "scheduled": "2026-02-22",
+    "content": "I've spent the last two years building AI phone systems for clinics. I've heard thousands of real patient calls.\n\nHere are the 3 mistakes I hear over and over:\n\nMistake 1: The hold spiral.\n\"Please hold.\" Patient holds for 90 seconds. Gets transferred. Holds again. By minute 3, they've hung up and called your competitor.\n\nMistake 2: The voicemail black hole.\n\"Leave a message and we'll call you back.\" 70% of patients don't leave one. They just call the next name on Google.\n\nMistake 3: The information dump.\nPatient asks one question. Receptionist gives a 2-minute speech about insurance, hours, parking, and paperwork. Patient just wanted to know if you're taking new patients.\n\nEvery one of these costs you $200+ per call.\n\nThe fix isn't hiring more people. It's designing a system where patients get answers in under 10 seconds.\n\nFollow for more — I post stuff like this every week.\n\nVisuals:\n• You talking direct to camera\n• Text overlays for each mistake\n• Timer showing hold time climbing\n• Quick cuts between each point"
+  },
+  {
+    "id": 6,
+    "title": "The Lunch Hour Problem",
+    "hook": "11:30am to 1:30pm. That's when you lose the most patients.",
+    "type": "value",
+    "length": "60s",
+    "framework": "Data Insight",
+    "status": "ready",
+    "scheduled": "2026-02-23",
+    "content": "Ran the data across 50+ medical and dental practices.\n\nThe highest call volume? 11:30am - 1:30pm.\n\nKnow what else happens then? Lunch breaks. Reduced staff. Voicemail.\n\nThis isn't a coincidence. Patients call during THEIR lunch break — the one time they're free.\n\nAnd that's exactly when most practices are least available.\n\nThe math:\n• Average lunch window: 25-30 calls\n• Staff coverage: 50% or less\n• Missed call rate: 40-60%\n\nThat's 12-18 missed patients. Every single day.\n\nSolving lunch coverage alone could be worth $50K/year to your practice.\n\nVisuals:\n• Clock showing 11:30am\n• Call volume graph spiking\n• Empty front desk\n• Split screen: calls coming in, nobody answering"
+  },
+  {
+    "id": 7,
+    "title": "The Side-by-Side Test",
+    "hook": "We ran your office's calls through AI for a week. Here's the before and after.",
+    "type": "pitch",
+    "length": "70s",
+    "framework": "Case Study",
+    "status": "ready",
+    "scheduled": "2026-02-26",
+    "content": "Practice in Texas. 4 providers. Good reputation. Thought they were doing fine.\n\nWe tracked one week of calls:\n• 312 total calls\n• 67 went to voicemail\n• 23 hung up before voicemail finished\n\n90 missed opportunities. In 7 days.\n\nThen we turned on AI backup for week two. Same call volume.\n\n• 308 total calls\n• 0 went to voicemail\n• 0 hang-ups\n• 94% converted to appointments\n\nThe staff wasn't working harder. They just had backup.\n\nRevenue difference: $11,400 in one week.\n\nIf your practice does 300+ calls a week and you're not tracking this, you're guessing with your revenue.\n\nComment 'AUDIT' and I'll show you how to run this test yourself.\n\nVisuals:\n• Week 1 stats in red\n• Week 2 stats in green\n• Staff working normally (not stressed)\n• Revenue comparison"
+  },
+  {
+    "id": 8,
+    "title": "The 2AM Proof",
+    "hook": "These 3 appointments were booked while everyone was asleep.",
+    "type": "pitch",
+    "length": "65s",
+    "framework": "Proof/Demo",
+    "status": "ready",
+    "scheduled": "2026-02-27",
+    "content": "Tuesday, 2:17am: Emergency toothache. Booked same-day 8am slot.\n\nThursday, 11:42pm: New patient, found you on Google, wanted to lock in an appointment before they forgot.\n\nSunday, 6:15am: Parent booking for kid before the school week starts.\n\nThree appointments. $740 in revenue. Zero staff involvement.\n\nThese patients would have called someone else by morning. Instead, they're on your calendar.\n\nThis is what 24/7 coverage actually looks like. Not a voicemail. Not a \"we'll call you back.\" An actual booking, instantly.\n\nYour competitors' phones go to voicemail at 5pm. Yours doesn't have to.\n\nLink in bio to see how it works.\n\nVisuals:\n• Phone screen showing 2:17 AM\n• Booking confirmations with timestamps\n• Calendar filling up overnight\n• Morning staff seeing appointments already booked"
+  },
+  {
+    "id": 9,
+    "title": "The Real Call (Interactive)",
+    "hook": "One of these calls was answered by AI. Guess which one.",
+    "type": "interactive",
+    "length": "75s",
+    "framework": "Interactive/Engagement",
+    "status": "needs-recordings",
+    "scheduled": null,
+    "content": "I'm going to play two real calls. Same practice, same type of appointment request.\n\n[Play Call A — 20 seconds of natural booking conversation]\n\n[Play Call B — 20 seconds of natural booking conversation]\n\nComment A or B before I tell you.\n\n...\n\nIt was Call B.\n\nThe patient had no idea. Appointment booked. Showed up. Left a 5-star review.\n\n\"But AI sounds robotic.\" Not anymore.\n\n\"But patients want humans.\" They want their problem solved. Call B solved it in 45 seconds.\n\nComment 'DEMO' to test it with your own practice name and info.\n\nVisuals:\n• Call A playing, waveform visualization\n• Call B playing, waveform visualization\n• \"A or B?\" overlay, pause for engagement\n• Reveal + 5-star review screenshot"
+  },
+  {
+    "id": 10,
+    "title": "The Money Question (Interactive)",
+    "hook": "I'll give you 10 seconds to guess how much this practice was losing.",
+    "type": "interactive",
+    "length": "70s",
+    "framework": "Interactive/Math",
+    "status": "ready",
+    "scheduled": null,
+    "content": "Here's what I know:\n\n• 4-provider dental practice\n• 340 calls per week\n• 18% going to voicemail\n• Open 45 hours/week\n\nHow much were they losing per month?\n\n[10-second countdown timer]\n\n...\n\n$26,400.\n\nHere's the math:\n\n• 340 calls × 18% missed = 61 missed calls/week\n• 61 × 70% would've booked = 43 lost patients/week\n• 43 × $150 average value = $6,450/week\n• × 4 weeks = $25,800/month\n\nThey had no idea until we ran the audit.\n\nComment your guess. If you were within $3K, I'll send you our free calculator to run your own numbers.\n\nVisuals:\n• Practice stats appearing on screen\n• Countdown timer\n• Math breakdown animating in\n• Calculator graphic + CTA"
   }
 ]
