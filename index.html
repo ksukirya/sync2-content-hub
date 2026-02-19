@@ -1883,6 +1883,12 @@
     function renderScripts() {
       if (!scriptsData) return;
       
+      // Check for local edits
+      const localScripts = JSON.parse(localStorage.getItem('scriptsData') || 'null');
+      if (localScripts) {
+        scriptsData = localScripts;
+      }
+      
       // Group by status/phase
       const phases = [
         { name: 'Phase 1: Value (No Selling)', ids: [1, 2, 5, 6] },
@@ -1891,7 +1897,14 @@
         { name: 'Phase 4: Interactive (Need Recordings)', ids: [9, 10] }
       ];
       
-      let html = '';
+      // Add header with export button
+      let html = `
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-bottom: 20px;">
+          <button class="btn btn-secondary" onclick="exportScripts()">📤 Export JSON</button>
+          <button class="btn btn-secondary" onclick="resetScripts()">🔄 Reset to Default</button>
+        </div>
+      `;
+      
       phases.forEach(phase => {
         const phaseScripts = scriptsData.filter(s => phase.ids.includes(s.id));
         if (phaseScripts.length === 0) return;
@@ -1899,12 +1912,12 @@
         html += `<div style="margin-bottom: 32px;">
           <h3 style="font-size: 14px; color: var(--gold); margin-bottom: 16px; font-weight: 600;">${phase.name}</h3>
           ${phaseScripts.map(s => `
-            <div class="script-card" onclick="this.classList.toggle('expanded')">
-              <div class="script-header">
+            <div class="script-card" id="script-card-${s.id}">
+              <div class="script-header" onclick="toggleScript(${s.id})">
                 <div class="script-num">${s.id}</div>
                 <div class="script-info">
-                  <div class="script-title">${s.title}</div>
-                  <div class="script-hook">${s.hook}</div>
+                  <div class="script-title" id="title-display-${s.id}">${s.title}</div>
+                  <div class="script-hook" id="hook-display-${s.id}">${s.hook}</div>
                 </div>
                 <div class="script-meta">
                   <span class="script-type ${s.type}">${s.type}</span>
@@ -1915,11 +1928,37 @@
               </div>
               <div class="script-body">
                 <div class="script-framework">Framework: ${s.framework}</div>
-                <div class="script-content">${s.content}</div>
-                <div style="margin-top: 16px;">
-                  <button class="btn btn-secondary" onclick="event.stopPropagation(); copyToClipboard(\`${s.content.replace(/`/g, '\\`')}\`)">
-                    Copy Script
-                  </button>
+                
+                <!-- View Mode -->
+                <div id="view-mode-${s.id}">
+                  <div class="script-content" id="content-display-${s.id}">${s.content}</div>
+                  <div style="margin-top: 16px; display: flex; gap: 10px;">
+                    <button class="btn btn-primary" onclick="event.stopPropagation(); editScript(${s.id})">✏️ Edit</button>
+                    <button class="btn btn-secondary" onclick="event.stopPropagation(); copyScriptById(${s.id})">📋 Copy</button>
+                  </div>
+                </div>
+                
+                <!-- Edit Mode -->
+                <div id="edit-mode-${s.id}" style="display: none;">
+                  <div style="margin-bottom: 14px;">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">TITLE</label>
+                    <input type="text" id="title-input-${s.id}" value="${s.title.replace(/"/g, '&quot;')}" 
+                      style="width: 100%; padding: 10px 14px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 14px;">
+                  </div>
+                  <div style="margin-bottom: 14px;">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">HOOK</label>
+                    <input type="text" id="hook-input-${s.id}" value="${s.hook.replace(/"/g, '&quot;')}" 
+                      style="width: 100%; padding: 10px 14px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 14px;">
+                  </div>
+                  <div style="margin-bottom: 14px;">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">SCRIPT CONTENT</label>
+                    <textarea id="content-input-${s.id}" rows="15"
+                      style="width: 100%; padding: 14px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 14px; line-height: 1.6; resize: vertical;">${s.content}</textarea>
+                  </div>
+                  <div style="display: flex; gap: 10px;">
+                    <button class="btn btn-primary" onclick="event.stopPropagation(); saveScript(${s.id})">💾 Save</button>
+                    <button class="btn btn-secondary" onclick="event.stopPropagation(); cancelEdit(${s.id})">Cancel</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1928,6 +1967,81 @@
       });
       
       document.getElementById('scripts-list').innerHTML = html;
+    }
+    
+    function toggleScript(id) {
+      const card = document.getElementById(`script-card-${id}`);
+      card.classList.toggle('expanded');
+    }
+    
+    function editScript(id) {
+      document.getElementById(`view-mode-${id}`).style.display = 'none';
+      document.getElementById(`edit-mode-${id}`).style.display = 'block';
+    }
+    
+    function cancelEdit(id) {
+      document.getElementById(`view-mode-${id}`).style.display = 'block';
+      document.getElementById(`edit-mode-${id}`).style.display = 'none';
+    }
+    
+    function saveScript(id) {
+      const title = document.getElementById(`title-input-${id}`).value;
+      const hook = document.getElementById(`hook-input-${id}`).value;
+      const content = document.getElementById(`content-input-${id}`).value;
+      
+      // Update scriptsData
+      const script = scriptsData.find(s => s.id === id);
+      if (script) {
+        script.title = title;
+        script.hook = hook;
+        script.content = content;
+        
+        // Save to localStorage
+        localStorage.setItem('scriptsData', JSON.stringify(scriptsData));
+        
+        // Update display
+        document.getElementById(`title-display-${id}`).textContent = title;
+        document.getElementById(`hook-display-${id}`).textContent = hook;
+        document.getElementById(`content-display-${id}`).textContent = content;
+        
+        cancelEdit(id);
+        showToast('Script saved!', 'success');
+        
+        // Re-render calendar with updated data
+        renderCalendar();
+      }
+    }
+    
+    function copyScriptById(id) {
+      const script = scriptsData.find(s => s.id === id);
+      if (script) {
+        navigator.clipboard.writeText(script.content).then(() => {
+          showToast('Copied to clipboard!', 'success');
+        });
+      }
+    }
+    
+    function exportScripts() {
+      const json = JSON.stringify(scriptsData, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'scripts.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Scripts exported!', 'success');
+    }
+    
+    function resetScripts() {
+      if (confirm('Reset all scripts to default? Your edits will be lost.')) {
+        localStorage.removeItem('scriptsData');
+        loadScripts().then(() => {
+          renderScripts();
+          renderCalendar();
+          showToast('Scripts reset to default', 'success');
+        });
+      }
     }
     
     function formatDate(dateStr) {
