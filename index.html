@@ -1015,15 +1015,37 @@
           <div class="stat-value">1,326</div>
           <div class="stat-change positive">↑ 31%</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-label">Instagram</div>
-          <div class="stat-value">—</div>
-          <div class="stat-change">Pending API setup</div>
+        <div class="stat-card" id="ig-stat-card">
+          <div class="stat-label">Instagram Likes (20 posts)</div>
+          <div class="stat-value" id="ig-total-likes">—</div>
+          <div class="stat-change" id="ig-avg-likes">Loading...</div>
         </div>
       </div>
       
+      <!-- Instagram Section -->
+      <div class="card" id="instagram-section">
+        <div class="card-title" style="display: flex; justify-content: space-between; align-items: center;">
+          <span>📸 Instagram Performance (@keshavsuki)</span>
+          <span id="ig-last-updated" style="font-size: 11px; text-transform: none; font-weight: 400;"></span>
+        </div>
+        <table class="video-table" id="ig-table">
+          <thead>
+            <tr>
+              <th>Content</th>
+              <th>Likes</th>
+              <th>Comments</th>
+              <th>Posted</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody id="ig-table-body">
+            <tr><td colspan="5" style="text-align: center; color: var(--text-secondary);">Loading Instagram data...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
       <div class="card">
-        <div class="card-title">Top Performing Content</div>
+        <div class="card-title">Top Performing Content (YouTube & TikTok)</div>
         <table class="video-table">
           <thead>
             <tr>
@@ -2307,11 +2329,52 @@ VISUALS:
       });
     });
     
+    // ============ INSTAGRAM ============
+    
+    async function loadInstagramData() {
+      try {
+        const response = await fetch('/api/instagram.json');
+        const data = await response.json();
+        
+        // Update stats
+        document.getElementById('ig-total-likes').textContent = data.stats.totalLikes;
+        document.getElementById('ig-avg-likes').textContent = `Avg ${data.stats.avgLikes} likes/post`;
+        document.getElementById('ig-avg-likes').className = 'stat-change positive';
+        
+        // Update last updated
+        const updated = new Date(data.lastUpdated);
+        document.getElementById('ig-last-updated').textContent = `Updated: ${updated.toLocaleDateString()} ${updated.toLocaleTimeString()}`;
+        
+        // Render table
+        const tbody = document.getElementById('ig-table-body');
+        tbody.innerHTML = data.posts.map(post => {
+          const date = new Date(post.timestamp);
+          const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+          const isTopPost = post.likes === data.stats.topPost.likes;
+          return `
+            <tr ${isTopPost ? 'style="background: rgba(139, 92, 246, 0.1);"' : ''}>
+              <td>${isTopPost ? '🏆 ' : ''}${post.caption}</td>
+              <td><strong>${post.likes}</strong></td>
+              <td>${post.comments}</td>
+              <td>${dateStr}</td>
+              <td><a href="${post.url}" target="_blank" class="btn btn-secondary btn-sm">View</a></td>
+            </tr>
+          `;
+        }).join('');
+        
+      } catch (err) {
+        console.error('Failed to load Instagram data:', err);
+        document.getElementById('ig-table-body').innerHTML = 
+          '<tr><td colspan="5" style="text-align: center; color: var(--red);">Failed to load Instagram data</td></tr>';
+      }
+    }
+    
     // ============ INIT ============
     
     renderCarousels();
     renderScripts();
     renderCalendar();
+    loadInstagramData();
   </script>
 </body>
 </html>
