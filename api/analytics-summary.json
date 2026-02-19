@@ -1,0 +1,347 @@
+{
+  "lastUpdated": "2026-02-19T05:52:18.358Z",
+  "platforms": {
+    "youtube": {
+      "totalViews": 4720,
+      "videoCount": 9,
+      "avgViews": 524,
+      "topVideo": {
+        "title": "How to Achieve Sub-100ms AI Voice…",
+        "views": 1168,
+        "date": "Feb 11",
+        "url": "https://youtube.com/shorts/9e7zB_ms-Mg"
+      }
+    },
+    "tiktok": {
+      "totalViews": 4636,
+      "totalLikes": 136,
+      "totalComments": 14,
+      "totalShares": 7,
+      "videoCount": 20,
+      "avgViews": 232,
+      "avgEngagementRate": "3.39",
+      "topVideo": {
+        "id": "7603098584686415117",
+        "title": "Why your voice AI has a 2-second delay… #aiautomation #voiceai #ai202...",
+        "views": 486,
+        "likes": 12,
+        "comments": 3,
+        "shares": 2,
+        "saves": 8,
+        "duration": 24,
+        "timestamp": "2026-02-04T19:45:51.000Z",
+        "uploadDate": "20260204",
+        "url": "https://www.tiktok.com/@keshavsuki/video/7603098584686415117"
+      }
+    },
+    "instagram": {
+      "note": "See /api/instagram.json for detailed data"
+    }
+  },
+  "crossPlatformWinner": "YouTube",
+  "winnerRatio": "1.0x",
+  "hookAnalysis": [
+    {
+      "hook": "How to",
+      "videos": 2,
+      "totalViews": 1172,
+      "avgViews": 586,
+      "avgLikes": 0
+    },
+    {
+      "hook": "I [action]",
+      "videos": 6,
+      "totalViews": 2732,
+      "avgViews": 455,
+      "avgLikes": 4
+    },
+    {
+      "hook": "$X amount",
+      "videos": 5,
+      "totalViews": 1910,
+      "avgViews": 382,
+      "avgLikes": 5
+    },
+    {
+      "hook": "Stop doing X",
+      "videos": 2,
+      "totalViews": 730,
+      "avgViews": 365,
+      "avgLikes": 17
+    },
+    {
+      "hook": "News/Trends",
+      "videos": 1,
+      "totalViews": 264,
+      "avgViews": 264,
+      "avgLikes": 4
+    },
+    {
+      "hook": "Why",
+      "videos": 5,
+      "totalViews": 1061,
+      "avgViews": 212,
+      "avgLikes": 6
+    },
+    {
+      "hook": "Other",
+      "videos": 7,
+      "totalViews": 1332,
+      "avgViews": 190,
+      "avgLikes": 2
+    },
+    {
+      "hook": "Mistakes",
+      "videos": 1,
+      "totalViews": 155,
+      "avgViews": 155,
+      "avgLikes": 2
+    }
+  ],
+  "durationAnalysis": [
+    {
+      "range": "Under 30s",
+      "videos": 2,
+      "avgViews": 382,
+      "avgEngagement": "2.49"
+    },
+    {
+      "range": "30-45s",
+      "videos": 8,
+      "avgViews": 185,
+      "avgEngagement": "2.77"
+    },
+    {
+      "range": "45-60s",
+      "videos": 9,
+      "avgViews": 228,
+      "avgEngagement": "2.98"
+    },
+    {
+      "range": "Over 60s",
+      "videos": 1,
+      "avgViews": 342,
+      "avgEngagement": "4.39"
+    }
+  ],
+  "contentTypeAnalysis": [
+    {
+      "type": "Demo",
+      "videos": 5,
+      "avgViews": 617
+    },
+    {
+      "type": "Educational",
+      "videos": 8,
+      "avgViews": 314
+    },
+    {
+      "type": "Case Study",
+      "videos": 4,
+      "avgViews": 286
+    },
+    {
+      "type": "News/Trends",
+      "videos": 4,
+      "avgViews": 229
+    },
+    {
+      "type": "Value",
+      "videos": 8,
+      "avgViews": 212
+    }
+  ],
+  "topPerformersByViews": [
+    {
+      "title": "How to Achieve Sub-100ms AI Voice…",
+      "views": 1168,
+      "url": "https://youtube.com/shorts/9e7zB_ms-Mg",
+      "platform": "YouTube",
+      "engagementRate": "N/A",
+      "likeRate": "N/A"
+    },
+    {
+      "title": "I Built an AI Receptionist That Books Patients 24/7",
+      "views": 966,
+      "url": "https://youtube.com/shorts/sUj9MKFfe5E",
+      "platform": "YouTube",
+      "engagementRate": "N/A",
+      "likeRate": "N/A"
+    },
+    {
+      "title": "I Switched To Spanish Mid Call… (AI DEMO)",
+      "views": 885,
+      "url": "https://youtube.com/shorts/ZVmN02k3UMg",
+      "platform": "YouTube",
+      "engagementRate": "N/A",
+      "likeRate": "N/A"
+    },
+    {
+      "title": "$5K AI Receptionist VS Angry Caller",
+      "views": 628,
+      "url": "https://youtube.com/shorts/gbrSfVvOHME",
+      "platform": "YouTube",
+      "engagementRate": "N/A",
+      "likeRate": "N/A"
+    },
+    {
+      "id": "7603098584686415117",
+      "title": "Why your voice AI has a 2-second delay… #aiautomation #voiceai #ai202...",
+      "views": 486,
+      "likes": 12,
+      "comments": 3,
+      "shares": 2,
+      "saves": 8,
+      "duration": 24,
+      "timestamp": "2026-02-04T19:45:51.000Z",
+      "uploadDate": "20260204",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7603098584686415117",
+      "platform": "TikTok",
+      "engagementRate": "3.50",
+      "likeRate": "2.47"
+    },
+    {
+      "title": "$5k AI Caller for a Plastic Surgery Clinic",
+      "views": 472,
+      "url": "https://youtube.com/shorts/9oM1mv_hJfY",
+      "platform": "YouTube",
+      "engagementRate": "N/A",
+      "likeRate": "N/A"
+    },
+    {
+      "id": "7605751945445313806",
+      "title": "Stop running AI Agents solo… #aiaudit #voiceai #elevenlabs #clinicown...",
+      "views": 453,
+      "likes": 27,
+      "comments": 0,
+      "shares": 1,
+      "saves": 18,
+      "duration": 52,
+      "timestamp": "2026-02-11T23:22:31.000Z",
+      "uploadDate": "20260211",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7605751945445313806",
+      "platform": "TikTok",
+      "engagementRate": "6.18",
+      "likeRate": "5.96"
+    },
+    {
+      "title": "My Secret Sauce from 30 AI Audits…",
+      "views": 390,
+      "url": "https://youtube.com/shorts/JCBq5roGQw8",
+      "platform": "YouTube",
+      "engagementRate": "N/A",
+      "likeRate": "N/A"
+    },
+    {
+      "id": "7607180160789433614",
+      "title": "$5k AI Medspa Receptionist built with Elevenlabs and Sync2.ai  #sync2...",
+      "views": 342,
+      "likes": 15,
+      "comments": 2,
+      "shares": 1,
+      "saves": 8,
+      "duration": 100,
+      "timestamp": "2026-02-15T19:44:38.000Z",
+      "uploadDate": "20260215",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7607180160789433614",
+      "platform": "TikTok",
+      "engagementRate": "5.26",
+      "likeRate": "4.39"
+    },
+    {
+      "id": "7607728068681108749",
+      "title": "I switched to Spanish mid-call… #sync2 #aireceptionist #voiceai #elev...",
+      "views": 303,
+      "likes": 13,
+      "comments": 0,
+      "shares": 1,
+      "saves": 1,
+      "duration": 37,
+      "timestamp": "2026-02-17T07:11:41.000Z",
+      "uploadDate": "20260217",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7607728068681108749",
+      "platform": "TikTok",
+      "engagementRate": "4.62",
+      "likeRate": "4.29"
+    }
+  ],
+  "topPerformersByEngagement": [
+    {
+      "title": "Stop running AI Agents solo… #aiaudit #voiceai #elevenlabs #clinicown...",
+      "views": 453,
+      "engagementRate": "6.18%",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7605751945445313806"
+    },
+    {
+      "title": "$5k AI Medspa Receptionist built with Elevenlabs and Sync2.ai  #sync2...",
+      "views": 342,
+      "engagementRate": "5.26%",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7607180160789433614"
+    },
+    {
+      "title": "Why your AI agent works in demos but breaks in production… #aiautomat...",
+      "views": 265,
+      "engagementRate": "4.91%",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7603452578604649741"
+    },
+    {
+      "title": "A med spa paid me $15K to stop losing $47K a month. From missed calls...",
+      "views": 269,
+      "engagementRate": "4.83%",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7602025686429109517"
+    },
+    {
+      "title": "I switched to Spanish mid-call… #sync2 #aireceptionist #voiceai #elev...",
+      "views": 303,
+      "engagementRate": "4.62%",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7607728068681108749"
+    },
+    {
+      "title": "AI agents are hiring each other now. Your front desk is still playing...",
+      "views": 294,
+      "engagementRate": "4.08%",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7602020209452485902"
+    },
+    {
+      "title": "Why your voice AI has a 2-second delay… #aiautomation #voiceai #ai202...",
+      "views": 486,
+      "engagementRate": "3.50%",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7603098584686415117"
+    },
+    {
+      "title": "Why Your HIPAA Voice AI costs 50x more than it should. #hipaa #medspa...",
+      "views": 129,
+      "engagementRate": "3.10%",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7604532337824501006"
+    },
+    {
+      "title": "AI just committed credit card fraud and Amazon is suing. Comment \"AGE...",
+      "views": 214,
+      "engagementRate": "2.80%",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7604278616523934990"
+    },
+    {
+      "title": "Microsoft just told their engineers to STOP using ChatGPT… #aiautomat...",
+      "views": 277,
+      "engagementRate": "2.53%",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7604536538780749069"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": 1,
+      "insight": "\"I [action]\" hooks get highest average views (926)",
+      "action": "Lead with personal proof/demo format: \"I built...\", \"I switched...\", \"I automated...\""
+    },
+    {
+      "priority": 2,
+      "insight": "YouTube outperforms TikTok by 3-11x on same content",
+      "action": "Prioritize YouTube Shorts, use TikTok for testing hooks before cross-posting"
+    },
+    {
+      "priority": 3,
+      "insight": "Demo videos consistently outperform pure educational content",
+      "action": "Include live AI demos in videos - show the tech working, not just explain it"
+    }
+  ]
+}
