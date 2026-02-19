@@ -90,11 +90,11 @@
       color: rgba(255,255,255,0.6);
     }
     
-    /* Swipe indicator - BIG AND PROMINENT */
+    /* Swipe indicator - BIG AND PROMINENT - Bottom right, higher up */
     .swipe-indicator {
       position: absolute;
-      bottom: 50px;
-      left: 60px;
+      bottom: 120px;
+      right: 60px;
       display: flex;
       align-items: center;
       gap: 16px;
@@ -115,32 +115,16 @@
       text-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
     }
     
-    /* Right edge swipe cue */
+    /* Right edge swipe cue - REMOVED */
     .swipe-edge {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 60px;
-      height: 300px;
-      background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.15) 60%, rgba(139, 92, 246, 0.25) 100%);
-      border-left: 3px solid rgba(139, 92, 246, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 20px 0 0 20px;
+      display: none;
     }
     
     .swipe-edge-arrow {
-      font-size: 36px;
-      color: rgba(139, 92, 246, 0.8);
-      text-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+      display: none;
     }
     
-    /* Branding moves up when swipe is present */
-    .has-swipe .branding {
-      bottom: 140px;
-    }
+    /* Branding stays at bottom-left, swipe is now bottom-right */
     
     /* Title slides */
     .title-main {
