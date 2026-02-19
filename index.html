@@ -968,14 +968,62 @@
       display: inline-block;
     }
     
+    /* Mobile Header */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 0 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .mobile-header .logo {
+      margin: 0;
+      padding: 0;
+      font-size: 18px;
+    }
+    
+    .menu-btn {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 24px;
+      cursor: pointer;
+      padding: 8px;
+    }
+    
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+    }
+    
+    .overlay.show { display: block; }
+    
     /* Mobile Responsive */
     @media (max-width: 768px) {
+      .mobile-header {
+        display: flex;
+      }
+      
       .sidebar {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         z-index: 1001;
         width: 280px;
-        padding-top: 80px;
+        padding-top: 20px;
       }
       
       .sidebar.open {
@@ -984,12 +1032,24 @@
       
       .main {
         margin-left: 0;
-        padding: 80px 20px 32px;
+        padding: 80px 16px 32px;
+      }
+      
+      .page-title {
+        font-size: 22px;
       }
       
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
+        gap: 12px;
+      }
+      
+      .stat-card {
+        padding: 16px;
+      }
+      
+      .stat-value {
+        font-size: 24px;
       }
       
       .platform-grid {
@@ -1002,12 +1062,114 @@
       
       .page-header {
         flex-direction: column;
-        gap: 20px;
+        gap: 16px;
+      }
+      
+      .card {
+        padding: 20px;
+      }
+      
+      /* Calendar mobile - vertical stack */
+      .calendar-week {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      
+      .calendar-day {
+        min-height: auto;
+      }
+      
+      .calendar-day-header {
+        padding: 14px 16px;
+      }
+      
+      .calendar-day-content {
+        padding: 12px;
+      }
+      
+      .calendar-item {
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+      
+      /* Scripts mobile */
+      .script-header {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      .script-meta {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 4px;
+      }
+      
+      .script-content {
+        font-size: 13px;
+        padding: 14px;
+      }
+      
+      /* Carousels mobile */
+      .carousel-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      /* Tables mobile */
+      .video-table {
+        font-size: 12px;
+      }
+      
+      .video-table th,
+      .video-table td {
+        padding: 10px 8px;
+      }
+      
+      /* Hook analysis mobile */
+      .hook-item {
+        flex-wrap: wrap;
+      }
+      
+      .hook-name {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+      
+      .hook-stats {
+        width: auto;
+        text-align: left;
+        margin-left: auto;
+      }
+      
+      /* Formats grid */
+      #formats-grid {
+        grid-template-columns: 1fr !important;
+      }
+      
+      /* Weekly plan */
+      #weekly-plan {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      #weekly-plan {
+        grid-template-columns: 1fr !important;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Mobile Header -->
+  <header class="mobile-header">
+    <div class="logo">Sync2 <span>Hub</span></div>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </header>
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+  
   <nav class="sidebar" id="sidebar">
     <div class="logo">Sync2 <span>Hub</span></div>
     
@@ -1807,7 +1969,7 @@
       document.querySelector('#calendar .page-subtitle').textContent = 
         `Week of ${startDate.month} ${startDate.dateNum} – ${endDate.month} ${endDate.dateNum}`;
       
-      // Create schedule lookup from scripts
+      // Create schedule lookup from scripts (2 videos per day)
       const scheduleByDate = {};
       scriptsData.forEach(s => {
         if (s.scheduled) {
@@ -1816,18 +1978,20 @@
         }
       });
       
-      // Carousel schedule (1 per day on weekdays)
+      // Carousel schedule (1 per day)
       const carouselTitles = [
         '5 Signs Your Front Desk Is Losing Patients',
         'The $200 Patient Myth',
         'What 50+ Practice Audits Taught Me',
         'AI vs Human Receptionist',
-        '3 Things I\'d Do Starting a Practice'
+        '3 Things I\'d Do Starting a Practice',
+        'Weekend Carousel 1',
+        'Weekend Carousel 2'
       ];
       
       document.getElementById('calendar-week').innerHTML = calendarDays.map((d, i) => {
         const scheduled = scheduleByDate[d.dateStr] || [];
-        const hasCarousel = i < 5; // Mon-Fri get carousels
+        const hasContent = i < 5; // Mon-Fri main content
         
         return `
         <div class="calendar-day ${d.isToday ? 'today' : ''}">
@@ -1836,17 +2000,35 @@
             <span class="date">${d.month} ${d.dateNum}</span>
           </div>
           <div class="calendar-day-content">
-            ${scheduled.map(s => `
-              <div class="calendar-item reel" title="${s.hook}" onclick="showScript(${s.id})">
-                <strong>#${s.id}</strong> ${truncate(s.title, 20)}
-                <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">${s.length} • ${s.type}</div>
-              </div>
-            `).join('')}
-            ${hasCarousel && carouselTitles[i] ? `
+            ${scheduled.length > 0 ? `
+              <div style="font-size: 10px; color: var(--gold); margin-bottom: 6px; font-weight: 600;">📹 REELS (${scheduled.length})</div>
+              ${scheduled.map(s => `
+                <div class="calendar-item reel" title="${s.hook}" onclick="showScript(${s.id})">
+                  <strong>#${s.id}</strong> ${truncate(s.title, 18)}
+                  <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">${s.length} • ${s.type}</div>
+                </div>
+              `).join('')}
+            ` : ''}
+            ${hasContent && carouselTitles[i] ? `
+              <div style="font-size: 10px; color: var(--gold); margin: 8px 0 6px; font-weight: 600;">🎠 CAROUSEL</div>
               <div class="calendar-item carousel" title="${carouselTitles[i]}" onclick="goToCarousels()">
-                Carousel: ${truncate(carouselTitles[i], 18)}
+                ${truncate(carouselTitles[i], 22)}
               </div>
             ` : ''}
+            ${hasContent ? `
+              <div style="font-size: 10px; color: var(--text-muted); margin: 10px 0 4px; font-weight: 500;">📱 STORIES (4)</div>
+              <div style="font-size: 11px; color: var(--text-secondary); padding: 6px 8px; background: rgba(255,255,255,0.03); border-radius: 6px;">
+                Behind-the-scenes, polls, tips, engagement
+              </div>
+              <div style="font-size: 10px; color: var(--text-muted); margin: 10px 0 4px; font-weight: 500;">💬 DMs (40-60)</div>
+              <div style="font-size: 11px; color: var(--text-secondary); padding: 6px 8px; background: rgba(255,255,255,0.03); border-radius: 6px;">
+                Engage, reply, outreach
+              </div>
+            ` : `
+              <div style="font-size: 12px; color: var(--text-muted); padding: 20px 10px; text-align: center;">
+                Weekend:<br>Repurpose & Engage
+              </div>
+            `}
           </div>
         </div>
       `}).join('');
@@ -2020,6 +2202,21 @@
         showToast('Script copied to clipboard!', 'success');
       });
     }
+    
+    // ============ MOBILE MENU ============
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('show');
+    }
+    
+    // Close menu when nav item clicked on mobile
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          toggleMenu();
+        }
+      });
+    });
     
     // ============ INIT ============
     loadAnalyticsData();

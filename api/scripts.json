@@ -18,30 +18,8 @@
     "length": "65s",
     "framework": "Reframe/Insight",
     "status": "ready",
-    "scheduled": "2026-02-21",
+    "scheduled": "2026-02-20",
     "content": "Practice owners always ask me: \"Why do patients book and not show up?\"\n\nHere's the truth nobody talks about.\n\nThe average time between booking and appointment: 8 days.\n\nNumber of times most practices contact them in that window: Zero.\n\nThen you're surprised when they forget? Or book somewhere else that had an earlier slot?\n\nThe practices with 95%+ show rates do three things:\n1. Confirmation text within 1 hour of booking\n2. Reminder 48 hours before\n3. \"We're excited to see you\" message morning-of\n\nThat's it. Three texts. Takes 30 seconds to automate.\n\nYour patients want to come. They just need you to make it easy to remember.\n\nVisuals:\n• Calendar showing 8-day gap\n• Phone with zero notifications\n• Three text message examples\n• Show rate comparison stat"
-  },
-  {
-    "id": 3,
-    "title": "The $200 Patient Myth",
-    "hook": "Stop calculating patient value wrong. Here's the real math.",
-    "type": "value",
-    "length": "70s",
-    "framework": "Math Hook",
-    "status": "ready",
-    "scheduled": "2026-02-24",
-    "content": "Everyone says \"average patient value is $200\" or whatever your first visit brings in.\n\nThat's the wrong number.\n\nA patient who stays with your practice 5 years is worth:\n\n• 2 cleanings/year × 5 years = 10 visits\n• Plus X-rays, fillings, crowns, referrals\n\nReal lifetime value: $3,000-$7,000 depending on your practice.\n\nSo when you miss a call and lose that patient to a competitor, you didn't lose $200.\n\nYou lost $5,000 and gave it to someone else.\n\nThis is why the most profitable practices obsess over first impressions. Not because one visit matters — because the relationship matters.\n\nEvery missed call is a $5,000 decision.\n\nVisuals:\n• Calculator showing wrong math, then right math\n• Timeline of patient visits over 5 years\n• Dollar counter going up\n• Competitor \"thank you\" card (humorous)"
-  },
-  {
-    "id": 4,
-    "title": "The Hiring Math Nobody Does",
-    "hook": "Before you hire another receptionist, do this math.",
-    "type": "value",
-    "length": "75s",
-    "framework": "Math Hook",
-    "status": "ready",
-    "scheduled": "2026-02-25",
-    "content": "Your front desk is overwhelmed. Calls are getting missed. The obvious solution: hire another person.\n\nLet's run the real numbers.\n\nNew receptionist:\n• Salary: $35,000-$45,000/year\n• Benefits: $8,000-$12,000/year\n• Training: 2-3 months before they're useful\n• Sick days, vacation, turnover\n\nTotal cost: $50K+ per year. And they still can't answer calls at 2am or handle 5 lines at once.\n\nAlternative math:\n• What if you could cover 100% of overflow calls for $500/month?\n• That's $6,000/year\n• Works 24/7, never calls in sick, handles unlimited simultaneous calls\n\nI'm not saying don't hire. I'm saying know what problem you're actually solving.\n\nSometimes you need more humans for patient care. Sometimes you need technology for phone coverage.\n\nMost practices hire for the wrong problem.\n\nVisuals:\n• Job listing with salary\n• Calculator adding up true costs\n• Side-by-side comparison chart\n• Office with happy staff (not overwhelmed)"
   },
   {
     "id": 5,
@@ -51,7 +29,7 @@
     "length": "65s",
     "framework": "Authority/List",
     "status": "ready",
-    "scheduled": "2026-02-22",
+    "scheduled": "2026-02-21",
     "content": "I've spent the last two years building AI phone systems for clinics. I've heard thousands of real patient calls.\n\nHere are the 3 mistakes I hear over and over:\n\nMistake 1: The hold spiral.\n\"Please hold.\" Patient holds for 90 seconds. Gets transferred. Holds again. By minute 3, they've hung up and called your competitor.\n\nMistake 2: The voicemail black hole.\n\"Leave a message and we'll call you back.\" 70% of patients don't leave one. They just call the next name on Google.\n\nMistake 3: The information dump.\nPatient asks one question. Receptionist gives a 2-minute speech about insurance, hours, parking, and paperwork. Patient just wanted to know if you're taking new patients.\n\nEvery one of these costs you $200+ per call.\n\nThe fix isn't hiring more people. It's designing a system where patients get answers in under 10 seconds.\n\nFollow for more — I post stuff like this every week.\n\nVisuals:\n• You talking direct to camera\n• Text overlays for each mistake\n• Timer showing hold time climbing\n• Quick cuts between each point"
   },
   {
@@ -62,8 +40,30 @@
     "length": "60s",
     "framework": "Data Insight",
     "status": "ready",
-    "scheduled": "2026-02-23",
+    "scheduled": "2026-02-21",
     "content": "Ran the data across 50+ medical and dental practices.\n\nThe highest call volume? 11:30am - 1:30pm.\n\nKnow what else happens then? Lunch breaks. Reduced staff. Voicemail.\n\nThis isn't a coincidence. Patients call during THEIR lunch break — the one time they're free.\n\nAnd that's exactly when most practices are least available.\n\nThe math:\n• Average lunch window: 25-30 calls\n• Staff coverage: 50% or less\n• Missed call rate: 40-60%\n\nThat's 12-18 missed patients. Every single day.\n\nSolving lunch coverage alone could be worth $50K/year to your practice.\n\nVisuals:\n• Clock showing 11:30am\n• Call volume graph spiking\n• Empty front desk\n• Split screen: calls coming in, nobody answering"
+  },
+  {
+    "id": 3,
+    "title": "The $200 Patient Myth",
+    "hook": "Stop calculating patient value wrong. Here's the real math.",
+    "type": "value",
+    "length": "70s",
+    "framework": "Math Hook",
+    "status": "ready",
+    "scheduled": "2026-02-22",
+    "content": "Everyone says \"average patient value is $200\" or whatever your first visit brings in.\n\nThat's the wrong number.\n\nA patient who stays with your practice 5 years is worth:\n\n• 2 cleanings/year × 5 years = 10 visits\n• Plus X-rays, fillings, crowns, referrals\n\nReal lifetime value: $3,000-$7,000 depending on your practice.\n\nSo when you miss a call and lose that patient to a competitor, you didn't lose $200.\n\nYou lost $5,000 and gave it to someone else.\n\nThis is why the most profitable practices obsess over first impressions. Not because one visit matters — because the relationship matters.\n\nEvery missed call is a $5,000 decision.\n\nVisuals:\n• Calculator showing wrong math, then right math\n• Timeline of patient visits over 5 years\n• Dollar counter going up\n• Competitor \"thank you\" card (humorous)"
+  },
+  {
+    "id": 4,
+    "title": "The Hiring Math Nobody Does",
+    "hook": "Before you hire another receptionist, do this math.",
+    "type": "value",
+    "length": "75s",
+    "framework": "Math Hook",
+    "status": "ready",
+    "scheduled": "2026-02-22",
+    "content": "Your front desk is overwhelmed. Calls are getting missed. The obvious solution: hire another person.\n\nLet's run the real numbers.\n\nNew receptionist:\n• Salary: $35,000-$45,000/year\n• Benefits: $8,000-$12,000/year\n• Training: 2-3 months before they're useful\n• Sick days, vacation, turnover\n\nTotal cost: $50K+ per year. And they still can't answer calls at 2am or handle 5 lines at once.\n\nAlternative math:\n• What if you could cover 100% of overflow calls for $500/month?\n• That's $6,000/year\n• Works 24/7, never calls in sick, handles unlimited simultaneous calls\n\nI'm not saying don't hire. I'm saying know what problem you're actually solving.\n\nSometimes you need more humans for patient care. Sometimes you need technology for phone coverage.\n\nMost practices hire for the wrong problem.\n\nVisuals:\n• Job listing with salary\n• Calculator adding up true costs\n• Side-by-side comparison chart\n• Office with happy staff (not overwhelmed)"
   },
   {
     "id": 7,
@@ -73,7 +73,7 @@
     "length": "70s",
     "framework": "Case Study",
     "status": "ready",
-    "scheduled": "2026-02-26",
+    "scheduled": "2026-02-23",
     "content": "Practice in Texas. 4 providers. Good reputation. Thought they were doing fine.\n\nWe tracked one week of calls:\n• 312 total calls\n• 67 went to voicemail\n• 23 hung up before voicemail finished\n\n90 missed opportunities. In 7 days.\n\nThen we turned on AI backup for week two. Same call volume.\n\n• 308 total calls\n• 0 went to voicemail\n• 0 hang-ups\n• 94% converted to appointments\n\nThe staff wasn't working harder. They just had backup.\n\nRevenue difference: $11,400 in one week.\n\nIf your practice does 300+ calls a week and you're not tracking this, you're guessing with your revenue.\n\nComment 'AUDIT' and I'll show you how to run this test yourself.\n\nVisuals:\n• Week 1 stats in red\n• Week 2 stats in green\n• Staff working normally (not stressed)\n• Revenue comparison"
   },
   {
@@ -84,7 +84,7 @@
     "length": "65s",
     "framework": "Proof/Demo",
     "status": "ready",
-    "scheduled": "2026-02-27",
+    "scheduled": "2026-02-23",
     "content": "Tuesday, 2:17am: Emergency toothache. Booked same-day 8am slot.\n\nThursday, 11:42pm: New patient, found you on Google, wanted to lock in an appointment before they forgot.\n\nSunday, 6:15am: Parent booking for kid before the school week starts.\n\nThree appointments. $740 in revenue. Zero staff involvement.\n\nThese patients would have called someone else by morning. Instead, they're on your calendar.\n\nThis is what 24/7 coverage actually looks like. Not a voicemail. Not a \"we'll call you back.\" An actual booking, instantly.\n\nYour competitors' phones go to voicemail at 5pm. Yours doesn't have to.\n\nLink in bio to see how it works.\n\nVisuals:\n• Phone screen showing 2:17 AM\n• Booking confirmations with timestamps\n• Calendar filling up overnight\n• Morning staff seeing appointments already booked"
   },
   {
@@ -95,7 +95,7 @@
     "length": "75s",
     "framework": "Interactive/Engagement",
     "status": "needs-recordings",
-    "scheduled": null,
+    "scheduled": "2026-02-24",
     "content": "I'm going to play two real calls. Same practice, same type of appointment request.\n\n[Play Call A — 20 seconds of natural booking conversation]\n\n[Play Call B — 20 seconds of natural booking conversation]\n\nComment A or B before I tell you.\n\n...\n\nIt was Call B.\n\nThe patient had no idea. Appointment booked. Showed up. Left a 5-star review.\n\n\"But AI sounds robotic.\" Not anymore.\n\n\"But patients want humans.\" They want their problem solved. Call B solved it in 45 seconds.\n\nComment 'DEMO' to test it with your own practice name and info.\n\nVisuals:\n• Call A playing, waveform visualization\n• Call B playing, waveform visualization\n• \"A or B?\" overlay, pause for engagement\n• Reveal + 5-star review screenshot"
   },
   {
@@ -106,7 +106,7 @@
     "length": "70s",
     "framework": "Interactive/Math",
     "status": "ready",
-    "scheduled": null,
+    "scheduled": "2026-02-24",
     "content": "Here's what I know:\n\n• 4-provider dental practice\n• 340 calls per week\n• 18% going to voicemail\n• Open 45 hours/week\n\nHow much were they losing per month?\n\n[10-second countdown timer]\n\n...\n\n$26,400.\n\nHere's the math:\n\n• 340 calls × 18% missed = 61 missed calls/week\n• 61 × 70% would've booked = 43 lost patients/week\n• 43 × $150 average value = $6,450/week\n• × 4 weeks = $25,800/month\n\nThey had no idea until we ran the audit.\n\nComment your guess. If you were within $3K, I'll send you our free calculator to run your own numbers.\n\nVisuals:\n• Practice stats appearing on screen\n• Countdown timer\n• Math breakdown animating in\n• Calculator graphic + CTA"
   }
 ]
