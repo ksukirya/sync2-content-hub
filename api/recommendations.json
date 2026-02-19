@@ -1,0 +1,241 @@
+{
+  "lastUpdated": "2026-02-19T06:05:00.000Z",
+  "source": "Analyzed from @dailykeshav, @keshavsuki, and competitor content",
+  
+  "provenHooks": {
+    "description": "Copy-ready hooks backed by actual performance data. Sorted by avg views.",
+    "hooks": [
+      {
+        "template": "How to [achieve desirable outcome]…",
+        "avgViews": 586,
+        "examples": [
+          "How to Achieve Sub-100ms AI Voice…",
+          "How to Lose a Customer in 30 Seconds"
+        ],
+        "sourceVideos": [
+          {"title": "How to Achieve Sub-100ms AI Voice…", "views": 1168, "url": "https://youtube.com/shorts/9e7zB_ms-Mg"},
+          {"title": "How to Lose a Customer in 30 Seconds", "views": 4, "url": "https://youtube.com/shorts/Ht1NN-C571U"}
+        ],
+        "whyItWorks": "Educational promise + specificity. Sub-100ms is concrete and intriguing.",
+        "copyThese": [
+          "How to Achieve Sub-100ms AI Voice Response Time",
+          "How to Book 3x More Patients Without Hiring",
+          "How to Never Miss a Call Again (For $0.12/min)",
+          "How to Turn Missed Calls Into Booked Appointments"
+        ]
+      },
+      {
+        "template": "I [did something impressive]…",
+        "avgViews": 455,
+        "examples": [
+          "I Built an AI Receptionist That Books Patients 24/7",
+          "I Switched To Spanish Mid Call…",
+          "I automated a $65K job"
+        ],
+        "sourceVideos": [
+          {"title": "I Built an AI Receptionist That Books Patients 24/7", "views": 966, "url": "https://youtube.com/shorts/sUj9MKFfe5E"},
+          {"title": "I Switched To Spanish Mid Call…", "views": 885, "url": "https://youtube.com/shorts/ZVmN02k3UMg"},
+          {"title": "I automated a $65K job", "views": 204, "url": "https://www.tiktok.com/@keshavsuki/video/7602287749932059917"}
+        ],
+        "whyItWorks": "Personal proof + intrigue. Viewer wants to see if it's real.",
+        "copyThese": [
+          "I Built an AI Receptionist That Books Patients 24/7",
+          "I Switched To Spanish Mid-Call… (watch what happens)",
+          "I Replaced a $65K Employee With a $500/mo AI",
+          "I Made an AI Handle an Angry Caller (it worked)",
+          "I Saved a Clinic $47K/Month With One Phone Line"
+        ]
+      },
+      {
+        "template": "$[X amount] [context]",
+        "avgViews": 382,
+        "examples": [
+          "$5K AI Receptionist VS Angry Caller",
+          "$5k AI Caller for a Plastic Surgery Clinic",
+          "A med spa paid me $15K to stop losing $47K a month"
+        ],
+        "sourceVideos": [
+          {"title": "$5K AI Receptionist VS Angry Caller", "views": 628, "url": "https://youtube.com/shorts/gbrSfVvOHME"},
+          {"title": "$5k AI Caller for a Plastic Surgery Clinic", "views": 472, "url": "https://youtube.com/shorts/9oM1mv_hJfY"},
+          {"title": "A med spa paid me $15K to stop losing $47K a month", "views": 269, "url": "https://www.tiktok.com/@keshavsuki/video/7602025686429109517"}
+        ],
+        "whyItWorks": "Money grabs attention. Specific numbers feel real.",
+        "copyThese": [
+          "$5K AI Receptionist VS Angry Caller",
+          "$15K to Stop Losing $47K/Month (what I built)",
+          "$200 Patient Walked Because No One Answered",
+          "$12K/Year Replaced by $0.12/Minute AI",
+          "$47K Lost Every Month From Missed Calls"
+        ]
+      },
+      {
+        "template": "Stop [doing bad thing]…",
+        "avgViews": 365,
+        "examples": [
+          "Stop running AI Agents solo…"
+        ],
+        "sourceVideos": [
+          {"title": "Stop running AI Agents solo…", "views": 453, "url": "https://www.tiktok.com/@keshavsuki/video/7605751945445313806"}
+        ],
+        "whyItWorks": "Pattern interrupt + contrarian. Creates fear of doing it wrong.",
+        "copyThese": [
+          "Stop Running AI Agents Solo (here's why)",
+          "Stop Answering Your Own Phone (it's costing you)",
+          "Stop Ignoring After-Hours Calls",
+          "Stop Paying $15/hr for Someone to Say 'Please Hold'",
+          "Stop Letting Patients Go to Voicemail"
+        ]
+      },
+      {
+        "template": "Why [unexpected thing happens]…",
+        "avgViews": 212,
+        "examples": [
+          "Why your voice AI has a 2-second delay…",
+          "Why your AI agent works in demos but breaks in production…"
+        ],
+        "sourceVideos": [
+          {"title": "Why your voice AI has a 2-second delay…", "views": 486, "url": "https://www.tiktok.com/@keshavsuki/video/7603098584686415117"},
+          {"title": "Why your AI agent works in demos but breaks in production…", "views": 265, "url": "https://www.tiktok.com/@keshavsuki/video/7603452578604649741"}
+        ],
+        "whyItWorks": "Creates curiosity gap. Viewer needs to know the answer.",
+        "copyThese": [
+          "Why Your Voice AI Has a 2-Second Delay (fix it)",
+          "Why Your AI Works in Demos But Breaks in Production",
+          "Why Patients Hang Up After 3 Rings",
+          "Why 85% of Missed Calls Never Call Back",
+          "Why Your Front Desk Is Losing $200 Patients"
+        ]
+      }
+    ]
+  },
+
+  "provenFormats": {
+    "description": "Content formats ranked by average views",
+    "formats": [
+      {
+        "type": "Demo",
+        "avgViews": 617,
+        "description": "Show the AI actually working. Live call recordings, screen recordings.",
+        "topExamples": [
+          {"title": "I Switched To Spanish Mid Call…", "views": 885, "element": "Unexpected twist mid-demo"},
+          {"title": "$5K AI Receptionist VS Angry Caller", "views": 628, "element": "Conflict/challenge scenario"},
+          {"title": "I Built an AI Receptionist That Books Patients 24/7", "views": 966, "element": "Full capability showcase"}
+        ],
+        "templateScript": "HOOK: [Intriguing premise]\nSETUP: \"Watch what happens when...\"\nDEMO: [15-30s of actual AI in action]\nPAYOFF: \"And that's why [result].\"\nCTA: \"Want this for your [practice/business]?\""
+      },
+      {
+        "type": "Educational",
+        "avgViews": 314,
+        "description": "Teach something specific. One clear lesson.",
+        "topExamples": [
+          {"title": "How to Achieve Sub-100ms AI Voice…", "views": 1168, "element": "Technical insight"},
+          {"title": "Why your voice AI has a 2-second delay…", "views": 486, "element": "Problem diagnosis"}
+        ],
+        "templateScript": "HOOK: \"Here's something most [role] don't know...\"\nPROBLEM: [Describe the pain point in 5 seconds]\nINSIGHT: \"The reason is [X].\"\nSOLUTION: \"Here's what to do instead...\"\nCTA: [Offer or next step]"
+      },
+      {
+        "type": "Case Study",
+        "avgViews": 286,
+        "description": "Real client story with specific numbers.",
+        "topExamples": [
+          {"title": "A med spa paid me $15K to stop losing $47K a month", "views": 269, "element": "Before/after transformation"}
+        ],
+        "templateScript": "HOOK: \"A [client type] paid me $X to [solve problem].\"\nBEFORE: \"They were [pain point].\"\nSOLUTION: \"So we [implemented X].\"\nRESULT: \"Now they [outcome with numbers].\"\nCTA: \"If you want the same result...\""
+      }
+    ]
+  },
+
+  "readyToFilm": {
+    "description": "Complete scripts you can film right now. Based on top performers.",
+    "scripts": [
+      {
+        "title": "The Spanish Switch Demo",
+        "hook": "I switched to Spanish mid-call…",
+        "type": "demo",
+        "basedOn": {"title": "I Switched To Spanish Mid Call…", "views": 885},
+        "script": "I switched to Spanish mid-call…\n\n[Show phone screen with AI call in progress]\n\nWatch what happens when I suddenly start speaking Spanish to our AI receptionist.\n\n[Cut to call audio: You speaking English, then switching to Spanish]\n\nAI: \"Hola, ¿cómo puedo ayudarle hoy?\"\n\n[AI responds fluently in Spanish, books appointment]\n\nNo pause. No confusion. Instant language detection.\n\nThis is what sub-100ms response time looks like.\n\n30% of patients in [area] prefer Spanish. Are you losing them?\n\n[End frame: DM me \"SPANISH\" for a demo]",
+        "duration": "30-40s",
+        "elements": ["Screen recording of call", "Audio of language switch", "AI response"]
+      },
+      {
+        "title": "Angry Caller Challenge",
+        "hook": "$5K AI Receptionist VS Angry Caller",
+        "type": "demo",
+        "basedOn": {"title": "$5K AI Receptionist VS Angry Caller", "views": 628},
+        "script": "$5K AI Receptionist VS Angry Caller.\n\nI'm going to try to break this AI.\n\n[Show dialing the number]\n\nCaller: \"This is ridiculous! I've been waiting 3 weeks for my appointment and nobody called me back!\"\n\n[AI responds calmly, acknowledges frustration, offers immediate solution]\n\nAI: \"I completely understand your frustration. Let me get you scheduled right now. What day works best for you this week?\"\n\n[Caller softens, books appointment]\n\nNo hold music. No \"let me transfer you.\" No attitude.\n\nJust a booked appointment in 45 seconds.\n\nThis is Sync2.",
+        "duration": "40-50s",
+        "elements": ["Live call recording", "Emotional escalation", "Resolution"]
+      },
+      {
+        "title": "Sub-100ms Explanation",
+        "hook": "How to Achieve Sub-100ms AI Voice Response Time",
+        "type": "educational",
+        "basedOn": {"title": "How to Achieve Sub-100ms AI Voice…", "views": 1168},
+        "script": "How to achieve sub-100ms AI voice response time.\n\nMost voice AIs have a 2-second delay. Here's why, and how to fix it.\n\n[Visual: Timeline showing delay points]\n\nDelay 1: Speech-to-text processing (500ms)\nDelay 2: LLM thinking (800ms)\nDelay 3: Text-to-speech generation (400ms)\n\nTotal: 1.7 seconds minimum.\n\nHere's the fix:\n\n1. Stream everything. Don't wait for complete sentences.\n2. Use predictive caching for common responses.\n3. Run STT and TTS on edge servers, not cloud.\n\nResult? Sub-100ms response.\n\nYour AI sounds like a real person, not a robot waiting to think.\n\n[End frame: Link in bio for the full breakdown]",
+        "duration": "45-55s",
+        "elements": ["Diagram/visual", "Technical explanation", "Before/after comparison"]
+      },
+      {
+        "title": "The $47K Leak",
+        "hook": "A med spa paid me $15K to stop losing $47K a month",
+        "type": "case-study",
+        "basedOn": {"title": "A med spa paid me $15K to stop losing $47K a month", "views": 269},
+        "script": "A med spa paid me $15K to stop losing $47K a month.\n\nHere's what I found:\n\n23% of their calls went to voicemail.\nAverage patient value: $800.\nMissed calls per month: 59.\n\n59 × $800 = $47,200 in potential revenue. Gone.\n\nThe fix:\n\n[Show Sync2 dashboard]\n\nAI receptionist that answers every call in under 1 second.\nBooks appointments directly into their system.\nHandles reschedules, cancellations, and FAQs.\n\nMonth 1 results:\n- 0 missed calls\n- 47 additional bookings\n- $37,600 recovered revenue\n\nROI: 2.5x in 30 days.\n\nThis is why clinics are switching to AI.\n\n[End frame: Free audit - link in bio]",
+        "duration": "50-60s",
+        "elements": ["Numbers on screen", "Dashboard demo", "Results metrics"]
+      },
+      {
+        "title": "3 Ring Psychology",
+        "hook": "Why patients hang up after 3 rings",
+        "type": "educational",
+        "basedOn": {"title": "Why your voice AI has a 2-second delay…", "views": 486},
+        "script": "Why patients hang up after 3 rings.\n\nHere's the psychology:\n\nRing 1-2: They're patient. Expecting an answer.\nRing 3-4: Doubt creeps in. \"Are they even open?\"\nRing 5+: They assume you're closed. Or don't care.\n\n[Stat on screen]\n\n85% of people who hang up don't call back.\n\nThey call the next clinic on Google.\n\nEvery missed call is a $200-$800 patient walking to your competitor.\n\nThe fix isn't hiring more staff.\nIt's answering instantly. Every time. 24/7.\n\nThat's what AI receptionists do.\n\n[End frame: How many calls did you miss today?]",
+        "duration": "35-45s",
+        "elements": ["Ring timeline visual", "Statistics", "Competitor comparison"]
+      }
+    ]
+  },
+
+  "competitorInsights": {
+    "description": "What's working in the AI/automation niche on short-form",
+    "patterns": [
+      {
+        "pattern": "Unexpected demo twist",
+        "examples": ["Language switch mid-call", "AI handling angry caller", "AI detecting scam"],
+        "whyItWorks": "Creates tension and resolution. Viewer stays to see outcome.",
+        "avgEngagement": "4-6%"
+      },
+      {
+        "pattern": "Specific dollar amounts",
+        "examples": ["$47K lost", "$15K project", "$200 patient"],
+        "whyItWorks": "Concrete numbers feel real. Creates FOMO.",
+        "avgEngagement": "3-5%"
+      },
+      {
+        "pattern": "Third-grade reading level hooks",
+        "examples": ["Simple words, short sentences, no jargon in hook"],
+        "whyItWorks": "Hormozi principle: if a 3rd grader can't understand your hook, it's too complex.",
+        "avgEngagement": "Higher scroll-stop rate"
+      },
+      {
+        "pattern": "Authority + list",
+        "examples": ["As a voice AI engineer, these are my top 3...", "After 30 audits, here's what I learned..."],
+        "whyItWorks": "Establishes credibility + promises structured value.",
+        "avgEngagement": "High saves rate"
+      }
+    ]
+  },
+
+  "weeklyPlan": {
+    "description": "Recommended posting cadence based on performance data",
+    "schedule": [
+      {"day": "Monday", "content": "Demo video (unexpected twist)", "hook": "I [action]…"},
+      {"day": "Tuesday", "content": "Educational (one lesson)", "hook": "Why [problem]…"},
+      {"day": "Wednesday", "content": "Case study with numbers", "hook": "$X [context]…"},
+      {"day": "Thursday", "content": "Demo video (capability showcase)", "hook": "How to [outcome]…"},
+      {"day": "Friday", "content": "Contrarian/pattern interrupt", "hook": "Stop [doing X]…"},
+      {"day": "Saturday", "content": "News/trending AI topic", "hook": "[Company] just [did X]…"},
+      {"day": "Sunday", "content": "Behind-the-scenes / personal", "hook": "My [experience/lesson]…"}
+    ]
+  }
+}

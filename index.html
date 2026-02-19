@@ -708,6 +708,236 @@
       to { transform: rotate(360deg); }
     }
     
+    /* Recommendations page styles */
+    .hook-category {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    
+    .hook-category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .hook-category-header:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    
+    .hook-template {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    
+    .hook-avg-views {
+      background: rgba(139, 92, 246, 0.2);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .hook-category-body {
+      display: none;
+      padding: 0 20px 20px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .hook-category.expanded .hook-category-body {
+      display: block;
+    }
+    
+    .copy-hook {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    
+    .copy-hook:hover {
+      background: rgba(139, 92, 246, 0.1);
+      border-color: var(--accent);
+    }
+    
+    .copy-hook-text {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .copy-hook-btn {
+      font-size: 11px;
+      color: var(--text-secondary);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    
+    .copy-hook:hover .copy-hook-btn {
+      opacity: 1;
+    }
+    
+    .copy-hook.copied {
+      background: rgba(34, 197, 94, 0.1);
+      border-color: var(--green);
+    }
+    
+    .copy-hook.copied .copy-hook-btn {
+      opacity: 1;
+      color: var(--green);
+    }
+    
+    .hook-source {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .hook-source-title {
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    
+    .hook-source-video {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      font-size: 13px;
+    }
+    
+    .hook-source-video a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    
+    .hook-source-video a:hover {
+      text-decoration: underline;
+    }
+    
+    .hook-source-views {
+      color: var(--green);
+      font-weight: 600;
+    }
+    
+    .hook-why {
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 3px solid var(--orange);
+      padding: 12px 16px;
+      margin-top: 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    /* Format cards */
+    .format-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    
+    .format-type {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .format-views {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    
+    .format-views span {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+    
+    .format-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    
+    /* Competitor patterns */
+    .pattern-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .pattern-item:last-child {
+      border-bottom: none;
+    }
+    
+    .pattern-name {
+      font-weight: 600;
+      width: 180px;
+      flex-shrink: 0;
+    }
+    
+    .pattern-examples {
+      flex: 1;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    .pattern-engagement {
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 600;
+    }
+    
+    /* Weekly plan */
+    .weekly-day {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    .weekly-day-name {
+      font-weight: 600;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    
+    .weekly-day-content {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    
+    .weekly-day-hook {
+      font-size: 10px;
+      background: rgba(139, 92, 246, 0.15);
+      color: var(--accent);
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    
     /* ============ MOBILE RESPONSIVE ============ */
     @media (max-width: 768px) {
       .sidebar {
@@ -769,6 +999,11 @@
     <a class="nav-item" data-page="calendar">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
       Calendar
+    </a>
+    
+    <a class="nav-item" data-page="recommendations">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+      Recommendations
     </a>
   </nav>
 
@@ -1015,6 +1250,62 @@
       </div>
       <div class="calendar-week" id="calendar-week">
         <!-- Populated by JS -->
+      </div>
+    </div>
+    
+    <!-- RECOMMENDATIONS PAGE -->
+    <div id="recommendations" class="page">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">🎯 Copy-Ready Recommendations</h1>
+          <p class="page-subtitle">Proven hooks & scripts backed by real performance data</p>
+        </div>
+      </div>
+      
+      <!-- Proven Hooks Section -->
+      <div class="card">
+        <div class="card-title">🎣 Proven Hooks — Copy Word for Word</div>
+        <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 20px;">
+          Ranked by average views. Click any hook to copy.
+        </p>
+        <div id="proven-hooks-list">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+      
+      <!-- Ready to Film Scripts -->
+      <div class="card">
+        <div class="card-title">🎬 Ready-to-Film Scripts</div>
+        <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 20px;">
+          Complete scripts based on top performers. Just film.
+        </p>
+        <div class="scripts-list" id="ready-scripts-list">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+      
+      <!-- Content Formats -->
+      <div class="card">
+        <div class="card-title">📊 Top Performing Formats</div>
+        <div id="formats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+      
+      <!-- Competitor Patterns -->
+      <div class="card">
+        <div class="card-title">🔍 What's Working (Competitor Insights)</div>
+        <div id="competitor-patterns">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+      
+      <!-- Weekly Plan -->
+      <div class="card">
+        <div class="card-title">📅 Recommended Weekly Posting Plan</div>
+        <div id="weekly-plan" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px;">
+          <!-- Populated by JS -->
+        </div>
       </div>
     </div>
     
@@ -1337,8 +1628,152 @@
       `).join('');
     }
     
+    // ============ RECOMMENDATIONS ============
+    let recommendationsData = null;
+    
+    async function loadRecommendations() {
+      try {
+        recommendationsData = await fetch('/api/recommendations.json').then(r => r.json());
+        renderRecommendationsPage();
+      } catch (error) {
+        console.error('Error loading recommendations:', error);
+      }
+    }
+    
+    function renderRecommendationsPage() {
+      if (!recommendationsData) return;
+      
+      renderProvenHooks();
+      renderReadyScripts();
+      renderFormats();
+      renderCompetitorPatterns();
+      renderWeeklyPlan();
+    }
+    
+    function renderProvenHooks() {
+      const hooks = recommendationsData.provenHooks.hooks;
+      document.getElementById('proven-hooks-list').innerHTML = hooks.map((hook, i) => `
+        <div class="hook-category" onclick="this.classList.toggle('expanded')">
+          <div class="hook-category-header">
+            <span class="hook-template">${hook.template}</span>
+            <span class="hook-avg-views">${hook.avgViews} avg views</span>
+          </div>
+          <div class="hook-category-body">
+            <div style="margin-bottom: 16px;">
+              <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">COPY THESE:</div>
+              ${hook.copyThese.map(h => `
+                <div class="copy-hook" onclick="event.stopPropagation(); copyHook(this, '${h.replace(/'/g, "\\'")}')">
+                  <span class="copy-hook-text">${h}</span>
+                  <span class="copy-hook-btn">Click to copy</span>
+                </div>
+              `).join('')}
+            </div>
+            
+            <div class="hook-source">
+              <div class="hook-source-title">Source videos that prove this works:</div>
+              ${hook.sourceVideos.map(v => `
+                <div class="hook-source-video">
+                  <a href="${v.url}" target="_blank">${v.title}</a>
+                  <span class="hook-source-views">${formatNumber(v.views)} views</span>
+                </div>
+              `).join('')}
+            </div>
+            
+            <div class="hook-why">
+              <strong>Why it works:</strong> ${hook.whyItWorks}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function renderReadyScripts() {
+      const scripts = recommendationsData.readyToFilm.scripts;
+      document.getElementById('ready-scripts-list').innerHTML = scripts.map((s, i) => `
+        <div class="script-card" onclick="this.classList.toggle('expanded')">
+          <div class="script-header">
+            <div class="script-num">${i + 1}</div>
+            <div class="script-info">
+              <div class="script-title">${s.title}</div>
+              <div class="script-hook">${s.hook}</div>
+            </div>
+            <div class="script-meta">
+              <span class="script-type ${s.type}">${s.type}</span>
+              <span style="color: var(--text-secondary); font-size: 11px;">${s.duration}</span>
+            </div>
+          </div>
+          <div class="script-body">
+            <div style="display: flex; gap: 12px; margin-bottom: 12px; padding-top: 12px;">
+              <span style="font-size: 11px; color: var(--text-secondary);">Based on:</span>
+              <a href="${s.basedOn.url || '#'}" target="_blank" style="font-size: 12px; color: var(--accent);">${s.basedOn.title} (${formatNumber(s.basedOn.views)} views)</a>
+            </div>
+            <div class="script-content">${s.script}</div>
+            <div style="margin-top: 12px;">
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); copyScript('${s.script.replace(/'/g, "\\'").replace(/\n/g, "\\n")}')">
+                📋 Copy Full Script
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function renderFormats() {
+      const formats = recommendationsData.provenFormats.formats;
+      document.getElementById('formats-grid').innerHTML = formats.map(f => `
+        <div class="format-card">
+          <div class="format-type">${f.type}</div>
+          <div class="format-views">${f.avgViews} <span>avg views</span></div>
+          <div class="format-desc">${f.description}</div>
+        </div>
+      `).join('');
+    }
+    
+    function renderCompetitorPatterns() {
+      const patterns = recommendationsData.competitorInsights.patterns;
+      document.getElementById('competitor-patterns').innerHTML = patterns.map(p => `
+        <div class="pattern-item">
+          <div class="pattern-name">${p.pattern}</div>
+          <div class="pattern-examples">
+            ${p.examples.join(' • ')}<br>
+            <span style="color: var(--text-primary); margin-top: 4px; display: block;">${p.whyItWorks}</span>
+          </div>
+          <div class="pattern-engagement">${p.avgEngagement}</div>
+        </div>
+      `).join('');
+    }
+    
+    function renderWeeklyPlan() {
+      const plan = recommendationsData.weeklyPlan.schedule;
+      document.getElementById('weekly-plan').innerHTML = plan.map(day => `
+        <div class="weekly-day">
+          <div class="weekly-day-name">${day.day}</div>
+          <div class="weekly-day-content">${day.content}</div>
+          <div class="weekly-day-hook">${day.hook}</div>
+        </div>
+      `).join('');
+    }
+    
+    function copyHook(element, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        element.classList.add('copied');
+        element.querySelector('.copy-hook-btn').textContent = '✓ Copied!';
+        setTimeout(() => {
+          element.classList.remove('copied');
+          element.querySelector('.copy-hook-btn').textContent = 'Click to copy';
+        }, 2000);
+      });
+    }
+    
+    function copyScript(text) {
+      navigator.clipboard.writeText(text.replace(/\\n/g, '\n')).then(() => {
+        showToast('Script copied to clipboard!', 'success');
+      });
+    }
+    
     // ============ INIT ============
     loadAnalyticsData();
+    loadRecommendations();
     renderCarousels();
     renderScripts();
     renderCalendar();
