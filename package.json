@@ -1,0 +1,23 @@
+{
+  "name": "sync2-content-hub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "capture-carousels.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksukirya/sync2-content-hub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ksukirya/sync2-content-hub/issues"
+  },
+  "homepage": "https://github.com/ksukirya/sync2-content-hub#readme",
+  "dependencies": {
+    "puppeteer": "^24.37.4"
+  }
+}

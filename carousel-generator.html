@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, height=1350">
+  <title>Sync2 Carousel Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #0a0a0f;
+    }
+    
+    .slide {
+      width: 1080px;
+      height: 1350px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, #0a0a12 0%, #0d0d18 50%, #0a0a12 100%);
+    }
+    
+    /* Subtle grid pattern */
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    
+    /* Gradient glow top-right */
+    .slide::after {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    /* Purple glow bottom */
+    .glow-purple {
+      position: absolute;
+      bottom: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 60px 70px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Header: slide counter */
+    .slide-counter {
+      position: absolute;
+      top: 50px;
+      right: 60px;
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 2px;
+    }
+    
+    /* Branding */
+    .branding {
+      position: absolute;
+      bottom: 50px;
+      left: 60px;
+      font-size: 22px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+    }
+    
+    /* Swipe indicator - NOW BOTTOM LEFT */
+    .swipe-indicator {
+      position: absolute;
+      bottom: 50px;
+      left: 60px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    /* Branding moves up when swipe is present */
+    .has-swipe .branding {
+      bottom: 95px;
+    }
+    
+    /* Title slides */
+    .title-main {
+      font-size: 72px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #fff;
+      margin-top: auto;
+      margin-bottom: 30px;
+    }
+    
+    .title-highlight {
+      color: #8b5cf6;
+    }
+    
+    .title-highlight-red {
+      color: #ef4444;
+    }
+    
+    .title-highlight-green {
+      color: #22c55e;
+    }
+    
+    .title-highlight-blue {
+      color: #3b82f6;
+    }
+    
+    .subtitle {
+      font-size: 28px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+      margin-bottom: auto;
+    }
+    
+    /* Incomplete feel elements */
+    .peek-list {
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .peek-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 24px;
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .peek-item.blurred {
+      filter: blur(6px);
+      opacity: 0.4;
+    }
+    
+    .peek-num {
+      width: 40px;
+      height: 40px;
+      background: rgba(139, 92, 246, 0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #8b5cf6;
+    }
+    
+    /* Count indicator */
+    .count-indicator {
+      position: absolute;
+      top: 140px;
+      left: 70px;
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 12px;
+      padding: 12px 24px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #8b5cf6;
+    }
+    
+    /* Visual peek of next slide */
+    .next-peek {
+      position: absolute;
+      right: -30px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 80px;
+      height: 400px;
+      background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.1) 100%);
+      border-left: 3px solid rgba(139, 92, 246, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .next-peek-text {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      color: rgba(139, 92, 246, 0.6);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+    
+    /* Content slides - numbered */
+    .big-number {
+      font-size: 180px;
+      font-weight: 900;
+      color: rgba(30, 30, 50, 0.8);
+      line-height: 1;
+      margin-top: 40px;
+    }
+    
+    .icon-box {
+      width: 80px;
+      height: 80px;
+      background: rgba(139, 92, 246, 0.15);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    
+    .icon-box.green {
+      background: rgba(34, 197, 94, 0.15);
+    }
+    
+    .icon-box.blue {
+      background: rgba(59, 130, 246, 0.15);
+    }
+    
+    .icon-box svg {
+      width: 40px;
+      height: 40px;
+      stroke: #8b5cf6;
+      fill: none;
+      stroke-width: 2;
+    }
+    
+    .icon-box.green svg {
+      stroke: #22c55e;
+    }
+    
+    .icon-box.blue svg {
+      stroke: #3b82f6;
+    }
+    
+    .content-title {
+      font-size: 52px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 30px;
+    }
+    
+    .content-body {
+      font-size: 28px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+    
+    .content-body strong {
+      color: #fff;
+    }
+    
+    /* Micro CTAs */
+    .micro-cta {
+      position: absolute;
+      bottom: 140px;
+      left: 70px;
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 30px;
+      padding: 12px 28px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #8b5cf6;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    /* Open loop */
+    .open-loop {
+      margin-top: 50px;
+      padding: 24px 30px;
+      background: rgba(139, 92, 246, 0.08);
+      border-left: 4px solid #8b5cf6;
+      border-radius: 0 12px 12px 0;
+      font-size: 24px;
+      color: rgba(255,255,255,0.8);
+      font-style: italic;
+    }
+    
+    /* CTA slides */
+    .cta-main {
+      font-size: 58px;
+      font-weight: 800;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .cta-sub {
+      font-size: 26px;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 50px;
+    }
+    
+    .cta-button {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.1) 100%);
+      border: 2px solid rgba(34, 197, 94, 0.4);
+      border-radius: 16px;
+      padding: 28px 50px;
+      text-align: center;
+      margin: 0 auto;
+      max-width: 700px;
+    }
+    
+    .cta-button-text {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+    }
+    
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      margin-top: 60px;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 48px;
+      font-weight: 800;
+      color: #8b5cf6;
+    }
+    
+    .stat-label {
+      font-size: 18px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 8px;
+    }
+    
+    /* Save/Share CTAs */
+    .share-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 40px;
+      align-items: center;
+    }
+    
+    .share-cta-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .share-cta-item .emoji {
+      font-size: 28px;
+    }
+    
+    /* Comparison table */
+    .comparison-table {
+      background: rgba(255,255,255,0.03);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 30px;
+    }
+    
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 200px 1fr 1fr;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .comparison-row:last-child {
+      border-bottom: none;
+    }
+    
+    .comparison-cell {
+      padding: 20px 24px;
+      font-size: 22px;
+    }
+    
+    .comparison-label {
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .comparison-human {
+      color: #ef4444;
+      text-align: center;
+    }
+    
+    .comparison-ai {
+      color: #22c55e;
+      text-align: center;
+    }
+    
+    .verdict-box {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 12px;
+      padding: 20px 30px;
+      margin-top: 40px;
+    }
+    
+    .verdict-label {
+      font-size: 16px;
+      color: #22c55e;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    
+    .verdict-text {
+      font-size: 24px;
+      color: rgba(255,255,255,0.9);
+    }
+    
+    /* Insight box */
+    .insight-box {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 12px;
+      padding: 24px 30px;
+      margin-top: 40px;
+    }
+    
+    .insight-label {
+      font-size: 14px;
+      color: #f59e0b;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .insight-text {
+      font-size: 22px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
+    
+    /* Large stat */
+    .large-stat {
+      font-size: 120px;
+      font-weight: 900;
+      line-height: 1;
+      margin: 20px 0;
+    }
+    
+    .large-stat-label {
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    
+    /* Value breakdown */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin: 30px 0;
+    }
+    
+    .value-item {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+    
+    .value-year {
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+    }
+    
+    .value-amount {
+      font-size: 28px;
+      font-weight: 700;
+      color: #22c55e;
+    }
+    
+    .total-value {
+      font-size: 36px;
+      font-weight: 800;
+      color: #22c55e;
+      margin-top: 20px;
+    }
+    
+    /* Checklist */
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      font-size: 24px;
+      color: rgba(255,255,255,0.85);
+    }
+    
+    .check-icon {
+      width: 28px;
+      height: 28px;
+      color: #22c55e;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    /* Big number variant for content */
+    .number-badge {
+      font-size: 160px;
+      font-weight: 900;
+      color: #22c55e;
+      line-height: 1;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="slides-container"></div>
+  
+  <script>
+    // All carousel data with improvements
+    const carousels = [
+      // CAROUSEL 1: 5 Signs Your Front Desk Is Losing Patients
+      {
+        id: 1,
+        slides: [
+          {
+            type: 'title-incomplete',
+            content: {
+              title: 'Your front desk<br>might be costing you<br><span class="title-highlight">$4,000/month</span>.',
+              subtitle: 'Here are the 5 warning signs most practice owners miss.',
+              countIndicator: '#1 of 5 Signs',
+              peekItems: [
+                { num: '01', text: 'Voicemail during business hours', visible: true },
+                { num: '02', text: 'Hold times over 30 seconds', blurred: true },
+                { num: '03', text: 'No same-day callback', blurred: true },
+                { num: '...', text: 'More warning signs →', blurred: true }
+              ]
+            }
+          },
+          {
+            type: 'numbered',
+            content: {
+              number: '01',
+              icon: 'phone',
+              title: 'Voicemail during<br>business hours',
+              body: 'If calls go to voicemail while you\'re "open," you\'re losing <strong>70% of those callers forever</strong>.<br><br>They don\'t leave messages — they call your competitor.',
+              microCta: 'Swipe for the fix →',
+              openLoop: 'But here\'s what most miss about hold times...'
+            }
+          },
+          {
+            type: 'numbered',
+            content: {
+              number: '02',
+              icon: 'clock',
+              title: 'Hold times over<br>30 seconds',
+              body: 'After 30 seconds on hold, patient satisfaction drops <strong>50%</strong>.<br><br>After 60 seconds, they start hanging up. Every ring is a countdown.',
+              microCta: 'Keep reading →'
+            }
+          },
+          {
+            type: 'numbered',
+            content: {
+              number: '03',
+              icon: 'refresh',
+              title: 'No same-day<br>callback',
+              body: 'Missed call at 10am, callback at 4pm?<br><br>That patient already booked somewhere else. <strong>Speed wins.</strong>'
+            }
+          },
+          {
+            type: 'numbered',
+            content: {
+              number: '04',
+              icon: 'users',
+              title: 'Lunch hour<br>= ghost town',
+              body: '11:30am-1:30pm is peak call volume. It\'s when patients are free.<br><br>It\'s also when most practices go to voicemail.',
+              microCta: 'Next up: The silent killer →'
+            }
+          },
+          {
+            type: 'numbered',
+            content: {
+              number: '05',
+              icon: 'moon',
+              title: 'No after-hours<br>coverage',
+              body: '<strong>35% of patients</strong> search for healthcare after 5pm.<br><br>If your phone goes to voicemail, you\'re handing those patients to whoever answers.'
+            }
+          },
+          {
+            type: 'cta',
+            content: {
+              title: 'How many did<br>you check?',
+              subtitle: 'Each one costs you $500-$1,000/month in lost patients.',
+              button: 'Comment your number below',
+              stats: [
+                { value: '70%', label: 'don\'t leave voicemail' },
+                { value: '$4K+', label: 'lost monthly' },
+                { value: '35%', label: 'search after 5pm' }
+              ],
+              saveShare: true
+            }
+          }
+        ]
+      },
+      
+      // CAROUSEL 2: The $200 Patient Myth
+      {
+        id: 2,
+        slides: [
+          {
+            type: 'title-incomplete',
+            content: {
+              title: 'Stop saying patients<br>are worth <span class="title-highlight-red">$200</span>.',
+              subtitle: 'Here\'s the real math that changes how you think about missed calls.',
+              countIndicator: 'The Math That Changes Everything',
+              showPeek: true
+            }
+          },
+          {
+            type: 'stat-reveal',
+            content: {
+              icon: 'calculator',
+              iconColor: 'green',
+              preTitle: 'The math most practices use:',
+              statValue: '$200',
+              statColor: 'red',
+              statStrikethrough: true,
+              statLabel: '"Average first visit value"',
+              body: 'This is how practices calculate the cost of a missed call. <strong>It\'s wrong.</strong>',
+              microCta: 'Swipe for the fix →',
+              openLoop: 'The real number will shock you...'
+            }
+          },
+          {
+            type: 'stat-reveal',
+            content: {
+              icon: 'trending',
+              iconColor: 'green',
+              preTitle: 'The real math:',
+              statValue: '$5,000+',
+              statColor: 'green',
+              statLabel: '"Lifetime patient value"',
+              body: 'A patient who stays 5 years = cleanings, X-rays, fillings, crowns, referrals.',
+              microCta: 'Keep reading →'
+            }
+          },
+          {
+            type: 'value-breakdown',
+            content: {
+              title: '5-year patient value:',
+              values: [
+                { year: 'Year 1', amount: '$600' },
+                { year: 'Year 2', amount: '$800' },
+                { year: 'Year 3', amount: '$1,200' },
+                { year: 'Year 4', amount: '$900' },
+                { year: 'Year 5', amount: '$1,500' }
+              ],
+              total: 'Total: $5,000 - $7,000'
+            }
+          },
+          {
+            type: 'math-reveal',
+            content: {
+              icon: 'alert',
+              iconColor: 'red',
+              title: 'So when you miss a call...',
+              body: 'You didn\'t lose $200.<br><br>You lost <strong>$5,000</strong>. And gave it to someone else.',
+              openLoop: 'Now multiply that by your weekly missed calls...'
+            }
+          },
+          {
+            type: 'stat-reveal',
+            content: {
+              icon: 'phone-missed',
+              iconColor: 'red',
+              preTitle: 'The average practice misses:',
+              statValue: '40 calls/week',
+              statColor: 'red',
+              calculation: '40 × $5K = <span style="color: #ef4444; font-size: 48px; font-weight: 800;">$200K/year</span>',
+              body: 'Walking out the door. To your competitors.'
+            }
+          },
+          {
+            type: 'cta',
+            content: {
+              title: 'Still calculating<br>at $200?',
+              subtitle: 'The most profitable practices obsess over first impressions. Every call is a $5K decision.',
+              button: 'Save this. Share with your team.',
+              saveShare: true
+            }
+          }
+        ]
+      },
+      
+      // CAROUSEL 3: What 50+ Practice Audits Taught Me
+      {
+        id: 3,
+        slides: [
+          {
+            type: 'title-incomplete',
+            content: {
+              title: 'I\'ve audited<br><span class="title-highlight-blue">50+ practices</span>.',
+              subtitle: 'Here\'s what I found that nobody talks about.',
+              countIndicator: '5 Hidden Patterns',
+              showPeek: true
+            }
+          },
+          {
+            type: 'stat-finding',
+            content: {
+              number: '01',
+              icon: 'search',
+              iconColor: 'blue',
+              statValue: '73%',
+              statColor: 'blue',
+              statLabel: 'don\'t track missed calls',
+              body: 'They have no idea how many calls go unanswered. No data = no fix.',
+              microCta: 'Swipe for the fix →',
+              openLoop: 'Pattern #2 is even worse...'
+            }
+          },
+          {
+            type: 'stat-finding',
+            content: {
+              number: '02',
+              icon: 'dollar',
+              iconColor: 'blue',
+              statValue: '$4,200',
+              statColor: 'blue',
+              statLabel: 'average monthly loss',
+              body: 'Per practice. From missed calls alone. Most had no clue.',
+              microCta: 'Keep reading →'
+            }
+          },
+          {
+            type: 'stat-finding',
+            content: {
+              number: '03',
+              icon: 'clock',
+              iconColor: 'blue',
+              statValue: '11:30-1:30',
+              statColor: 'blue',
+              statLabel: 'is the danger zone',
+              body: 'Peak call volume meets skeleton crew. It\'s a revenue leak nobody patches.'
+            }
+          },
+          {
+            type: 'stat-finding',
+            content: {
+              number: '04',
+              icon: 'users',
+              iconColor: 'blue',
+              statValue: '18 months',
+              statColor: 'blue',
+              statLabel: 'average front desk tenure',
+              body: 'They burn out from being overwhelmed. Then you start over.',
+              microCta: 'The final pattern →'
+            }
+          },
+          {
+            type: 'stat-finding',
+            content: {
+              number: '05',
+              icon: 'trending',
+              iconColor: 'blue',
+              statValue: '94%',
+              statColor: 'green',
+              statLabel: 'fixable with systems',
+              body: 'The practices that fix these patterns? They stop losing patients. Systems beat hustle.'
+            }
+          },
+          {
+            type: 'cta',
+            content: {
+              title: 'Want to know<br>your numbers?',
+              subtitle: 'Most practice owners are shocked when they see the actual data.',
+              button: 'Comment "AUDIT" for a free check',
+              saveShare: true
+            }
+          }
+        ]
+      },
+      
+      // CAROUSEL 4: AI vs Human Receptionist
+      {
+        id: 4,
+        slides: [
+          {
+            type: 'title-incomplete',
+            content: {
+              title: '<span class="title-highlight-blue">AI</span> vs <span class="title-highlight-red">Human</span><br>Receptionist',
+              subtitle: 'The honest comparison nobody\'s giving you. No BS, just facts.',
+              countIndicator: '5 Categories Compared',
+              showPeek: true
+            }
+          },
+          {
+            type: 'comparison',
+            content: {
+              icon: 'clock',
+              iconColor: 'green',
+              title: 'Availability',
+              rows: [
+                { label: 'Hours per week', human: '40-45 hrs', ai: '168 hrs' },
+                { label: 'Sick days', human: '8-12/year', ai: '0' },
+                { label: 'Lunch breaks', human: '1 hr/day', ai: 'None needed' },
+                { label: 'After hours', human: 'Voicemail', ai: 'Live booking' }
+              ],
+              verdict: 'AI wins for coverage. Humans need breaks.',
+              microCta: 'Swipe for the fix →'
+            }
+          },
+          {
+            type: 'comparison',
+            content: {
+              icon: 'dollar',
+              iconColor: 'green',
+              title: 'Cost',
+              rows: [
+                { label: 'Monthly cost', human: '$3,500-5,000', ai: '$300-800' },
+                { label: 'Training', human: '2-3 months', ai: 'Instant' },
+                { label: 'Benefits', human: '$800-1,200/mo', ai: '$0' },
+                { label: 'Turnover cost', human: '$5,000+', ai: '$0' }
+              ],
+              verdict: 'AI wins on cost. 70-90% savings.',
+              microCta: 'Keep reading →'
+            }
+          },
+          {
+            type: 'comparison',
+            content: {
+              icon: 'heart',
+              iconColor: 'red',
+              title: 'Empathy & Nuance',
+              rows: [
+                { label: 'Angry patients', human: 'Excellent', ai: 'Good' },
+                { label: 'Complex issues', human: 'Excellent', ai: 'Limited' },
+                { label: 'Emotional support', human: 'Excellent', ai: 'Basic' },
+                { label: 'Reading tone', human: 'Natural', ai: 'Improving' }
+              ],
+              verdict: 'Humans win here. Some things need a human touch.'
+            }
+          },
+          {
+            type: 'comparison',
+            content: {
+              icon: 'zap',
+              iconColor: 'green',
+              title: 'Speed & Consistency',
+              rows: [
+                { label: 'Answer time', human: 'Variable', ai: '<3 seconds' },
+                { label: 'Hold time', human: 'Common', ai: 'Never' },
+                { label: 'Accuracy', human: '85-95%', ai: '99%+' },
+                { label: 'Mood', human: 'Varies', ai: 'Always positive' }
+              ],
+              verdict: 'AI wins. No bad days, no hold music.',
+              microCta: 'The verdict →'
+            }
+          },
+          {
+            type: 'verdict',
+            content: {
+              title: 'The Real Answer',
+              subtitle: 'It\'s not AI <em>vs</em> Human.',
+              body: 'It\'s AI <strong>+</strong> Human.',
+              points: [
+                'AI catches every call, books 24/7',
+                'Humans handle complex cases, build relationships',
+                'Together: 100% coverage, zero burnout'
+              ]
+            }
+          },
+          {
+            type: 'cta',
+            content: {
+              title: 'The Winning Formula',
+              highlight: '<span class="title-highlight-blue">AI</span> catches every call.<br><span class="title-highlight-green">Humans</span> close every relationship.',
+              button: 'Save this. Your team needs to see it.',
+              saveShare: true
+            }
+          }
+        ]
+      },
+      
+      // CAROUSEL 5: 3 Things I'd Do Starting a Practice
+      {
+        id: 5,
+        slides: [
+          {
+            type: 'title-incomplete',
+            content: {
+              title: '<span class="title-highlight-green">3 Things</span><br>I\'d Do Starting a<br>Practice Today',
+              subtitle: 'After working with 50+ practices, these are the non-negotiables.',
+              countIndicator: '3 Non-Negotiables',
+              showPeek: true
+            }
+          },
+          {
+            type: 'numbered-green',
+            content: {
+              number: '1',
+              title: 'Answer Every Call<br>Within 3 Rings',
+              body: 'Not 5 rings. Not voicemail. Not "call back."',
+              checklist: [
+                '85% who hit voicemail never call back',
+                'First practice to answer wins the patient',
+                'AI backup catches what humans miss'
+              ],
+              insight: 'Speed beats quality on the first call. Get them booked, impress them later.',
+              microCta: 'Swipe for #2 →'
+            }
+          },
+          {
+            type: 'numbered-green',
+            content: {
+              number: '2',
+              title: 'Automate Confirmations<br>& Reminders',
+              body: 'Every patient gets 3 texts. No exceptions.',
+              checklist: [
+                'Confirmation within 1 hour of booking',
+                'Reminder 48 hours before',
+                '"We\'re excited to see you" morning-of'
+              ],
+              insight: 'This alone cuts no-shows by 60%. Set it and forget it.',
+              microCta: 'Keep reading →'
+            }
+          },
+          {
+            type: 'numbered-green',
+            content: {
+              number: '3',
+              title: 'Track Everything<br>From Day 1',
+              body: 'Missed calls. Show rates. Source of new patients.',
+              checklist: [
+                'What you don\'t measure, you can\'t fix',
+                'Most practices fly blind for years',
+                'Data reveals $4K+ in hidden losses'
+              ],
+              insight: 'The practices that track are the practices that grow.'
+            }
+          },
+          {
+            type: 'recap',
+            content: {
+              title: 'The 3 Systems:',
+              items: [
+                { num: '1', text: 'Answer every call in 3 rings' },
+                { num: '2', text: 'Automate confirmations' },
+                { num: '3', text: 'Track everything' }
+              ],
+              body: 'Build these first. Everything else is optimization.'
+            }
+          },
+          {
+            type: 'cta',
+            content: {
+              title: 'Starting a practice?',
+              subtitle: 'Build these systems first. They\'ll pay for themselves 10×.',
+              button: 'Save this for your launch checklist.',
+              followCta: 'Follow @sync2ai for more practice growth tips',
+              saveShare: true
+            }
+          }
+        ]
+      }
+    ];
+    
+    // SVG Icons
+    const icons = {
+      phone: '<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+      clock: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+      refresh: '<svg viewBox="0 0 24 24"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>',
+      users: '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+      moon: '<svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+      calculator: '<svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="8" y1="18" x2="8" y2="18.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="16" y1="18" x2="16" y2="18.01"/></svg>',
+      trending: '<svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',
+      search: '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+      dollar: '<svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+      alert: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+      'phone-missed': '<svg viewBox="0 0 24 24"><line x1="23" y1="1" x2="17" y2="7"/><line x1="17" y1="1" x2="23" y2="7"/><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+      heart: '<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
+      zap: '<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+      check: '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>'
+    };
+    
+    function renderSlide(carousel, slideIndex, slide) {
+      const totalSlides = carousel.slides.length;
+      const slideNum = String(slideIndex + 1).padStart(2, '0');
+      const totalNum = String(totalSlides).padStart(2, '0');
+      const isFirst = slideIndex === 0;
+      const isLast = slideIndex === totalSlides - 1;
+      const needsSwipe = !isLast;
+      
+      let html = `<div class="slide ${needsSwipe ? 'has-swipe' : ''}" id="carousel-${carousel.id}-slide-${slideIndex + 1}">`;
+      html += '<div class="glow-purple"></div>';
+      html += '<div class="content">';
+      html += `<div class="slide-counter">${slideNum} / ${totalNum}</div>`;
+      
+      switch(slide.type) {
+        case 'title-incomplete':
+          html += renderTitleIncomplete(slide.content, needsSwipe);
+          break;
+        case 'numbered':
+          html += renderNumbered(slide.content, slideIndex);
+          break;
+        case 'stat-reveal':
+          html += renderStatReveal(slide.content);
+          break;
+        case 'value-breakdown':
+          html += renderValueBreakdown(slide.content);
+          break;
+        case 'math-reveal':
+          html += renderMathReveal(slide.content);
+          break;
+        case 'stat-finding':
+          html += renderStatFinding(slide.content);
+          break;
+        case 'comparison':
+          html += renderComparison(slide.content);
+          break;
+        case 'verdict':
+          html += renderVerdict(slide.content);
+          break;
+        case 'numbered-green':
+          html += renderNumberedGreen(slide.content);
+          break;
+        case 'recap':
+          html += renderRecap(slide.content);
+          break;
+        case 'cta':
+          html += renderCta(slide.content, isLast);
+          break;
+      }
+      
+      html += '</div>'; // content
+      html += '<div class="branding">sync2.ai</div>';
+      
+      if (needsSwipe) {
+        html += '<div class="swipe-indicator">Swipe →</div>';
+      }
+      
+      html += '</div>'; // slide
+      
+      return html;
+    }
+    
+    function renderTitleIncomplete(content, needsSwipe) {
+      let html = '';
+      
+      if (content.countIndicator) {
+        html += `<div class="count-indicator">${content.countIndicator}</div>`;
+      }
+      
+      html += `<h1 class="title-main" style="margin-top: 280px;">${content.title}</h1>`;
+      html += `<p class="subtitle">${content.subtitle}</p>`;
+      
+      if (content.peekItems) {
+        html += '<div class="peek-list">';
+        content.peekItems.forEach(item => {
+          html += `<div class="peek-item ${item.blurred ? 'blurred' : ''}">`;
+          html += `<span class="peek-num">${item.num}</span>`;
+          html += `<span>${item.text}</span>`;
+          html += '</div>';
+        });
+        html += '</div>';
+      }
+      
+      if (content.showPeek) {
+        html += '<div class="next-peek"><span class="next-peek-text">MORE →</span></div>';
+      }
+      
+      return html;
+    }
+    
+    function renderNumbered(content, slideIndex) {
+      let html = '';
+      
+      html += `<div class="big-number">${content.number}</div>`;
+      html += `<div class="icon-box">${icons[content.icon]}</div>`;
+      html += `<h2 class="content-title">${content.title}</h2>`;
+      html += `<p class="content-body">${content.body}</p>`;
+      
+      if (content.openLoop) {
+        html += `<div class="open-loop">${content.openLoop}</div>`;
+      }
+      
+      if (content.microCta) {
+        html += `<div class="micro-cta">${content.microCta}</div>`;
+      }
+      
+      return html;
+    }
+    
+    function renderStatReveal(content) {
+      let html = '';
+      
+      html += `<div class="icon-box ${content.iconColor}">${icons[content.icon]}</div>`;
+      html += `<h2 class="content-title">${content.preTitle}</h2>`;
+      
+      const strikeStyle = content.statStrikethrough ? 'text-decoration: line-through; opacity: 0.6;' : '';
+      const color = content.statColor === 'red' ? '#ef4444' : '#22c55e';
+      html += `<div class="large-stat" style="color: ${color}; ${strikeStyle}">${content.statValue}</div>`;
+      html += `<p class="large-stat-label">${content.statLabel}</p>`;
+      html += `<p class="content-body">${content.body}</p>`;
+      
+      if (content.calculation) {
+        html += `<div style="margin-top: 40px; font-size: 28px; color: rgba(255,255,255,0.8);">${content.calculation}</div>`;
+      }
+      
+      if (content.openLoop) {
+        html += `<div class="open-loop">${content.openLoop}</div>`;
+      }
+      
+      if (content.microCta) {
+        html += `<div class="micro-cta">${content.microCta}</div>`;
+      }
+      
+      return html;
+    }
+    
+    function renderValueBreakdown(content) {
+      let html = '';
+      
+      html += `<h2 class="content-title" style="margin-top: 200px;">${content.title}</h2>`;
+      html += '<div class="value-grid">';
+      content.values.forEach(v => {
+        html += `<div class="value-item"><div class="value-year">${v.year}</div><div class="value-amount">${v.amount}</div></div>`;
+      });
+      html += '</div>';
+      html += `<div class="total-value">${content.total}</div>`;
+      
+      return html;
+    }
+    
+    function renderMathReveal(content) {
+      let html = '';
+      
+      html += `<div class="icon-box ${content.iconColor}">${icons[content.icon]}</div>`;
+      html += `<h2 class="content-title">${content.title}</h2>`;
+      html += `<p class="content-body">${content.body}</p>`;
+      
+      if (content.openLoop) {
+        html += `<div class="open-loop">${content.openLoop}</div>`;
+      }
+      
+      return html;
+    }
+    
+    function renderStatFinding(content) {
+      let html = '';
+      
+      html += `<div class="big-number">${content.number}</div>`;
+      html += `<div class="icon-box ${content.iconColor}">${icons[content.icon]}</div>`;
+      
+      const color = content.statColor === 'green' ? '#22c55e' : '#3b82f6';
+      html += `<div class="large-stat" style="color: ${color}; font-size: 100px;">${content.statValue}</div>`;
+      html += `<p class="large-stat-label">${content.statLabel}</p>`;
+      html += `<p class="content-body">${content.body}</p>`;
+      
+      if (content.openLoop) {
+        html += `<div class="open-loop">${content.openLoop}</div>`;
+      }
+      
+      if (content.microCta) {
+        html += `<div class="micro-cta">${content.microCta}</div>`;
+      }
+      
+      return html;
+    }
+    
+    function renderComparison(content) {
+      let html = '';
+      
+      html += `<div class="icon-box ${content.iconColor}">${icons[content.icon]}</div>`;
+      html += `<h2 class="content-title">${content.title}</h2>`;
+      
+      html += '<div class="comparison-table">';
+      content.rows.forEach(row => {
+        html += '<div class="comparison-row">';
+        html += `<div class="comparison-cell comparison-label">${row.label}</div>`;
+        html += `<div class="comparison-cell comparison-human">${row.human}</div>`;
+        html += `<div class="comparison-cell comparison-ai">${row.ai}</div>`;
+        html += '</div>';
+      });
+      html += '</div>';
+      
+      html += '<div class="verdict-box">';
+      html += '<div class="verdict-label">VERDICT</div>';
+      html += `<div class="verdict-text">${content.verdict}</div>`;
+      html += '</div>';
+      
+      if (content.microCta) {
+        html += `<div class="micro-cta">${content.microCta}</div>`;
+      }
+      
+      return html;
+    }
+    
+    function renderVerdict(content) {
+      let html = '';
+      
+      html += `<h2 class="content-title" style="margin-top: 300px; text-align: center;">${content.title}</h2>`;
+      html += `<p style="font-size: 32px; color: rgba(255,255,255,0.6); text-align: center; margin-bottom: 30px;">${content.subtitle}</p>`;
+      html += `<p style="font-size: 48px; font-weight: 800; color: #fff; text-align: center; margin-bottom: 50px;">${content.body}</p>`;
+      
+      html += '<div class="checklist" style="max-width: 600px; margin: 0 auto;">';
+      content.points.forEach(point => {
+        html += `<div class="checklist-item"><span class="check-icon">${icons.check}</span><span>${point}</span></div>`;
+      });
+      html += '</div>';
+      
+      return html;
+    }
+    
+    function renderNumberedGreen(content) {
+      let html = '';
+      
+      html += `<div class="number-badge">${content.number}</div>`;
+      html += `<h2 class="content-title">${content.title}</h2>`;
+      html += `<p class="content-body" style="margin-bottom: 30px;">${content.body}</p>`;
+      
+      html += '<div class="checklist">';
+      content.checklist.forEach(item => {
+        html += `<div class="checklist-item"><span class="check-icon">${icons.check}</span><span>${item}</span></div>`;
+      });
+      html += '</div>';
+      
+      if (content.insight) {
+        html += '<div class="insight-box">';
+        html += '<div class="insight-label">💡 THE INSIGHT</div>';
+        html += `<div class="insight-text">${content.insight}</div>`;
+        html += '</div>';
+      }
+      
+      if (content.microCta) {
+        html += `<div class="micro-cta">${content.microCta}</div>`;
+      }
+      
+      return html;
+    }
+    
+    function renderRecap(content) {
+      let html = '';
+      
+      html += `<h2 class="content-title" style="margin-top: 200px;">${content.title}</h2>`;
+      
+      html += '<div class="peek-list" style="margin-top: 40px;">';
+      content.items.forEach(item => {
+        html += '<div class="peek-item">';
+        html += `<span class="peek-num" style="background: rgba(34, 197, 94, 0.2); color: #22c55e;">${item.num}</span>`;
+        html += `<span>${item.text}</span>`;
+        html += '</div>';
+      });
+      html += '</div>';
+      
+      html += `<p class="content-body" style="margin-top: 60px;">${content.body}</p>`;
+      
+      return html;
+    }
+    
+    function renderCta(content, isLast) {
+      let html = '';
+      
+      html += '<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">';
+      
+      if (content.highlight) {
+        html += `<h2 class="cta-main">${content.title}</h2>`;
+        html += `<p style="font-size: 32px; text-align: center; margin-bottom: 50px;">${content.highlight}</p>`;
+      } else {
+        html += `<h2 class="cta-main">${content.title}</h2>`;
+        html += `<p class="cta-sub">${content.subtitle}</p>`;
+      }
+      
+      html += '<div class="cta-button">';
+      html += `<div class="cta-button-text">${content.button}</div>`;
+      html += '</div>';
+      
+      if (content.stats) {
+        html += '<div class="stats-row">';
+        content.stats.forEach(stat => {
+          html += `<div class="stat-item"><div class="stat-value">${stat.value}</div><div class="stat-label">${stat.label}</div></div>`;
+        });
+        html += '</div>';
+      }
+      
+      if (content.saveShare) {
+        html += '<div class="share-ctas">';
+        html += '<div class="share-cta-item"><span class="emoji">🔖</span> Save this for later</div>';
+        html += '<div class="share-cta-item"><span class="emoji">📤</span> Send to a practice owner who needs this</div>';
+        html += '</div>';
+      }
+      
+      if (content.followCta) {
+        html += `<p style="margin-top: 40px; font-size: 20px; color: rgba(255,255,255,0.5);">${content.followCta}</p>`;
+      }
+      
+      html += '</div>';
+      
+      return html;
+    }
+    
+    // Render all slides
+    const container = document.getElementById('slides-container');
+    let allHtml = '';
+    
+    carousels.forEach(carousel => {
+      carousel.slides.forEach((slide, index) => {
+        allHtml += renderSlide(carousel, index, slide);
+      });
+    });
+    
+    container.innerHTML = allHtml;
+  </script>
+</body>
+</html>
