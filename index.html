@@ -591,10 +591,309 @@
     .slide-thumb:hover, .slide-thumb.active {
       opacity: 1;
     }
+    
+    /* ============ MOBILE MENU ============ */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 0 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .mobile-logo {
+      font-size: 18px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent) 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+    }
+    
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all 0.3s;
+    }
+    
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 999;
+    }
+    
+    .sidebar-overlay.show {
+      display: block;
+    }
+    
+    /* ============ MOBILE RESPONSIVE ============ */
+    @media (max-width: 768px) {
+      .mobile-header {
+        display: flex;
+      }
+      
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1001;
+        width: 260px;
+        padding-top: 70px;
+      }
+      
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      
+      .main {
+        margin-left: 0;
+        padding: 72px 16px 24px;
+      }
+      
+      .page-title {
+        font-size: 20px;
+      }
+      
+      .page-subtitle {
+        font-size: 13px;
+      }
+      
+      /* Stats grid - 2 columns on mobile */
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      
+      .stat-card {
+        padding: 14px;
+      }
+      
+      .stat-value {
+        font-size: 22px;
+      }
+      
+      .stat-label {
+        font-size: 11px;
+      }
+      
+      /* Table - horizontal scroll */
+      .card {
+        padding: 16px;
+        overflow-x: auto;
+      }
+      
+      .video-table {
+        min-width: 600px;
+      }
+      
+      .video-table th,
+      .video-table td {
+        padding: 10px 8px;
+        font-size: 12px;
+      }
+      
+      /* Carousels - single column */
+      .carousel-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      
+      .carousel-card {
+        max-width: 100%;
+      }
+      
+      .carousel-info {
+        padding: 12px;
+      }
+      
+      .carousel-info > div:last-child {
+        flex-wrap: wrap;
+      }
+      
+      /* Scripts */
+      .script-header {
+        padding: 12px 14px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      .script-info {
+        flex: 1 1 100%;
+        order: 2;
+      }
+      
+      .script-num {
+        order: 1;
+      }
+      
+      .script-meta {
+        order: 1;
+        margin-left: auto;
+      }
+      
+      .script-hook {
+        white-space: normal;
+        line-height: 1.4;
+      }
+      
+      .script-content {
+        font-size: 13px;
+        padding: 14px;
+        max-height: 300px;
+      }
+      
+      .script-actions {
+        flex-wrap: wrap;
+      }
+      
+      /* Calendar - horizontal scroll */
+      .calendar-week {
+        display: flex;
+        overflow-x: auto;
+        gap: 12px;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .calendar-day {
+        min-width: 200px;
+        flex-shrink: 0;
+        min-height: auto;
+      }
+      
+      .calendar-day-content {
+        padding: 10px;
+      }
+      
+      .calendar-item {
+        font-size: 12px;
+        padding: 8px 10px;
+      }
+      
+      /* Modal */
+      .modal {
+        width: 95%;
+        max-height: 90vh;
+        margin: 16px;
+      }
+      
+      .modal-header {
+        padding: 14px 16px;
+      }
+      
+      .modal-body {
+        padding: 16px;
+      }
+      
+      .slide-viewer {
+        flex-direction: column-reverse;
+      }
+      
+      .slide-thumbs {
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        gap: 8px;
+        padding: 8px 0;
+      }
+      
+      .slide-thumb {
+        width: 48px;
+        height: 60px;
+        flex-shrink: 0;
+      }
+      
+      .modal-body .btn {
+        flex: 1;
+        justify-content: center;
+      }
+      
+      /* Toast */
+      .toast {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+    }
+    
+    /* Extra small screens */
+    @media (max-width: 400px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .stat-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .stat-card > * {
+        margin: 0;
+      }
+      
+      .btn {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+      
+      .script-meta {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+    }
   </style>
 </head>
 <body>
-  <nav class="sidebar">
+  <!-- Mobile Header -->
+  <div class="mobile-header">
+    <div class="mobile-logo">Sync2 Hub</div>
+    <button class="hamburger" onclick="toggleMobileMenu()" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  
+  <!-- Mobile Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeMobileMenu()"></div>
+  
+  <nav class="sidebar" id="sidebar">
     <div class="logo">Sync2 Hub</div>
     
     <a class="nav-item active" data-page="analytics">
@@ -733,7 +1032,7 @@
     <div id="scripts" class="page">
       <div class="page-header">
         <h1 class="page-title">Video Scripts</h1>
-        <p class="page-subtitle">10 ready-to-film scripts — click to expand</p>
+        <p class="page-subtitle">20 ready-to-film scripts — click to expand</p>
       </div>
       
       <div class="scripts-list" id="scripts-list">
@@ -805,25 +1104,68 @@
         id: 2,
         title: "The $200 Patient Myth",
         slides: 7,
-        status: "pending"
+        status: "ready",
+        images: [
+          "/carousels/carousel-2-slide-1.png",
+          "/carousels/carousel-2-slide-2.png",
+          "/carousels/carousel-2-slide-3.png",
+          "/carousels/carousel-2-slide-4.png",
+          "/carousels/carousel-2-slide-5.png",
+          "/carousels/carousel-2-slide-6.png",
+          "/carousels/carousel-2-slide-7.png"
+        ],
+        downloadUrl: "/carousels/carousel-2-all-slides.tar.gz",
+        caption: "Stop calculating patient value at $200. Here's the real math 💰\n\n40 missed calls/week = $200K/year walking out the door.\n\nSave this and share with your team.\n\n#dentalmarketing #practiceowner #dentist #healthcarebusiness #patientvalue"
       },
       {
         id: 3,
         title: "What 50+ Practice Audits Taught Me",
         slides: 7,
-        status: "pending"
+        status: "ready",
+        images: [
+          "/carousels/carousel-3-slide-1.png",
+          "/carousels/carousel-3-slide-2.png",
+          "/carousels/carousel-3-slide-3.png",
+          "/carousels/carousel-3-slide-4.png",
+          "/carousels/carousel-3-slide-5.png",
+          "/carousels/carousel-3-slide-6.png",
+          "/carousels/carousel-3-slide-7.png"
+        ],
+        downloadUrl: "/carousels/carousel-3-all-slides.tar.gz",
+        caption: "After auditing 50+ medical practices, these patterns keep showing up 📊\n\nWhich one surprises you most? Comment below.\n\n#practicemanagement #dentalmarketing #healthcareai #medicaloffice #dentist"
       },
       {
         id: 4,
-        title: "AI vs Human Receptionist",
+        title: "AI vs Human Receptionist - Honest Comparison",
         slides: 7,
-        status: "pending"
+        status: "ready",
+        images: [
+          "/carousels/carousel-4-slide-1.png",
+          "/carousels/carousel-4-slide-2.png",
+          "/carousels/carousel-4-slide-3.png",
+          "/carousels/carousel-4-slide-4.png",
+          "/carousels/carousel-4-slide-5.png",
+          "/carousels/carousel-4-slide-6.png",
+          "/carousels/carousel-4-slide-7.png"
+        ],
+        downloadUrl: "/carousels/carousel-4-all-slides.tar.gz",
+        caption: "AI vs Human Receptionist: The honest comparison nobody gives you 🤖👩‍💼\n\nSpoiler: It's not about replacing. It's about combining.\n\nSave this for your team.\n\n#AIinhealthcare #dentalmarketing #practicemanagement #automation #dentist"
       },
       {
         id: 5,
-        title: "3 Things I'd Do Starting a Practice",
+        title: "3 Things I'd Do Starting a Practice Today",
         slides: 6,
-        status: "pending"
+        status: "ready",
+        images: [
+          "/carousels/carousel-5-slide-1.png",
+          "/carousels/carousel-5-slide-2.png",
+          "/carousels/carousel-5-slide-3.png",
+          "/carousels/carousel-5-slide-4.png",
+          "/carousels/carousel-5-slide-5.png",
+          "/carousels/carousel-5-slide-6.png"
+        ],
+        downloadUrl: "/carousels/carousel-5-all-slides.tar.gz",
+        caption: "Starting a practice? Build these 3 systems FIRST ⚡\n\nThey'll pay for themselves 10x.\n\nSave this for your launch checklist.\n\n#newpractice #dentalmarketing #practiceowner #startuplife #dentist"
       }
     ];
     
@@ -1458,6 +1800,35 @@ VISUALS:
     // Close modal on outside click
     document.getElementById('modal').addEventListener('click', (e) => {
       if (e.target.id === 'modal') closeModal();
+    });
+    
+    // ============ MOBILE MENU ============
+    
+    function toggleMobileMenu() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      const hamburger = document.getElementById('hamburger');
+      
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('show');
+      hamburger.classList.toggle('open');
+    }
+    
+    function closeMobileMenu() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      const hamburger = document.getElementById('hamburger');
+      
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+      hamburger.classList.remove('open');
+    }
+    
+    // Close mobile menu when navigating
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        closeMobileMenu();
+      });
     });
     
     // ============ INIT ============
