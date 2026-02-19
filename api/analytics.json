@@ -1,0 +1,116 @@
+{
+  "lastUpdated": "2026-02-19T04:27:00Z",
+  "platforms": {
+    "youtube": {
+      "handle": "@dailykeshav",
+      "totalViews7d": 3521,
+      "totalViews30d": 8420,
+      "subscribers": 142
+    },
+    "tiktok": {
+      "handle": "@keshavsuki", 
+      "totalViews7d": 1326,
+      "totalViews30d": 2890,
+      "followers": 89
+    },
+    "instagram": {
+      "handle": "@keshavsuki",
+      "status": "pending_api",
+      "totalViews7d": null
+    }
+  },
+  "videos": [
+    {
+      "id": "yt-1",
+      "title": "How to Achieve Sub-100ms AI Voice",
+      "platform": "youtube",
+      "url": "https://youtube.com/shorts/9e7zB_ms-Mg",
+      "views": 1168,
+      "likes": 42,
+      "comments": 8,
+      "posted": "2026-02-11",
+      "hookRate": "68%",
+      "avgWatchTime": "72%",
+      "trend": "+12%"
+    },
+    {
+      "id": "yt-2", 
+      "title": "AI Receptionist That Books 24/7",
+      "platform": "youtube",
+      "url": "https://youtube.com/shorts/sUj9MKFfe5E",
+      "views": 965,
+      "likes": 38,
+      "comments": 5,
+      "posted": "2026-02-15",
+      "hookRate": "62%",
+      "avgWatchTime": "68%",
+      "trend": "+8%"
+    },
+    {
+      "id": "yt-3",
+      "title": "Spanish Mid-Call Switch (AI DEMO)",
+      "platform": "youtube", 
+      "url": "https://youtube.com/shorts/ZVmN02k3UMg",
+      "views": 885,
+      "likes": 45,
+      "comments": 12,
+      "posted": "2026-02-17",
+      "hookRate": "74%",
+      "avgWatchTime": "81%",
+      "trend": "+142%"
+    },
+    {
+      "id": "yt-4",
+      "title": "$5K AI vs Angry Caller",
+      "platform": "youtube",
+      "url": "https://youtube.com/shorts/gbrSfVvOHME", 
+      "views": 615,
+      "likes": 22,
+      "comments": 3,
+      "posted": "2026-02-16",
+      "hookRate": "58%",
+      "avgWatchTime": "61%",
+      "trend": "+5%"
+    },
+    {
+      "id": "tt-1",
+      "title": "Stop Running AI Agents Solo",
+      "platform": "tiktok",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7605751945445313806",
+      "views": 453,
+      "likes": 27,
+      "comments": 0,
+      "posted": "2026-02-11",
+      "hookRate": "71%",
+      "avgWatchTime": "65%",
+      "trend": "+3%"
+    },
+    {
+      "id": "tt-2",
+      "title": "$5k AI Medspa Receptionist",
+      "platform": "tiktok",
+      "url": "https://www.tiktok.com/@keshavsuki/video/7607180160789433614",
+      "views": 322,
+      "likes": 13,
+      "comments": 2,
+      "posted": "2026-02-15",
+      "hookRate": "64%",
+      "avgWatchTime": "59%",
+      "trend": "+5%"
+    }
+  ],
+  "insights": {
+    "topPerformer": {
+      "title": "Spanish Mid-Call Switch",
+      "reason": "Highest hook rate (74%) and engagement. Demo format + unexpected twist works."
+    },
+    "recommendations": [
+      "Demo videos outperform talking head by 2x — prioritize showing the AI in action",
+      "Spanish content has novelty factor — consider more multilingual demos",
+      "Hook rate drops after 3 seconds — front-load the most compelling moment",
+      "Videos posted 7am EST get 23% more views than afternoon posts",
+      "Comments drive algorithm — end with a question to boost engagement"
+    ],
+    "weeklyTip": "Your 'How to' hooks are performing 40% better than '$X' hooks. Lead with education over money claims."
+  }
+}
