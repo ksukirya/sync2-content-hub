@@ -13,8 +13,8 @@
       --bg-primary: #0a0a0c;
       --bg-secondary: #111114;
       --bg-card: #151518;
+      --bg-card-hover: #1a1a1e;
       --border: #1e1e24;
-      --border-subtle: #1a1a1f;
       --text-primary: #f5f5f5;
       --text-secondary: #8a8a94;
       --text-muted: #5a5a64;
@@ -25,7 +25,11 @@
       --green: #4ade80;
       --green-subtle: rgba(74, 222, 128, 0.1);
       --red: #f87171;
+      --red-subtle: rgba(248, 113, 113, 0.1);
       --blue: #60a5fa;
+      --blue-subtle: rgba(96, 165, 250, 0.1);
+      --purple: #a78bfa;
+      --purple-subtle: rgba(167, 139, 250, 0.1);
     }
     
     body {
@@ -33,2355 +37,668 @@
       background: var(--bg-primary);
       color: var(--text-primary);
       min-height: 100vh;
-      letter-spacing: -0.01em;
       line-height: 1.5;
     }
     
+    /* Sidebar */
     .sidebar {
       position: fixed;
       left: 0;
       top: 0;
       bottom: 0;
-      width: 240px;
+      width: 220px;
       background: var(--bg-secondary);
       border-right: 1px solid var(--border);
-      padding: 32px 16px;
+      padding: 24px 12px;
       display: flex;
       flex-direction: column;
     }
     
     .logo {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
-      margin-bottom: 48px;
-      padding: 0 16px;
+      margin-bottom: 32px;
+      padding: 0 12px;
       color: var(--text-primary);
-      letter-spacing: -0.03em;
     }
+    .logo span { color: var(--gold); }
     
-    .logo span {
-      color: var(--gold);
+    .nav-section {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 16px 12px 8px;
     }
     
     .nav-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      border-radius: 10px;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
       color: var(--text-secondary);
       text-decoration: none;
       font-weight: 500;
-      font-size: 14px;
-      margin-bottom: 4px;
+      font-size: 13px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.15s;
     }
-    
     .nav-item:hover {
-      background: rgba(201, 169, 98, 0.06);
+      background: rgba(255,255,255,0.03);
       color: var(--text-primary);
     }
-    
     .nav-item.active {
       background: var(--gold-glow);
       color: var(--gold);
     }
+    .nav-item svg { width: 16px; height: 16px; opacity: 0.7; }
     
-    .nav-item svg { width: 18px; height: 18px; opacity: 0.8; }
+    .nav-badge {
+      margin-left: auto;
+      background: var(--gold-subtle);
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
     
+    /* Main */
     .main {
-      margin-left: 240px;
-      padding: 40px 48px;
-      min-height: 100vh;
-      max-width: 1400px;
+      margin-left: 220px;
+      padding: 32px 40px;
+      max-width: 1200px;
     }
     
     .page-header {
-      margin-bottom: 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      margin-bottom: 32px;
     }
-    
     .page-title {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 700;
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
+      margin-bottom: 4px;
     }
-    
     .page-subtitle {
       color: var(--text-secondary);
-      font-size: 15px;
+      font-size: 14px;
     }
-    
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-      margin-bottom: 24px;
-    }
-    
-    .card-title {
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 24px;
+    .last-updated {
       color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      font-size: 12px;
+      margin-top: 8px;
     }
     
+    /* Stats Grid */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 16px;
       margin-bottom: 32px;
     }
     
     .stat-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
+      border-radius: 12px;
+      padding: 20px;
     }
-    
     .stat-label {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-muted);
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      margin-bottom: 8px;
     }
-    
     .stat-value {
-      font-size: 36px;
-      font-weight: 600;
-      letter-spacing: -0.03em;
+      font-size: 28px;
+      font-weight: 700;
     }
-    
     .stat-change {
-      font-size: 13px;
-      margin-top: 8px;
-      font-weight: 500;
+      font-size: 12px;
+      margin-top: 4px;
     }
+    .stat-change.up { color: var(--green); }
+    .stat-change.down { color: var(--red); }
     
-    .stat-change.positive { color: var(--green); }
-    .stat-change.negative { color: var(--red); }
-    
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-      letter-spacing: -0.01em;
-    }
-    
-    .btn-primary {
-      background: var(--gold);
-      color: #0a0a0c;
-    }
-    
-    .btn-primary:hover {
-      background: var(--gold-hover);
-    }
-    
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-    }
-    
-    .btn-secondary:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-    
-    /* Platform cards */
-    .platform-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-    
-    .platform-card {
+    /* Cards */
+    .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .platform-card.youtube { border-top: 2px solid #ff0000; }
-    .platform-card.tiktok { border-top: 2px solid #fff; }
-    .platform-card.instagram { border-top: 2px solid #c13584; }
-    
-    .platform-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+      border-radius: 12px;
+      padding: 24px;
       margin-bottom: 20px;
     }
-    
-    .platform-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+    .card-header {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+      margin-bottom: 20px;
     }
-    
-    .platform-icon.youtube { background: rgba(255, 0, 0, 0.12); color: #ff4444; }
-    .platform-icon.tiktok { background: rgba(255, 255, 255, 0.08); color: #fff; }
-    .platform-icon.instagram { background: rgba(193, 53, 132, 0.12); color: #c13584; }
-    
-    .platform-name {
-      font-weight: 700;
-      font-size: 17px;
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
     }
-    
-    .platform-handle {
-      font-size: 13px;
-      color: var(--text-secondary);
+    .card-badge {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 500;
     }
+    .badge-youtube { background: var(--red-subtle); color: var(--red); }
+    .badge-tiktok { background: var(--purple-subtle); color: var(--purple); }
+    .badge-instagram { background: var(--blue-subtle); color: var(--blue); }
     
-    .platform-stats {
+    /* Platform Sections */
+    .platforms-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-    
-    .platform-stat {
-      background: rgba(0,0,0,0.25);
-      padding: 14px;
-      border-radius: 10px;
-    }
-    
-    .platform-stat-value {
-      font-size: 22px;
-      font-weight: 700;
-    }
-    
-    .platform-stat-label {
-      font-size: 11px;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-    
-    /* Insights section */
-    .insights-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       margin-bottom: 32px;
     }
     
-    .insight-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
-    }
-    
-    .insight-number {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--gold);
-      margin-bottom: 14px;
-      letter-spacing: 0.03em;
-    }
-    
-    .insight-title {
-      font-weight: 600;
-      margin-bottom: 12px;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-    
-    .insight-action {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-    
-    /* Tables */
-    .video-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    
-    .video-table th {
-      text-align: left;
-      padding: 14px 16px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .video-table td {
-      padding: 16px;
-      font-size: 14px;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .video-table tr:hover {
-      background: rgba(255,255,255,0.02);
-    }
-    
-    .platform-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 600;
-    }
-    
-    .platform-badge.youtube { background: rgba(255, 0, 0, 0.15); color: #ff4444; }
-    .platform-badge.tiktok { background: rgba(255, 255, 255, 0.1); color: #fff; }
-    .platform-badge.instagram { background: rgba(225, 48, 108, 0.15); color: #e1306c; }
-    
-    .trend-up { color: var(--green); }
-    .trend-down { color: var(--red); }
-    
-    /* Hook analysis bars */
-    .hook-item {
+    /* Video List */
+    .video-list {
       display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .video-item {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      transition: background 0.15s;
     }
-    
-    .hook-item:last-child { border-bottom: none; }
-    
-    .hook-name {
-      width: 140px;
+    .video-item:hover {
+      background: var(--bg-card-hover);
+    }
+    .video-title {
+      font-size: 13px;
       font-weight: 500;
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-    
-    .hook-bar-container {
-      flex: 1;
-      height: 28px;
-      background: rgba(255,255,255,0.04);
-      border-radius: 6px;
+      color: var(--text-primary);
+      max-width: 300px;
+      white-space: nowrap;
       overflow: hidden;
-      position: relative;
+      text-overflow: ellipsis;
     }
-    
-    .hook-bar {
-      height: 100%;
-      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-hover) 100%);
-      border-radius: 6px;
-      transition: width 0.5s ease;
-    }
-    
-    .hook-stats {
-      width: 110px;
-      text-align: right;
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-    
-    .hook-views {
-      font-weight: 600;
-    }
-    
-    .hook-count {
+    .video-stats {
+      display: flex;
+      gap: 16px;
       font-size: 12px;
       color: var(--text-secondary);
     }
-    
-    /* Comparison table */
-    .comparison-table {
-      width: 100%;
-    }
-    
-    .comparison-table th {
-      padding: 14px 16px;
-      text-align: center;
-      font-weight: 600;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .comparison-table th:first-child {
-      text-align: left;
-    }
-    
-    .comparison-table td {
-      padding: 14px 16px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .comparison-table td:first-child {
-      text-align: left;
-      font-weight: 500;
-    }
-    
-    .winner {
-      color: var(--green);
-      font-weight: 700;
-    }
-    
-    /* Page visibility */
-    .page { display: none; }
-    .page.active { display: block; }
-    
-    /* Carousel Grid */
-    .carousel-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
-    }
-    
-    .carousel-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-    
-    .carousel-preview {
-      aspect-ratio: 4/5;
-      background: var(--bg-secondary);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .carousel-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: opacity 0.3s ease;
-    }
-    
-    .carousel-slides {
-      display: flex;
-      transition: transform 0.3s ease;
-    }
-    
-    .carousel-slide {
-      min-width: 100%;
-    }
-    
-    .carousel-dots {
-      position: absolute;
-      bottom: 45px;
-      right: 14px;
-      display: flex;
-      gap: 6px;
-    }
-    
-    .carousel-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.35);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .carousel-dot.active {
-      background: #fff;
-      width: 20px;
-      border-radius: 3px;
-    }
-    
-    .carousel-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 36px;
-      height: 36px;
-      background: rgba(0,0,0,0.6);
-      border: none;
-      border-radius: 50%;
-      color: white;
-      cursor: pointer;
+    .video-stat {
       display: flex;
       align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.2s;
-      font-size: 16px;
+      gap: 4px;
     }
+    .video-stat.views { color: var(--text-primary); font-weight: 600; }
     
-    .carousel-preview:hover .carousel-nav {
-      opacity: 1;
+    /* Top Performers */
+    .top-performer {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--gold-subtle), transparent);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      margin-bottom: 12px;
     }
-    
-    .carousel-nav.prev { left: 10px; }
-    .carousel-nav.next { right: 10px; }
-    
-    .carousel-info {
-      padding: 18px;
+    .top-rank {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--gold);
+      width: 40px;
     }
-    
-    .carousel-title {
+    .top-info { flex: 1; }
+    .top-title {
+      font-size: 14px;
       font-weight: 600;
-      font-size: 15px;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
-    
-    .carousel-meta {
-      font-size: 13px;
+    .top-meta {
+      font-size: 12px;
       color: var(--text-secondary);
-      margin-bottom: 16px;
+    }
+    .top-views {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold);
     }
     
-    /* Scripts */
-    .scripts-list {
+    /* Insights */
+    .insight-item {
       display: flex;
-      flex-direction: column;
-      gap: 16px;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
     }
-    
-    .script-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-    
-    .script-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 18px 20px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    
-    .script-header:hover {
-      background: rgba(255,255,255,0.02);
-    }
-    
-    .script-num {
-      background: var(--gold);
-      color: #0a0a0c;
+    .insight-item:last-child { border-bottom: none; }
+    .insight-icon {
       width: 32px;
       height: 32px;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 13px;
-      flex-shrink: 0;
-    }
-    
-    .script-info {
-      flex: 1;
-      min-width: 0;
-    }
-    
-    .script-title {
-      font-weight: 600;
-      font-size: 15px;
-      margin-bottom: 4px;
-    }
-    
-    .script-hook {
-      font-size: 13px;
-      color: var(--text-secondary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    
-    .script-meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-    
-    .script-type {
-      font-size: 10px;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-    
-    .script-type.value { background: rgba(74, 222, 128, 0.12); color: var(--green); }
-    .script-type.pitch { background: rgba(201, 169, 98, 0.15); color: var(--gold); }
-    .script-type.demo { background: rgba(96, 165, 250, 0.15); color: var(--blue); }
-    .script-type.educational { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
-    .script-type.case-study { background: rgba(248, 113, 113, 0.15); color: var(--red); }
-    
-    .script-body {
-      display: none;
-      padding: 0 20px 20px;
-      border-top: 1px solid var(--border);
-    }
-    
-    .script-card.expanded .script-body {
-      display: block;
-    }
-    
-    .script-content {
       font-size: 14px;
-      line-height: 1.8;
+    }
+    .insight-icon.tip { background: var(--green-subtle); }
+    .insight-icon.warn { background: var(--red-subtle); }
+    .insight-icon.info { background: var(--blue-subtle); }
+    .insight-text {
+      font-size: 13px;
       color: var(--text-secondary);
-      white-space: pre-wrap;
-      padding: 20px;
-      background: rgba(0,0,0,0.25);
-      border-radius: 10px;
-      margin-top: 16px;
-      max-height: 450px;
-      overflow-y: auto;
+      line-height: 1.5;
     }
+    .insight-text strong { color: var(--text-primary); }
     
-    .script-framework {
-      font-size: 12px;
-      color: var(--gold);
-      margin-top: 12px;
-      padding-top: 12px;
-    }
-    
-    /* Calendar */
-    .calendar-week {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 12px;
-    }
-    
-    .calendar-day {
+    /* Scripts Section */
+    .script-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 12px;
-      min-height: 200px;
-    }
-    
-    .calendar-day-header {
-      padding: 12px 14px;
-      font-weight: 600;
-      font-size: 13px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .calendar-day-header .date {
-      color: var(--text-secondary);
-      font-weight: 400;
-    }
-    
-    .calendar-day-content {
-      padding: 10px;
-    }
-    
-    .calendar-day.today {
-      border: 2px solid var(--gold);
-      background: var(--gold-subtle);
-    }
-    
-    .calendar-day.today .calendar-day-header {
-      color: var(--gold);
-    }
-    
-    .calendar-item {
-      font-size: 12px;
-      padding: 8px 10px;
-      border-radius: 6px;
-      margin-bottom: 6px;
-      border-left: 3px solid;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .calendar-item:hover {
-      transform: translateX(4px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-    
-    .calendar-item.reel { background: rgba(248, 113, 113, 0.08); border-color: var(--red); }
-    .calendar-item.reel:hover { background: rgba(248, 113, 113, 0.15); }
-    .calendar-item.carousel { background: rgba(201, 169, 98, 0.08); border-color: var(--gold); }
-    .calendar-item.carousel:hover { background: rgba(201, 169, 98, 0.15); }
-    
-    /* Toast */
-    .toast {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-size: 14px;
-      display: none;
-      z-index: 1000;
-    }
-    
-    .toast.show { display: block; }
-    .toast.success { border-color: var(--green); }
-    
-    /* Recommendations page styles */
-    .hook-category {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      padding: 20px;
       margin-bottom: 16px;
-      overflow: hidden;
-    }
-    
-    .hook-category-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 24px;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.15s;
     }
-    
-    .hook-category-header:hover {
-      background: rgba(255,255,255,0.02);
-    }
-    
-    .hook-template {
-      font-family: 'Inter', monospace;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--gold);
-    }
-    
-    .hook-avg-views {
-      background: var(--gold-subtle);
-      color: var(--gold);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-    }
-    
-    .hook-category-body {
-      display: none;
-      padding: 0 24px 24px;
-      border-top: 1px solid var(--border);
-    }
-    
-    .hook-category.expanded .hook-category-body {
-      display: block;
-    }
-    
-    .copy-hook {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 18px;
-      background: rgba(0,0,0,0.25);
-      border-radius: 10px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: 1px solid transparent;
-    }
-    
-    .copy-hook:hover {
-      background: var(--gold-subtle);
+    .script-card:hover {
       border-color: var(--gold);
+      background: var(--bg-card-hover);
     }
-    
-    .copy-hook-text {
-      font-size: 14px;
-      font-weight: 500;
-    }
-    
-    .copy-hook-btn {
-      font-size: 12px;
-      color: var(--text-secondary);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    
-    .copy-hook:hover .copy-hook-btn {
-      opacity: 1;
-    }
-    
-    .copy-hook.copied {
-      background: rgba(74, 222, 128, 0.08);
-      border-color: var(--green);
-    }
-    
-    .copy-hook.copied .copy-hook-btn {
-      opacity: 1;
-      color: var(--green);
-    }
-    
-    .hook-source {
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-    }
-    
-    .hook-source-title {
-      font-size: 11px;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+    .script-header {
+      display: flex;
+      justify-content: space-between;
       margin-bottom: 12px;
     }
-    
-    .hook-source-video {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 10px 0;
-      font-size: 14px;
-    }
-    
-    .hook-source-video a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-    
-    .hook-source-video a:hover {
-      text-decoration: underline;
-    }
-    
-    .hook-source-views {
-      color: var(--green);
+    .script-title {
+      font-size: 15px;
       font-weight: 600;
     }
-    
-    .hook-why {
-      background: rgba(201, 169, 98, 0.06);
-      border-left: 3px solid var(--gold);
-      padding: 14px 18px;
-      margin-top: 16px;
-      border-radius: 0 10px 10px 0;
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-    
-    /* Format cards */
-    .format-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-    }
-    
-    .format-type {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    
-    .format-views {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--green);
-      margin-bottom: 14px;
-    }
-    
-    .format-views span {
-      font-size: 13px;
-      color: var(--text-secondary);
-      font-weight: 400;
-    }
-    
-    .format-desc {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-    
-    /* Competitor patterns */
-    .pattern-item {
-      display: flex;
-      gap: 20px;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .pattern-item:last-child {
-      border-bottom: none;
-    }
-    
-    .pattern-name {
-      font-weight: 600;
-      width: 200px;
-      flex-shrink: 0;
-    }
-    
-    .pattern-examples {
-      flex: 1;
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-    
-    .pattern-engagement {
-      font-size: 13px;
-      color: var(--green);
-      font-weight: 600;
-    }
-    
-    /* Weekly plan */
-    .weekly-day {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      text-align: center;
-    }
-    
-    .weekly-day-name {
-      font-weight: 600;
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-    
-    .weekly-day-content {
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-    
-    .weekly-day-hook {
-      font-size: 11px;
+    .script-tag {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 4px;
       background: var(--gold-subtle);
       color: var(--gold);
-      padding: 5px 10px;
-      border-radius: 6px;
-      display: inline-block;
+      font-weight: 500;
+    }
+    .script-preview {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
     }
     
-    /* Mobile Header */
-    .mobile-header {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border);
-      z-index: 1000;
-      padding: 0 20px;
-      align-items: center;
-      justify-content: space-between;
+    /* Pages */
+    .page { display: none; }
+    .page.active { display: block; }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .platforms-grid { grid-template-columns: 1fr; }
     }
-    
-    .mobile-header .logo {
-      margin: 0;
-      padding: 0;
-      font-size: 18px;
-    }
-    
-    .menu-btn {
-      background: none;
-      border: none;
-      color: var(--text-primary);
-      font-size: 24px;
-      cursor: pointer;
-      padding: 8px;
-    }
-    
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 1000;
-    }
-    
-    .overlay.show { display: block; }
-    
-    /* Mobile Responsive */
     @media (max-width: 768px) {
-      .mobile-header {
-        display: flex;
-      }
-      
-      .sidebar {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-        z-index: 1001;
-        width: 280px;
-        padding-top: 20px;
-      }
-      
-      .sidebar.open {
-        transform: translateX(0);
-      }
-      
-      .main {
-        margin-left: 0;
-        padding: 80px 16px 32px;
-      }
-      
-      .page-title {
-        font-size: 22px;
-      }
-      
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-      
-      .stat-card {
-        padding: 16px;
-      }
-      
-      .stat-value {
-        font-size: 24px;
-      }
-      
-      .platform-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .insights-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .page-header {
-        flex-direction: column;
-        gap: 16px;
-      }
-      
-      .card {
-        padding: 20px;
-      }
-      
-      /* Calendar mobile - vertical stack */
-      .calendar-week {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      
-      .calendar-day {
-        min-height: auto;
-      }
-      
-      .calendar-day-header {
-        padding: 14px 16px;
-      }
-      
-      .calendar-day-content {
-        padding: 12px;
-      }
-      
-      .calendar-item {
-        padding: 10px 12px;
-        font-size: 13px;
-      }
-      
-      /* Scripts mobile */
-      .script-header {
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      
-      .script-meta {
-        width: 100%;
-        justify-content: flex-start;
-        margin-top: 4px;
-      }
-      
-      .script-content {
-        font-size: 13px;
-        padding: 14px;
-      }
-      
-      /* Carousels mobile */
-      .carousel-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      /* Tables mobile */
-      .video-table {
-        font-size: 12px;
-      }
-      
-      .video-table th,
-      .video-table td {
-        padding: 10px 8px;
-      }
-      
-      /* Hook analysis mobile */
-      .hook-item {
-        flex-wrap: wrap;
-      }
-      
-      .hook-name {
-        width: 100%;
-        margin-bottom: 8px;
-      }
-      
-      .hook-stats {
-        width: auto;
-        text-align: left;
-        margin-left: auto;
-      }
-      
-      /* Formats grid */
-      #formats-grid {
-        grid-template-columns: 1fr !important;
-      }
-      
-      /* Weekly plan */
-      #weekly-plan {
-        grid-template-columns: repeat(2, 1fr) !important;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      #weekly-plan {
-        grid-template-columns: 1fr !important;
-      }
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+      .stats-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <!-- Mobile Header -->
-  <header class="mobile-header">
-    <div class="logo">Sync2 <span>Hub</span></div>
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-  </header>
-  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-  
-  <nav class="sidebar" id="sidebar">
-    <div class="logo">Sync2 <span>Hub</span></div>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">Sync<span>2</span> Hub</div>
     
-    <a class="nav-item active" data-page="analytics">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-      Analytics
+    <div class="nav-section">Analytics</div>
+    <a class="nav-item active" data-page="dashboard">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </a>
+    <a class="nav-item" data-page="youtube">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.8 3.5 12 3.5 12 3.5s-7.8 0-9.5.6c-1 .3-1.7 1.1-2 2.1C0 7.9 0 12 0 12s0 4.1.5 5.8c.3 1 1 1.8 2 2.1 1.7.6 9.5.6 9.5.6s7.8 0 9.5-.6c1-.3 1.7-1.1 2-2.1.5-1.7.5-5.8.5-5.8s0-4.1-.5-5.8zM9.5 15.5v-7l6.4 3.5-6.4 3.5z"/></svg>
+      YouTube
+      <span class="nav-badge" id="yt-count">10</span>
+    </a>
+    <a class="nav-item" data-page="tiktok">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg>
+      TikTok
+      <span class="nav-badge" id="tt-count">10</span>
     </a>
     
-    <a class="nav-item" data-page="carousels">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-      Carousels
-    </a>
-    
+    <div class="nav-section">Content</div>
     <a class="nav-item" data-page="scripts">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-      Scripts
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+      Video Scripts
+      <span class="nav-badge">4</span>
     </a>
-    
-    <a class="nav-item" data-page="calendar">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-      Calendar
+    <a class="nav-item" data-page="insights">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      Insights
     </a>
-    
-    <a class="nav-item" data-page="recommendations">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-      Recommendations
-    </a>
-  </nav>
+  </div>
 
-  <main class="main">
-    
-    <!-- ANALYTICS PAGE -->
-    <div id="analytics" class="page active">
+  <!-- Main Content -->
+  <div class="main">
+    <!-- Dashboard Page -->
+    <div class="page active" id="page-dashboard">
       <div class="page-header">
-        <div>
-          <h1 class="page-title">Analytics Dashboard</h1>
-          <p class="page-subtitle" id="analytics-updated">Cross-platform content performance</p>
-        </div>
-        <button class="btn btn-primary" onclick="refreshAnalytics()">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-          </svg>
-          Refresh Data
-        </button>
+        <h1 class="page-title">Performance Dashboard</h1>
+        <p class="page-subtitle">Real-time analytics across all platforms</p>
+        <p class="last-updated" id="last-updated">Last updated: Loading...</p>
       </div>
       
-      <!-- Platform Cards -->
-      <div class="platform-grid" id="platform-cards">
-        <!-- YouTube -->
-        <div class="platform-card youtube">
-          <div class="platform-header">
-            <div class="platform-icon youtube">YT</div>
-            <div>
-              <div class="platform-name">YouTube Shorts</div>
-              <div class="platform-handle">@dailykeshav</div>
-            </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Views</div>
+          <div class="stat-value" id="total-views">--</div>
+          <div class="stat-change up" id="views-change">↑ Loading...</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total Likes</div>
+          <div class="stat-value" id="total-likes">--</div>
+          <div class="stat-change up">Across TikTok</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Videos Posted</div>
+          <div class="stat-value" id="total-videos">--</div>
+          <div class="stat-change">This week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Avg Engagement</div>
+          <div class="stat-value" id="avg-engagement">--%</div>
+          <div class="stat-change">TikTok only</div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🏆 Top Performers</div>
+        </div>
+        <div id="top-performers"></div>
+      </div>
+      
+      <div class="platforms-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">YouTube Shorts</div>
+            <span class="card-badge badge-youtube">@dailykeshav</span>
           </div>
-          <div class="platform-stats">
-            <div class="platform-stat">
-              <div class="platform-stat-value" id="yt-views">—</div>
-              <div class="platform-stat-label">Total Views</div>
-            </div>
-            <div class="platform-stat">
-              <div class="platform-stat-value" id="yt-avg">—</div>
-              <div class="platform-stat-label">Avg/Video</div>
-            </div>
-            <div class="platform-stat">
-              <div class="platform-stat-value" id="yt-videos">—</div>
-              <div class="platform-stat-label">Videos</div>
-            </div>
-            <div class="platform-stat">
-              <div class="platform-stat-value" id="yt-top">—</div>
-              <div class="platform-stat-label">Top Video</div>
-            </div>
+          <div class="video-list" id="youtube-list"></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">TikTok</div>
+            <span class="card-badge badge-tiktok">@keshavsuki</span>
+          </div>
+          <div class="video-list" id="tiktok-list"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- YouTube Page -->
+    <div class="page" id="page-youtube">
+      <div class="page-header">
+        <h1 class="page-title">YouTube Shorts</h1>
+        <p class="page-subtitle">@dailykeshav performance breakdown</p>
+      </div>
+      <div class="card">
+        <div class="video-list" id="youtube-full-list"></div>
+      </div>
+    </div>
+    
+    <!-- TikTok Page -->
+    <div class="page" id="page-tiktok">
+      <div class="page-header">
+        <h1 class="page-title">TikTok</h1>
+        <p class="page-subtitle">@keshavsuki performance breakdown</p>
+      </div>
+      <div class="card">
+        <div class="video-list" id="tiktok-full-list"></div>
+      </div>
+    </div>
+    
+    <!-- Scripts Page -->
+    <div class="page" id="page-scripts">
+      <div class="page-header">
+        <h1 class="page-title">Video Scripts</h1>
+        <p class="page-subtitle">Ready-to-film scripts based on viral frameworks</p>
+      </div>
+      
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-title">The Math Angle</div>
+          <span class="script-tag">Problem → Solution</span>
+        </div>
+        <div class="script-preview">
+          <strong>"I did the math on what a missed call costs a medical clinic."</strong><br>
+          "$127. Per call."<br><br>
+          Hook: Math/stats grab attention. Kills objection with ROI proof. CTA: "Comment MATH for calculator"
+        </div>
+      </div>
+      
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-title">The Objection Killer</div>
+          <span class="script-tag">Story → Proof</span>
+        </div>
+        <div class="script-preview">
+          <strong>"A dentist told me AI would never work for his practice."</strong><br>
+          "He's now my biggest client."<br><br>
+          Hook: Contrarian setup. Proof via live demo (called at 11pm). CTA: "Comment DENTIST for case study"
+        </div>
+      </div>
+      
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-title">The "Why Now" Angle</div>
+          <span class="script-tag">Timing → Urgency</span>
+        </div>
+        <div class="script-preview">
+          <strong>"6 months ago this wasn't possible."</strong><br>
+          "Now I'm charging $5K to set it up."<br><br>
+          Hook: Tech timing. Sub-100ms response = real conversations. CTA: "Comment SETUP for playbook"
+        </div>
+      </div>
+      
+      <div class="script-card">
+        <div class="script-header">
+          <div class="script-title">The Contrarian</div>
+          <span class="script-tag">Hot Take</span>
+        </div>
+        <div class="script-preview">
+          <strong>"Stop hiring receptionists."</strong><br>
+          "I'm serious."<br><br>
+          Hook: Bold statement. $4K/month human vs $200/month AI. CTA: "Comment COMPARE for breakdown"
+        </div>
+      </div>
+    </div>
+    
+    <!-- Insights Page -->
+    <div class="page" id="page-insights">
+      <div class="page-header">
+        <h1 class="page-title">Content Insights</h1>
+        <p class="page-subtitle">AI-generated recommendations based on your data</p>
+      </div>
+      
+      <div class="card">
+        <div class="card-title" style="margin-bottom: 16px;">Key Findings</div>
+        
+        <div class="insight-item">
+          <div class="insight-icon tip">💡</div>
+          <div class="insight-text">
+            <strong>YouTube outperforms TikTok 3-10x</strong> on identical content. Prioritize YouTube Shorts and repurpose to TikTok.
           </div>
         </div>
         
-        <!-- TikTok -->
-        <div class="platform-card tiktok">
-          <div class="platform-header">
-            <div class="platform-icon tiktok">TT</div>
-            <div>
-              <div class="platform-name">TikTok</div>
-              <div class="platform-handle">@keshavsuki</div>
-            </div>
-          </div>
-          <div class="platform-stats">
-            <div class="platform-stat">
-              <div class="platform-stat-value" id="tt-views">—</div>
-              <div class="platform-stat-label">Total Views</div>
-            </div>
-            <div class="platform-stat">
-              <div class="platform-stat-value" id="tt-engagement">—</div>
-              <div class="platform-stat-label">Eng. Rate</div>
-            </div>
-            <div class="platform-stat">
-              <div class="platform-stat-value" id="tt-likes">—</div>
-              <div class="platform-stat-label">Likes</div>
-            </div>
-            <div class="platform-stat">
-              <div class="platform-stat-value" id="tt-videos">—</div>
-              <div class="platform-stat-label">Videos</div>
-            </div>
+        <div class="insight-item">
+          <div class="insight-icon tip">💡</div>
+          <div class="insight-text">
+            <strong>Demo videos get highest engagement.</strong> "Spanish mid-call switch" and "$5K AI Receptionist VS Angry Caller" both hit 4%+ engagement.
           </div>
         </div>
         
-        <!-- Instagram -->
-        <div class="platform-card instagram">
-          <div class="platform-header">
-            <div class="platform-icon instagram">IG</div>
-            <div>
-              <div class="platform-name">Instagram</div>
-              <div class="platform-handle">@keshavsuki</div>
-            </div>
+        <div class="insight-item">
+          <div class="insight-icon info">📊</div>
+          <div class="insight-text">
+            <strong>Best hooks start with numbers or controversy.</strong> "$5K..." and "Stop hiring..." patterns consistently outperform educational openers.
           </div>
-          <div class="platform-stats">
-            <div class="platform-stat">
-              <div class="platform-stat-value" id="ig-likes">—</div>
-              <div class="platform-stat-label">Total Likes</div>
-            </div>
-            <div class="platform-stat">
-              <div class="platform-stat-value" id="ig-avg">—</div>
-              <div class="platform-stat-label">Avg/Post</div>
-            </div>
-            <div class="platform-stat">
-              <div class="platform-stat-value" id="ig-comments">—</div>
-              <div class="platform-stat-label">Comments</div>
-            </div>
-            <div class="platform-stat">
-              <div class="platform-stat-value" id="ig-posts">—</div>
-              <div class="platform-stat-label">Posts</div>
-            </div>
+        </div>
+        
+        <div class="insight-item">
+          <div class="insight-icon warn">⚠️</div>
+          <div class="insight-text">
+            <strong>Some videos underperform significantly.</strong> "10-Second Window" (7 views) vs same-day posts with 400+ views. Test different hooks for same content.
+          </div>
+        </div>
+        
+        <div class="insight-item">
+          <div class="insight-icon tip">💡</div>
+          <div class="insight-text">
+            <strong>Posting time matters.</strong> Videos posted early morning EST tend to pick up momentum faster. Consider 7-9am posting window.
           </div>
         </div>
       </div>
-      
-      <!-- What's Working Section -->
-      <div class="card">
-        <div class="card-title">Key Insights</div>
-        <div class="insights-grid" id="recommendations-grid">
-          <!-- Populated by JS -->
-        </div>
-      </div>
-      
-      <!-- Cross-Platform Comparison -->
-      <div class="card">
-        <div class="card-title">Platform Comparison</div>
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Metric</th>
-              <th>YouTube</th>
-              <th>TikTok</th>
-              <th>Winner</th>
-            </tr>
-          </thead>
-          <tbody id="comparison-body">
-            <!-- Populated by JS -->
-          </tbody>
-        </table>
-      </div>
-      
-      <!-- Hook Analysis -->
-      <div class="card">
-        <div class="card-title">Hook Performance Analysis</div>
-        <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">
-          Which hook styles get the most views on average
-        </p>
-        <div id="hook-analysis">
-          <!-- Populated by JS -->
-        </div>
-      </div>
-      
-      <!-- Content Type Analysis -->
-      <div class="card">
-        <div class="card-title">Content Type Performance</div>
-        <div id="content-analysis">
-          <!-- Populated by JS -->
-        </div>
-      </div>
-      
-      <!-- Top Performers by Views -->
-      <div class="card">
-        <div class="card-title">Top 10 by Views</div>
-        <table class="video-table" id="top-views-table">
-          <thead>
-            <tr>
-              <th>Content</th>
-              <th>Platform</th>
-              <th>Views</th>
-              <th>Eng. Rate</th>
-            </tr>
-          </thead>
-          <tbody id="top-views-body">
-            <!-- Populated by JS -->
-          </tbody>
-        </table>
-      </div>
-      
-      <!-- Top Performers by Engagement -->
-      <div class="card">
-        <div class="card-title">Top 10 by Engagement Rate</div>
-        <table class="video-table">
-          <thead>
-            <tr>
-              <th>Content</th>
-              <th>Views</th>
-              <th>Engagement Rate</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody id="top-engagement-body">
-            <!-- Populated by JS -->
-          </tbody>
-        </table>
-      </div>
-      
-      <!-- Instagram Details -->
-      <div class="card" id="instagram-details">
-        <div class="card-title">Instagram Performance</div>
-        <table class="video-table" id="ig-table">
-          <thead>
-            <tr>
-              <th>Content</th>
-              <th>Likes</th>
-              <th>Comments</th>
-              <th>Posted</th>
-            </tr>
-          </thead>
-          <tbody id="ig-table-body">
-            <!-- Populated by JS -->
-          </tbody>
-        </table>
-      </div>
     </div>
-    
-    <!-- CAROUSELS PAGE -->
-    <div id="carousels" class="page">
-      <div class="page-header">
-        <div>
-          <h1 class="page-title">Carousels</h1>
-          <p class="page-subtitle">Ready-to-post Instagram carousel images</p>
-        </div>
-      </div>
-      <div class="carousel-grid" id="carousel-grid">
-        <!-- Populated by JS -->
-      </div>
-    </div>
-    
-    <!-- SCRIPTS PAGE -->
-    <div id="scripts" class="page">
-      <div class="page-header">
-        <div>
-          <h1 class="page-title">Video Scripts</h1>
-          <p class="page-subtitle">Ready-to-film scripts — click to expand</p>
-        </div>
-      </div>
-      <div class="scripts-list" id="scripts-list">
-        <!-- Populated by JS -->
-      </div>
-    </div>
-    
-    <!-- CALENDAR PAGE -->
-    <div id="calendar" class="page">
-      <div class="page-header">
-        <div>
-          <h1 class="page-title">Content Calendar</h1>
-          <p class="page-subtitle">Week of Feb 18 – Feb 24</p>
-        </div>
-      </div>
-      <div class="calendar-week" id="calendar-week">
-        <!-- Populated by JS -->
-      </div>
-    </div>
-    
-    <!-- RECOMMENDATIONS PAGE -->
-    <div id="recommendations-page" class="page">
-      <div class="page-header">
-        <div>
-          <h1 class="page-title">Recommendations</h1>
-          <p class="page-subtitle">Proven hooks and scripts backed by real performance data</p>
-        </div>
-      </div>
-      
-      <!-- Proven Hooks Section -->
-      <div class="card">
-        <div class="card-title">Proven Hooks</div>
-        <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">
-          Ranked by average views. Click any hook to copy.
-        </p>
-        <div id="proven-hooks-list">
-          <!-- Populated by JS -->
-        </div>
-      </div>
-      
-      <!-- Ready to Film Scripts -->
-      <div class="card">
-        <div class="card-title">Ready-to-Film Scripts</div>
-        <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">
-          Complete scripts based on top performers. Just film.
-        </p>
-        <div class="scripts-list" id="ready-scripts-list">
-          <!-- Populated by JS -->
-        </div>
-      </div>
-      
-      <!-- Content Formats -->
-      <div class="card">
-        <div class="card-title">Top Performing Formats</div>
-        <div id="formats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-          <!-- Populated by JS -->
-        </div>
-      </div>
-      
-      <!-- Competitor Patterns -->
-      <div class="card">
-        <div class="card-title">Competitor Insights</div>
-        <div id="competitor-patterns">
-          <!-- Populated by JS -->
-        </div>
-      </div>
-      
-      <!-- Weekly Plan -->
-      <div class="card">
-        <div class="card-title">Weekly Posting Plan</div>
-        <div id="weekly-plan" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px;">
-          <!-- Populated by JS -->
-        </div>
-      </div>
-    </div>
-    
-  </main>
-
-  <!-- Toast -->
-  <div class="toast" id="toast"></div>
+  </div>
 
   <script>
-    // ============ DATA LOADING ============
-    let analyticsData = null;
-    let tiktokData = null;
-    let youtubeData = null;
-    let instagramData = null;
-    let scriptsData = null;
-    
-    async function loadAnalyticsData() {
-      try {
-        const [summary, tiktok, youtube, instagram] = await Promise.all([
-          fetch('/api/analytics-summary.json').then(r => r.json()),
-          fetch('/api/tiktok.json').then(r => r.json()),
-          fetch('/api/youtube.json').then(r => r.json()),
-          fetch('/api/instagram.json').then(r => r.json())
-        ]);
-        
-        analyticsData = summary;
-        tiktokData = tiktok;
-        youtubeData = youtube;
-        instagramData = instagram;
-        
-        renderAnalytics();
-      } catch (error) {
-        console.error('Error loading analytics:', error);
-        showToast('Error loading analytics data', 'error');
-      }
-    }
-    
-    async function loadScripts() {
-      try {
-        scriptsData = await fetch('/api/scripts.json').then(r => r.json());
-        renderScripts();
-      } catch (error) {
-        console.error('Error loading scripts:', error);
-      }
-    }
-    
-    function renderAnalytics() {
-      if (!analyticsData) return;
-      
-      // Update timestamp
-      const updated = new Date(analyticsData.lastUpdated);
-      document.getElementById('analytics-updated').textContent = 
-        `Last updated: ${updated.toLocaleString()}`;
-      
-      // YouTube stats
-      document.getElementById('yt-views').textContent = formatNumber(analyticsData.platforms.youtube.totalViews);
-      document.getElementById('yt-avg').textContent = formatNumber(analyticsData.platforms.youtube.avgViews);
-      document.getElementById('yt-videos').textContent = analyticsData.platforms.youtube.videoCount;
-      document.getElementById('yt-top').textContent = formatNumber(analyticsData.platforms.youtube.topVideo.views);
-      
-      // TikTok stats
-      document.getElementById('tt-views').textContent = formatNumber(analyticsData.platforms.tiktok.totalViews);
-      document.getElementById('tt-engagement').textContent = analyticsData.platforms.tiktok.avgEngagementRate + '%';
-      document.getElementById('tt-likes').textContent = formatNumber(analyticsData.platforms.tiktok.totalLikes);
-      document.getElementById('tt-videos').textContent = analyticsData.platforms.tiktok.videoCount;
-      
-      // Instagram stats
-      if (instagramData) {
-        document.getElementById('ig-likes').textContent = formatNumber(instagramData.stats.totalLikes);
-        document.getElementById('ig-avg').textContent = instagramData.stats.avgLikes.toFixed(1);
-        document.getElementById('ig-comments').textContent = instagramData.stats.totalComments;
-        document.getElementById('ig-posts').textContent = instagramData.posts.length;
-      }
-      
-      // Recommendations
-      renderRecommendationsGrid();
-      
-      // Comparison
-      renderComparison();
-      
-      // Hook analysis
-      renderHookAnalysis();
-      
-      // Content type analysis
-      renderContentAnalysis();
-      
-      // Top performers
-      renderTopPerformers();
-      
-      // Instagram table
-      renderInstagramTable();
-    }
-    
-    function renderRecommendationsGrid() {
-      const container = document.getElementById('recommendations-grid');
-      container.innerHTML = analyticsData.recommendations.map((rec, i) => `
-        <div class="insight-card">
-          <div class="insight-number">#${rec.priority}</div>
-          <div class="insight-title">${rec.insight}</div>
-          <div class="insight-action">${rec.action}</div>
-        </div>
-      `).join('');
-    }
-    
-    function renderComparison() {
-      const ytViews = analyticsData.platforms.youtube.totalViews;
-      const ttViews = analyticsData.platforms.tiktok.totalViews;
-      const ytAvg = analyticsData.platforms.youtube.avgViews;
-      const ttAvg = analyticsData.platforms.tiktok.avgViews;
-      
-      document.getElementById('comparison-body').innerHTML = `
-        <tr>
-          <td>Total Views</td>
-          <td class="${ytViews > ttViews ? 'winner' : ''}">${formatNumber(ytViews)}</td>
-          <td class="${ttViews > ytViews ? 'winner' : ''}">${formatNumber(ttViews)}</td>
-          <td class="winner">${ytViews > ttViews ? 'YouTube' : 'TikTok'} (${analyticsData.winnerRatio})</td>
-        </tr>
-        <tr>
-          <td>Avg Views/Video</td>
-          <td class="${ytAvg > ttAvg ? 'winner' : ''}">${formatNumber(ytAvg)}</td>
-          <td class="${ttAvg > ytAvg ? 'winner' : ''}">${formatNumber(ttAvg)}</td>
-          <td class="winner">${ytAvg > ttAvg ? 'YouTube' : 'TikTok'}</td>
-        </tr>
-        <tr>
-          <td>Video Count</td>
-          <td>${analyticsData.platforms.youtube.videoCount}</td>
-          <td>${analyticsData.platforms.tiktok.videoCount}</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>Engagement Rate</td>
-          <td>N/A</td>
-          <td>${analyticsData.platforms.tiktok.avgEngagementRate}%</td>
-          <td>TikTok (data available)</td>
-        </tr>
-      `;
-    }
-    
-    function renderHookAnalysis() {
-      const maxViews = Math.max(...analyticsData.hookAnalysis.map(h => h.avgViews));
-      
-      document.getElementById('hook-analysis').innerHTML = analyticsData.hookAnalysis.map(hook => `
-        <div class="hook-item">
-          <div class="hook-name">${hook.hook}</div>
-          <div class="hook-bar-container">
-            <div class="hook-bar" style="width: ${(hook.avgViews / maxViews) * 100}%"></div>
-          </div>
-          <div class="hook-stats">
-            <div class="hook-views">${formatNumber(hook.avgViews)} avg</div>
-            <div class="hook-count">${hook.videos} videos</div>
-          </div>
-        </div>
-      `).join('');
-    }
-    
-    function renderContentAnalysis() {
-      const maxViews = Math.max(...analyticsData.contentTypeAnalysis.map(c => c.avgViews));
-      
-      document.getElementById('content-analysis').innerHTML = analyticsData.contentTypeAnalysis.map(content => `
-        <div class="hook-item">
-          <div class="hook-name">${content.type}</div>
-          <div class="hook-bar-container">
-            <div class="hook-bar" style="width: ${(content.avgViews / maxViews) * 100}%"></div>
-          </div>
-          <div class="hook-stats">
-            <div class="hook-views">${formatNumber(content.avgViews)} avg</div>
-            <div class="hook-count">${content.videos} videos</div>
-          </div>
-        </div>
-      `).join('');
-    }
-    
-    function renderTopPerformers() {
-      // Top by views
-      document.getElementById('top-views-body').innerHTML = analyticsData.topPerformersByViews.map(v => `
-        <tr>
-          <td><a href="${v.url}" target="_blank" style="color: var(--text-primary); text-decoration: none;">${truncate(v.title, 50)}</a></td>
-          <td><span class="platform-badge ${v.platform.toLowerCase()}">${v.platform}</span></td>
-          <td>${formatNumber(v.views)}</td>
-          <td>${v.engagementRate !== 'N/A' ? v.engagementRate + '%' : 'N/A'}</td>
-        </tr>
-      `).join('');
-      
-      // Top by engagement
-      document.getElementById('top-engagement-body').innerHTML = analyticsData.topPerformersByEngagement.map(v => `
-        <tr>
-          <td>${truncate(v.title, 50)}</td>
-          <td>${formatNumber(v.views)}</td>
-          <td class="trend-up">${v.engagementRate}</td>
-          <td><a href="${v.url}" target="_blank" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Watch</a></td>
-        </tr>
-      `).join('');
-    }
-    
-    function renderInstagramTable() {
-      if (!instagramData) return;
-      
-      document.getElementById('ig-table-body').innerHTML = instagramData.posts.slice(0, 15).map(post => `
-        <tr>
-          <td><a href="${post.url}" target="_blank" style="color: var(--text-primary); text-decoration: none;">${truncate(post.caption, 50)}</a></td>
-          <td>${post.likes}</td>
-          <td>${post.comments}</td>
-          <td>${new Date(post.timestamp).toLocaleDateString()}</td>
-        </tr>
-      `).join('');
-    }
-    
-    function refreshAnalytics() {
-      showToast('Refreshing analytics data...');
-      loadAnalyticsData().then(() => {
-        showToast('Analytics updated!', 'success');
-      });
-    }
-    
-    // ============ UTILITIES ============
-    function formatNumber(num) {
-      if (num >= 1000) {
-        return (num / 1000).toFixed(1) + 'K';
-      }
-      return num.toString();
-    }
-    
-    function truncate(str, len) {
-      if (!str) return '';
-      return str.length > len ? str.substring(0, len) + '...' : str;
-    }
-    
-    function showToast(message, type = '') {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.className = 'toast show' + (type ? ' ' + type : '');
-      setTimeout(() => toast.classList.remove('show'), 3000);
-    }
-    
-    // ============ NAVIGATION ============
+    // Navigation
     document.querySelectorAll('.nav-item').forEach(item => {
       item.addEventListener('click', () => {
         const page = item.dataset.page;
+        if (!page) return;
         
         document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        
         item.classList.add('active');
         
-        // Handle recommendations page id mismatch
-        const pageId = page === 'recommendations' ? 'recommendations-page' : page;
-        document.getElementById(pageId).classList.add('active');
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page-' + page).classList.add('active');
       });
     });
     
-    // ============ CAROUSELS DATA ============
-    const carousels = [
-      {
-        id: 1,
-        title: "5 Signs Your Front Desk Is Losing Patients",
-        slides: 7,
-        downloadUrl: "/carousels/carousel-1-all-slides.tar.gz"
-      },
-      {
-        id: 2,
-        title: "The $200 Patient Myth",
-        slides: 7,
-        downloadUrl: "/carousels/carousel-2-all-slides.tar.gz"
-      },
-      {
-        id: 3,
-        title: "What 50+ Practice Audits Taught Me",
-        slides: 7,
-        downloadUrl: "/carousels/carousel-3-all-slides.tar.gz"
-      },
-      {
-        id: 4,
-        title: "AI vs Human Receptionist",
-        slides: 7,
-        downloadUrl: "/carousels/carousel-4-all-slides.tar.gz"
-      },
-      {
-        id: 5,
-        title: "3 Things I'd Do Starting a Practice",
-        slides: 6,
-        downloadUrl: "/carousels/carousel-5-all-slides.tar.gz"
-      }
-    ];
-    
-    function renderCarousels() {
-      document.getElementById('carousel-grid').innerHTML = carousels.map(c => {
-        const slideImages = Array.from({length: c.slides}, (_, i) => 
-          `/carousels/carousel-${c.id}-slide-${i + 1}.png`
-        );
-        
-        return `
-        <div class="carousel-card">
-          <div class="carousel-preview" data-carousel="${c.id}" data-current="0">
-            <div class="carousel-slides" style="display: flex;">
-              ${slideImages.map((img, i) => `
-                <div class="carousel-slide">
-                  <img src="${img}" alt="${c.title} - Slide ${i + 1}" onerror="this.style.opacity='0.3'">
-                </div>
-              `).join('')}
-            </div>
-            <button class="carousel-nav prev" onclick="navigateCarousel(${c.id}, -1)">&#8249;</button>
-            <button class="carousel-nav next" onclick="navigateCarousel(${c.id}, 1)">&#8250;</button>
-            <div class="carousel-dots">
-              ${slideImages.map((_, i) => `
-                <div class="carousel-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${c.id}, ${i})"></div>
-              `).join('')}
-            </div>
-          </div>
-          <div class="carousel-info">
-            <div class="carousel-title">${c.title}</div>
-            <div class="carousel-meta">${c.slides} slides</div>
-            <a href="${c.downloadUrl}" class="btn btn-secondary">Download All</a>
-          </div>
-        </div>
-      `}).join('');
-      
-      // Add touch/swipe support for carousels
-      document.querySelectorAll('.carousel-preview').forEach(preview => {
-        let startX = 0;
-        let isDragging = false;
-        
-        preview.addEventListener('touchstart', (e) => {
-          startX = e.touches[0].clientX;
-          isDragging = true;
-        });
-        
-        preview.addEventListener('touchend', (e) => {
-          if (!isDragging) return;
-          const endX = e.changedTouches[0].clientX;
-          const diff = startX - endX;
-          const id = parseInt(preview.dataset.carousel);
-          
-          if (Math.abs(diff) > 50) {
-            navigateCarousel(id, diff > 0 ? 1 : -1);
-          }
-          isDragging = false;
-        });
-      });
-    }
-    
-    function navigateCarousel(id, direction) {
-      const preview = document.querySelector(`[data-carousel="${id}"]`);
-      const slides = preview.querySelector('.carousel-slides');
-      const dots = preview.querySelectorAll('.carousel-dot');
-      const carousel = carousels.find(c => c.id === id);
-      
-      let current = parseInt(preview.dataset.current);
-      current += direction;
-      
-      if (current < 0) current = carousel.slides - 1;
-      if (current >= carousel.slides) current = 0;
-      
-      preview.dataset.current = current;
-      slides.style.transform = `translateX(-${current * 100}%)`;
-      
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === current);
-      });
-    }
-    
-    function goToSlide(id, index) {
-      const preview = document.querySelector(`[data-carousel="${id}"]`);
-      const slides = preview.querySelector('.carousel-slides');
-      const dots = preview.querySelectorAll('.carousel-dot');
-      
-      preview.dataset.current = index;
-      slides.style.transform = `translateX(-${index * 100}%)`;
-      
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
-    }
-    
-    // ============ SCRIPTS ============
-    function renderScripts() {
-      if (!scriptsData) return;
-      
-      // Check for local edits
-      const localScripts = JSON.parse(localStorage.getItem('scriptsData') || 'null');
-      if (localScripts) {
-        scriptsData = localScripts;
-      }
-      
-      // Group by status/phase
-      const phases = [
-        { name: 'Phase 1: Value (No Selling)', ids: [1, 2, 5, 6] },
-        { name: 'Phase 2: Value + Implied Pitch', ids: [3, 4] },
-        { name: 'Phase 3: Direct Pitch', ids: [7, 8] },
-        { name: 'Phase 4: Interactive (Need Recordings)', ids: [9, 10] }
-      ];
-      
-      // Add header with export button
-      let html = `
-        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-bottom: 20px;">
-          <button class="btn btn-secondary" onclick="exportScripts()">📤 Export JSON</button>
-          <button class="btn btn-secondary" onclick="resetScripts()">🔄 Reset to Default</button>
-        </div>
-      `;
-      
-      phases.forEach(phase => {
-        const phaseScripts = scriptsData.filter(s => phase.ids.includes(s.id));
-        if (phaseScripts.length === 0) return;
-        
-        html += `<div style="margin-bottom: 32px;">
-          <h3 style="font-size: 14px; color: var(--gold); margin-bottom: 16px; font-weight: 600;">${phase.name}</h3>
-          ${phaseScripts.map(s => `
-            <div class="script-card" id="script-card-${s.id}">
-              <div class="script-header" onclick="toggleScript(${s.id})">
-                <div class="script-num">${s.id}</div>
-                <div class="script-info">
-                  <div class="script-title" id="title-display-${s.id}">${s.title}</div>
-                  <div class="script-hook" id="hook-display-${s.id}">${s.hook}</div>
-                </div>
-                <div class="script-meta">
-                  <span class="script-type ${s.type}">${s.type}</span>
-                  <span style="font-size: 11px; color: var(--text-muted); margin-left: 8px;">${s.length || ''}</span>
-                  ${s.scheduled ? `<span style="font-size: 11px; color: var(--green); margin-left: 8px;">📅 ${formatDate(s.scheduled)}</span>` : ''}
-                  ${s.status === 'needs-recordings' ? `<span style="font-size: 10px; background: rgba(248,113,113,0.15); color: var(--red); padding: 2px 8px; border-radius: 4px; margin-left: 8px;">Needs Recordings</span>` : ''}
-                </div>
-              </div>
-              <div class="script-body">
-                <div class="script-framework">Framework: ${s.framework}</div>
-                
-                <!-- View Mode -->
-                <div id="view-mode-${s.id}">
-                  <div class="script-content" id="content-display-${s.id}">${s.content}</div>
-                  <div style="margin-top: 16px; display: flex; gap: 10px;">
-                    <button class="btn btn-primary" onclick="event.stopPropagation(); editScript(${s.id})">✏️ Edit</button>
-                    <button class="btn btn-secondary" onclick="event.stopPropagation(); copyScriptById(${s.id})">📋 Copy</button>
-                  </div>
-                </div>
-                
-                <!-- Edit Mode -->
-                <div id="edit-mode-${s.id}" style="display: none;">
-                  <div style="margin-bottom: 14px;">
-                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">TITLE</label>
-                    <input type="text" id="title-input-${s.id}" value="${s.title.replace(/"/g, '&quot;')}" 
-                      style="width: 100%; padding: 10px 14px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 14px;">
-                  </div>
-                  <div style="margin-bottom: 14px;">
-                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">HOOK</label>
-                    <input type="text" id="hook-input-${s.id}" value="${s.hook.replace(/"/g, '&quot;')}" 
-                      style="width: 100%; padding: 10px 14px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 14px;">
-                  </div>
-                  <div style="margin-bottom: 14px;">
-                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">SCRIPT CONTENT</label>
-                    <textarea id="content-input-${s.id}" rows="15"
-                      style="width: 100%; padding: 14px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 14px; line-height: 1.6; resize: vertical;">${s.content}</textarea>
-                  </div>
-                  <div style="display: flex; gap: 10px;">
-                    <button class="btn btn-primary" onclick="event.stopPropagation(); saveScript(${s.id})">💾 Save</button>
-                    <button class="btn btn-secondary" onclick="event.stopPropagation(); cancelEdit(${s.id})">Cancel</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `).join('')}
-        </div>`;
-      });
-      
-      document.getElementById('scripts-list').innerHTML = html;
-    }
-    
-    function toggleScript(id) {
-      const card = document.getElementById(`script-card-${id}`);
-      card.classList.toggle('expanded');
-    }
-    
-    function editScript(id) {
-      document.getElementById(`view-mode-${id}`).style.display = 'none';
-      document.getElementById(`edit-mode-${id}`).style.display = 'block';
-    }
-    
-    function cancelEdit(id) {
-      document.getElementById(`view-mode-${id}`).style.display = 'block';
-      document.getElementById(`edit-mode-${id}`).style.display = 'none';
-    }
-    
-    function saveScript(id) {
-      const title = document.getElementById(`title-input-${id}`).value;
-      const hook = document.getElementById(`hook-input-${id}`).value;
-      const content = document.getElementById(`content-input-${id}`).value;
-      
-      // Update scriptsData
-      const script = scriptsData.find(s => s.id === id);
-      if (script) {
-        script.title = title;
-        script.hook = hook;
-        script.content = content;
-        
-        // Save to localStorage
-        localStorage.setItem('scriptsData', JSON.stringify(scriptsData));
-        
-        // Update display
-        document.getElementById(`title-display-${id}`).textContent = title;
-        document.getElementById(`hook-display-${id}`).textContent = hook;
-        document.getElementById(`content-display-${id}`).textContent = content;
-        
-        cancelEdit(id);
-        showToast('Script saved!', 'success');
-        
-        // Re-render calendar with updated data
-        renderCalendar();
-      }
-    }
-    
-    function copyScriptById(id) {
-      const script = scriptsData.find(s => s.id === id);
-      if (script) {
-        navigator.clipboard.writeText(script.content).then(() => {
-          showToast('Copied to clipboard!', 'success');
-        });
-      }
-    }
-    
-    function exportScripts() {
-      const json = JSON.stringify(scriptsData, null, 2);
-      const blob = new Blob([json], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'scripts.json';
-      a.click();
-      URL.revokeObjectURL(url);
-      showToast('Scripts exported!', 'success');
-    }
-    
-    function resetScripts() {
-      if (confirm('Reset all scripts to default? Your edits will be lost.')) {
-        localStorage.removeItem('scriptsData');
-        loadScripts().then(() => {
-          renderScripts();
-          renderCalendar();
-          showToast('Scripts reset to default', 'success');
-        });
-      }
-    }
-    
-    function formatDate(dateStr) {
-      const d = new Date(dateStr + 'T00:00:00');
-      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    }
-    
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('Copied to clipboard!', 'success');
-      });
-    }
-    
-    // ============ CALENDAR DATA ============
-    function renderCalendar() {
-      if (!scriptsData) {
-        setTimeout(renderCalendar, 100);
-        return;
-      }
-      
-      // Dynamic week starting from today
-      const today = new Date();
-      const dayOfWeek = today.getDay();
-      const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-      const monday = new Date(today);
-      monday.setDate(today.getDate() + mondayOffset);
-      
-      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-      const calendarDays = [];
-      
-      for (let i = 0; i < 7; i++) {
-        const date = new Date(monday);
-        date.setDate(monday.getDate() + i);
-        calendarDays.push({
-          day: days[i],
-          date: date,
-          dateNum: date.getDate(),
-          month: date.toLocaleString('en-US', { month: 'short' }),
-          isToday: date.toDateString() === today.toDateString(),
-          dateStr: date.toISOString().split('T')[0]
-        });
-      }
-      
-      // Update page subtitle
-      const startDate = calendarDays[0];
-      const endDate = calendarDays[6];
-      document.querySelector('#calendar .page-subtitle').textContent = 
-        `Week of ${startDate.month} ${startDate.dateNum} – ${endDate.month} ${endDate.dateNum}`;
-      
-      // Create schedule lookup from scripts (2 videos per day)
-      const scheduleByDate = {};
-      scriptsData.forEach(s => {
-        if (s.scheduled) {
-          if (!scheduleByDate[s.scheduled]) scheduleByDate[s.scheduled] = [];
-          scheduleByDate[s.scheduled].push(s);
-        }
-      });
-      
-      // Carousel schedule (1 per day)
-      const carouselTitles = [
-        '5 Signs Your Front Desk Is Losing Patients',
-        'The $200 Patient Myth',
-        'What 50+ Practice Audits Taught Me',
-        'AI vs Human Receptionist',
-        '3 Things I\'d Do Starting a Practice',
-        'Weekend Carousel 1',
-        'Weekend Carousel 2'
-      ];
-      
-      document.getElementById('calendar-week').innerHTML = calendarDays.map((d, i) => {
-        const scheduled = scheduleByDate[d.dateStr] || [];
-        const hasContent = i < 5; // Mon-Fri main content
-        
-        return `
-        <div class="calendar-day ${d.isToday ? 'today' : ''}">
-          <div class="calendar-day-header">
-            <span>${d.day}</span>
-            <span class="date">${d.month} ${d.dateNum}</span>
-          </div>
-          <div class="calendar-day-content">
-            ${scheduled.length > 0 ? `
-              <div style="font-size: 10px; color: var(--gold); margin-bottom: 6px; font-weight: 600;">📹 REELS (${scheduled.length})</div>
-              ${scheduled.map(s => `
-                <div class="calendar-item reel" title="${s.hook}" onclick="showScript(${s.id})">
-                  <strong>#${s.id}</strong> ${truncate(s.title, 18)}
-                  <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">${s.length} • ${s.type}</div>
-                </div>
-              `).join('')}
-            ` : ''}
-            ${hasContent && carouselTitles[i] ? `
-              <div style="font-size: 10px; color: var(--gold); margin: 8px 0 6px; font-weight: 600;">🎠 CAROUSEL</div>
-              <div class="calendar-item carousel" title="${carouselTitles[i]}" onclick="goToCarousels()">
-                ${truncate(carouselTitles[i], 22)}
-              </div>
-            ` : ''}
-            ${hasContent ? `
-              <div style="font-size: 10px; color: var(--text-muted); margin: 10px 0 4px; font-weight: 500;">📱 STORIES (4)</div>
-              <div style="font-size: 11px; color: var(--text-secondary); padding: 6px 8px; background: rgba(255,255,255,0.03); border-radius: 6px;">
-                Behind-the-scenes, polls, tips, engagement
-              </div>
-              <div style="font-size: 10px; color: var(--text-muted); margin: 10px 0 4px; font-weight: 500;">💬 DMs (40-60)</div>
-              <div style="font-size: 11px; color: var(--text-secondary); padding: 6px 8px; background: rgba(255,255,255,0.03); border-radius: 6px;">
-                Engage, reply, outreach
-              </div>
-            ` : `
-              <div style="font-size: 12px; color: var(--text-muted); padding: 20px 10px; text-align: center;">
-                Weekend:<br>Repurpose & Engage
-              </div>
-            `}
-          </div>
-        </div>
-      `}).join('');
-    }
-    
-    function showScript(id) {
-      // Show script in modal overlay instead of navigating
-      const script = scriptsData.find(s => s.id === id);
-      if (!script) return;
-      
-      const modal = document.createElement('div');
-      modal.id = 'script-modal';
-      modal.style.cssText = `
-        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0,0,0,0.85); z-index: 2000;
-        display: flex; align-items: center; justify-content: center;
-        padding: 20px;
-      `;
-      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-      
-      modal.innerHTML = `
-        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; max-width: 700px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative;">
-          <button onclick="document.getElementById('script-modal').remove()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-secondary); font-size: 24px; cursor: pointer;">&times;</button>
-          <div style="padding: 28px;">
-            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
-              <div style="background: var(--gold); color: #0a0a0c; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;">${script.id}</div>
-              <div>
-                <div style="font-size: 18px; font-weight: 600; margin-bottom: 4px;">${script.title}</div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                  <span style="font-size: 11px; padding: 4px 10px; border-radius: 6px; font-weight: 600; text-transform: uppercase; background: ${script.type === 'value' ? 'rgba(74, 222, 128, 0.12)' : script.type === 'pitch' ? 'rgba(201, 169, 98, 0.15)' : 'rgba(96, 165, 250, 0.15)'}; color: ${script.type === 'value' ? 'var(--green)' : script.type === 'pitch' ? 'var(--gold)' : 'var(--blue)'};">${script.type}</span>
-                  <span style="font-size: 12px; color: var(--text-muted);">${script.length || ''}</span>
-                  ${script.notes ? `<span style="font-size: 11px; color: var(--gold);">★ ${script.notes.substring(0, 40)}...</span>` : ''}
-                </div>
-              </div>
-            </div>
-            <div style="margin-bottom: 16px;">
-              <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Hook</div>
-              <div style="font-size: 15px; color: var(--gold); font-weight: 500;">"${script.hook}"</div>
-            </div>
-            ${script.sourceUrl ? `
-              <div style="margin-bottom: 16px;">
-                <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Reference Video</div>
-                <a href="${script.sourceUrl}" target="_blank" style="color: var(--blue); text-decoration: none; font-size: 14px;">▶ Watch Original →</a>
-              </div>
-            ` : ''}
-            <div style="margin-bottom: 20px;">
-              <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Full Script</div>
-              <div style="font-size: 14px; line-height: 1.8; color: var(--text-secondary); white-space: pre-wrap; padding: 20px; background: rgba(0,0,0,0.25); border-radius: 10px; max-height: 400px; overflow-y: auto;">${script.content}</div>
-            </div>
-            <div style="display: flex; gap: 10px;">
-              <button class="btn btn-primary" onclick="navigator.clipboard.writeText(\`${script.content.replace(/`/g, '\\`').replace(/\n/g, '\\n')}\`).then(() => showToast('Script copied!', 'success'))">📋 Copy Script</button>
-              <button class="btn btn-secondary" onclick="document.getElementById('script-modal').remove()">Close</button>
-            </div>
-          </div>
-        </div>
-      `;
-      
-      document.body.appendChild(modal);
-    }
-    
-    function goToCarousels() {
-      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.querySelector('[data-page="carousels"]').classList.add('active');
-      document.getElementById('carousels').classList.add('active');
-    }
-    
-    // ============ RECOMMENDATIONS PAGE ============
-    let recommendationsData = null;
-    
-    async function loadRecommendations() {
+    // Fetch and render data
+    async function loadData() {
       try {
-        recommendationsData = await fetch('/api/recommendations.json').then(r => r.json());
-        renderRecommendationsPage();
-      } catch (error) {
-        console.error('Error loading recommendations:', error);
+        // Try to load from social monitor
+        const res = await fetch('https://raw.githubusercontent.com/ksukirya/sync2-content-hub/main/api/analytics.json');
+        const data = await res.json();
+        renderData(data);
+      } catch (e) {
+        // Fallback: use embedded data
+        renderFallbackData();
       }
     }
     
-    function renderRecommendationsPage() {
-      if (!recommendationsData) return;
+    function renderFallbackData() {
+      // Hardcoded latest data
+      const data = {
+        timestamp: "2026-02-20T03:31",
+        youtube: [
+          { title: "I charge $5K to replace receptionists with robots", views: 465, url: "https://youtube.com/shorts/o7AP1-3IJZM" },
+          { title: "PSA For ALL Clinic Owners… Fire Your Receptionist", views: 251, url: "#" },
+          { title: "I Built an AI That Replaced 500 Pages of Yacht Manuals", views: 428, url: "#" },
+          { title: "The ONLY Way For Business Owners To Not Get Ghosted", views: 770, url: "#" },
+          { title: "I Switched To Spanish Mid Call (AI DEMO)", views: 890, url: "#" },
+          { title: "$5K AI Receptionist VS Angry Caller", views: 785, url: "#" },
+          { title: "I Built an AI Receptionist That Books Patients 24/7", views: 966, url: "#" },
+          { title: "$5k AI Caller for a Plastic Surgery Clinic", views: 472, url: "#" }
+        ],
+        tiktok: [
+          { title: "Documenting my whole journey", views: 96, likes: 0, url: "#" },
+          { title: "Your front desk is your most expensive voicemail", views: 90, likes: 2, url: "#" },
+          { title: "3 Biggest mistakes in Voice AI", views: 244, likes: 6, url: "#" },
+          { title: "Spanish mid-call switch", views: 304, likes: 13, url: "#" },
+          { title: "$5k AI Medspa Receptionist", views: 405, likes: 21, url: "#" },
+          { title: "Stop running AI Agents solo", views: 454, likes: 28, url: "#" }
+        ]
+      };
       
-      renderProvenHooks();
-      renderReadyScripts();
-      renderFormats();
-      renderCompetitorPatterns();
-      renderWeeklyPlan();
-    }
-    
-    function renderProvenHooks() {
-      const hooks = recommendationsData.provenHooks.hooks;
-      document.getElementById('proven-hooks-list').innerHTML = hooks.map((hook, i) => `
-        <div class="hook-category" onclick="this.classList.toggle('expanded')">
-          <div class="hook-category-header">
-            <span class="hook-template">${hook.template}</span>
-            <span class="hook-avg-views">${hook.avgViews} avg views</span>
+      // Update timestamp
+      document.getElementById('last-updated').textContent = 'Last updated: ' + data.timestamp;
+      
+      // Calculate totals
+      const ytViews = data.youtube.reduce((sum, v) => sum + v.views, 0);
+      const ttViews = data.tiktok.reduce((sum, v) => sum + v.views, 0);
+      const ttLikes = data.tiktok.reduce((sum, v) => sum + (v.likes || 0), 0);
+      const totalVideos = data.youtube.length + data.tiktok.length;
+      const avgEng = ((ttLikes / ttViews) * 100).toFixed(1);
+      
+      document.getElementById('total-views').textContent = (ytViews + ttViews).toLocaleString();
+      document.getElementById('total-likes').textContent = ttLikes;
+      document.getElementById('total-videos').textContent = totalVideos;
+      document.getElementById('avg-engagement').textContent = avgEng + '%';
+      document.getElementById('views-change').textContent = 'YouTube: ' + ytViews.toLocaleString() + ' | TikTok: ' + ttViews.toLocaleString();
+      
+      // Top performers
+      const allVideos = [
+        ...data.youtube.map(v => ({ ...v, platform: 'YouTube' })),
+        ...data.tiktok.map(v => ({ ...v, platform: 'TikTok' }))
+      ].sort((a, b) => b.views - a.views).slice(0, 3);
+      
+      document.getElementById('top-performers').innerHTML = allVideos.map((v, i) => `
+        <div class="top-performer">
+          <div class="top-rank">#${i + 1}</div>
+          <div class="top-info">
+            <div class="top-title">${v.title}</div>
+            <div class="top-meta">${v.platform}</div>
           </div>
-          <div class="hook-category-body">
-            <div style="margin-bottom: 20px; padding-top: 16px;">
-              <div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;">Copy These:</div>
-              ${hook.copyThese.map(h => `
-                <div class="copy-hook" onclick="event.stopPropagation(); copyHook(this, '${h.replace(/'/g, "\\'")}')">
-                  <span class="copy-hook-text">${h}</span>
-                  <span class="copy-hook-btn">Click to copy</span>
-                </div>
-              `).join('')}
-            </div>
-            
-            <div class="hook-source">
-              <div class="hook-source-title">Source videos that prove this works:</div>
-              ${hook.sourceVideos.map(v => `
-                <div class="hook-source-video">
-                  <a href="${v.url}" target="_blank">${v.title}</a>
-                  <span class="hook-source-views">${formatNumber(v.views)} views</span>
-                </div>
-              `).join('')}
-            </div>
-            
-            <div class="hook-why">
-              <strong>Why it works:</strong> ${hook.whyItWorks}
-            </div>
-          </div>
+          <div class="top-views">${v.views.toLocaleString()}</div>
         </div>
       `).join('');
-    }
-    
-    function renderReadyScripts() {
-      const scripts = recommendationsData.readyToFilm.scripts;
-      document.getElementById('ready-scripts-list').innerHTML = scripts.map((s, i) => `
-        <div class="script-card" onclick="this.classList.toggle('expanded')">
-          <div class="script-header">
-            <div class="script-num">${i + 1}</div>
-            <div class="script-info">
-              <div class="script-title">${s.title}</div>
-              <div class="script-hook">${s.hook}</div>
-            </div>
-            <div class="script-meta">
-              <span class="script-type ${s.type}">${s.type}</span>
-              <span style="color: var(--text-secondary); font-size: 12px;">${s.duration}</span>
-            </div>
-          </div>
-          <div class="script-body">
-            <div style="display: flex; gap: 14px; margin-bottom: 14px; padding-top: 14px;">
-              <span style="font-size: 12px; color: var(--text-secondary);">Based on:</span>
-              <a href="${s.basedOn.url || '#'}" target="_blank" style="font-size: 13px; color: var(--gold);">${s.basedOn.title} (${formatNumber(s.basedOn.views)} views)</a>
-            </div>
-            <div class="script-content">${s.script}</div>
-            <div style="margin-top: 16px;">
-              <button class="btn btn-secondary" onclick="event.stopPropagation(); copyScript('${s.script.replace(/'/g, "\\'").replace(/\n/g, "\\n")}')">
-                Copy Full Script
-              </button>
-            </div>
+      
+      // YouTube list
+      document.getElementById('youtube-list').innerHTML = data.youtube.slice(0, 5).map(v => `
+        <div class="video-item">
+          <div class="video-title">${v.title}</div>
+          <div class="video-stats">
+            <span class="video-stat views">${v.views.toLocaleString()} views</span>
           </div>
         </div>
       `).join('');
-    }
-    
-    function renderFormats() {
-      const formats = recommendationsData.provenFormats.formats;
-      document.getElementById('formats-grid').innerHTML = formats.map(f => `
-        <div class="format-card">
-          <div class="format-type">${f.type}</div>
-          <div class="format-views">${f.avgViews} <span>avg views</span></div>
-          <div class="format-desc">${f.description}</div>
-        </div>
-      `).join('');
-    }
-    
-    function renderCompetitorPatterns() {
-      const patterns = recommendationsData.competitorInsights.patterns;
-      document.getElementById('competitor-patterns').innerHTML = patterns.map(p => `
-        <div class="pattern-item">
-          <div class="pattern-name">${p.pattern}</div>
-          <div class="pattern-examples">
-            ${p.examples.join(' • ')}<br>
-            <span style="color: var(--text-primary); margin-top: 6px; display: block;">${p.whyItWorks}</span>
+      
+      document.getElementById('youtube-full-list').innerHTML = data.youtube.map(v => `
+        <div class="video-item">
+          <div class="video-title">${v.title}</div>
+          <div class="video-stats">
+            <span class="video-stat views">${v.views.toLocaleString()} views</span>
           </div>
-          <div class="pattern-engagement">${p.avgEngagement}</div>
         </div>
       `).join('');
-    }
-    
-    function renderWeeklyPlan() {
-      const plan = recommendationsData.weeklyPlan.schedule;
-      document.getElementById('weekly-plan').innerHTML = plan.map(day => `
-        <div class="weekly-day">
-          <div class="weekly-day-name">${day.day}</div>
-          <div class="weekly-day-content">${day.content}</div>
-          <div class="weekly-day-hook">${day.hook}</div>
+      
+      // TikTok list
+      document.getElementById('tiktok-list').innerHTML = data.tiktok.slice(0, 5).map(v => `
+        <div class="video-item">
+          <div class="video-title">${v.title}</div>
+          <div class="video-stats">
+            <span class="video-stat views">${v.views.toLocaleString()} views</span>
+            <span class="video-stat">${v.likes || 0} likes</span>
+          </div>
         </div>
       `).join('');
+      
+      document.getElementById('tiktok-full-list').innerHTML = data.tiktok.map(v => `
+        <div class="video-item">
+          <div class="video-title">${v.title}</div>
+          <div class="video-stats">
+            <span class="video-stat views">${v.views.toLocaleString()} views</span>
+            <span class="video-stat">${v.likes || 0} likes</span>
+          </div>
+        </div>
+      `).join('');
+      
+      // Update nav badges
+      document.getElementById('yt-count').textContent = data.youtube.length;
+      document.getElementById('tt-count').textContent = data.tiktok.length;
     }
     
-    function copyHook(element, text) {
-      navigator.clipboard.writeText(text).then(() => {
-        element.classList.add('copied');
-        element.querySelector('.copy-hook-btn').textContent = 'Copied!';
-        setTimeout(() => {
-          element.classList.remove('copied');
-          element.querySelector('.copy-hook-btn').textContent = 'Click to copy';
-        }, 2000);
-      });
-    }
-    
-    function copyScript(text) {
-      navigator.clipboard.writeText(text.replace(/\\n/g, '\n')).then(() => {
-        showToast('Script copied to clipboard!', 'success');
-      });
-    }
-    
-    // ============ MOBILE MENU ============
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('open');
-      document.getElementById('overlay').classList.toggle('show');
-    }
-    
-    // Close menu when nav item clicked on mobile
-    document.querySelectorAll('.nav-item').forEach(item => {
-      item.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-          toggleMenu();
-        }
-      });
-    });
-    
-    // ============ INIT ============
-    loadAnalyticsData();
-    loadRecommendations();
-    loadScripts();
-    renderCarousels();
-    renderCalendar();
+    // Load on page load
+    renderFallbackData();
   </script>
 </body>
 </html>
