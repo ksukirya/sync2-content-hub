@@ -388,9 +388,29 @@
     <!-- Dashboard Page -->
     <div class="page active" id="page-dashboard">
       <div class="page-header">
-        <h1 class="page-title">Performance Dashboard</h1>
-        <p class="page-subtitle">Real-time analytics across all platforms</p>
-        <p class="last-updated" id="last-updated">Last updated: Loading...</p>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+          <div>
+            <h1 class="page-title">Performance Dashboard</h1>
+            <p class="page-subtitle">Real-time analytics across all platforms</p>
+            <p class="last-updated" id="last-updated">Last updated: Loading...</p>
+          </div>
+          <button id="refresh-btn" onclick="refreshData()" style="
+            background: var(--gold);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.15s;
+          ">
+            <span id="refresh-icon">↻</span> Refresh
+          </button>
+        </div>
       </div>
       
       <div class="stats-grid">
@@ -697,6 +717,120 @@
       document.getElementById('tt-count').textContent = data.tiktok.length;
     }
     
+    // Refresh button handler
+    async function refreshData() {
+      const btn = document.getElementById('refresh-btn');
+      const icon = document.getElementById('refresh-icon');
+      
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+      icon.style.animation = 'spin 1s linear infinite';
+      
+      // Add spin animation if not exists
+      if (!document.getElementById('spin-style')) {
+        const style = document.createElement('style');
+        style.id = 'spin-style';
+        style.textContent = '@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
+        document.head.appendChild(style);
+      }
+      
+      try {
+        // Try fetching fresh data with cache bust
+        const cacheBust = Date.now();
+        const res = await fetch(`https://raw.githubusercontent.com/ksukirya/sync2-content-hub/main/api/analytics.json?t=${cacheBust}`);
+        if (res.ok) {
+          const data = await res.json();
+          renderData(data);
+          document.getElementById('last-updated').textContent = 'Last updated: ' + new Date().toLocaleString();
+        } else {
+          renderFallbackData();
+        }
+      } catch (e) {
+        console.error('Refresh failed:', e);
+        renderFallbackData();
+      }
+      
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        icon.style.animation = '';
+      }, 1000);
+    }
+    
+    function renderData(data) {
+      // Same as fallback but with live data
+      document.getElementById('last-updated').textContent = 'Last updated: ' + (data.timestamp || new Date().toISOString());
+      
+      const ytViews = data.youtube.reduce((sum, v) => sum + v.views, 0);
+      const ttViews = data.tiktok.reduce((sum, v) => sum + v.views, 0);
+      const ttLikes = data.tiktok.reduce((sum, v) => sum + (v.likes || 0), 0);
+      const totalVideos = data.youtube.length + data.tiktok.length;
+      const avgEng = ttViews > 0 ? ((ttLikes / ttViews) * 100).toFixed(1) : '0';
+      
+      document.getElementById('total-views').textContent = (ytViews + ttViews).toLocaleString();
+      document.getElementById('total-likes').textContent = ttLikes;
+      document.getElementById('total-videos').textContent = totalVideos;
+      document.getElementById('avg-engagement').textContent = avgEng + '%';
+      document.getElementById('views-change').textContent = 'YouTube: ' + ytViews.toLocaleString() + ' | TikTok: ' + ttViews.toLocaleString();
+      
+      const allVideos = [
+        ...data.youtube.map(v => ({ ...v, platform: 'YouTube' })),
+        ...data.tiktok.map(v => ({ ...v, platform: 'TikTok' }))
+      ].sort((a, b) => b.views - a.views).slice(0, 3);
+      
+      document.getElementById('top-performers').innerHTML = allVideos.map((v, i) => `
+        <div class="top-performer">
+          <div class="top-rank">#${i + 1}</div>
+          <div class="top-info">
+            <div class="top-title">${v.title}</div>
+            <div class="top-meta">${v.platform}</div>
+          </div>
+          <div class="top-views">${v.views.toLocaleString()}</div>
+        </div>
+      `).join('');
+      
+      document.getElementById('youtube-list').innerHTML = data.youtube.slice(0, 5).map(v => `
+        <div class="video-item">
+          <div class="video-title">${v.title}</div>
+          <div class="video-stats">
+            <span class="video-stat views">${v.views.toLocaleString()} views</span>
+          </div>
+        </div>
+      `).join('');
+      
+      document.getElementById('youtube-full-list').innerHTML = data.youtube.map(v => `
+        <div class="video-item">
+          <div class="video-title">${v.title}</div>
+          <div class="video-stats">
+            <span class="video-stat views">${v.views.toLocaleString()} views</span>
+          </div>
+        </div>
+      `).join('');
+      
+      document.getElementById('tiktok-list').innerHTML = data.tiktok.slice(0, 5).map(v => `
+        <div class="video-item">
+          <div class="video-title">${v.title}</div>
+          <div class="video-stats">
+            <span class="video-stat views">${v.views.toLocaleString()} views</span>
+            <span class="video-stat">${v.likes || 0} likes</span>
+          </div>
+        </div>
+      `).join('');
+      
+      document.getElementById('tiktok-full-list').innerHTML = data.tiktok.map(v => `
+        <div class="video-item">
+          <div class="video-title">${v.title}</div>
+          <div class="video-stats">
+            <span class="video-stat views">${v.views.toLocaleString()} views</span>
+            <span class="video-stat">${v.likes || 0} likes</span>
+          </div>
+        </div>
+      `).join('');
+      
+      document.getElementById('yt-count').textContent = data.youtube.length;
+      document.getElementById('tt-count').textContent = data.tiktok.length;
+    }
+
     // Load on page load
     renderFallbackData();
   </script>
