@@ -16,7 +16,8 @@ const carousels = [
   { id: 4, slides: 7 },
   { id: 5, slides: 6 },
   { id: 6, slides: 6 },
-  { id: 7, slides: 7 }
+  { id: 7, slides: 7 },
+  { id: 8, slides: 7 }
 ];
 
 async function captureCarousels() {
